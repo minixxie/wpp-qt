@@ -15,7 +15,7 @@ git submodule update
 
 
 ## To Begin
-To use this library, the first requirement is to substitue QGuiApplication with wpp::qt::Application:
+To use this library, the first requirement is to substitute QGuiApplication with wpp::qt::Application:
 ```c++
 #include <wpp/qt/Application.h>
 int main(int argc, char *argv[])
@@ -23,5 +23,5 @@ int main(int argc, char *argv[])
         wpp::qt::Application app(argc, argv);
         ...
 ```
-Application class actually inherits from QGuiApplication and it registers some wpp library things in addition.
+The Application class actually inherits from [QGuiApplication](http://doc.qt.io/qt-5/qguiapplication.html) and it registers some wpp library things in addition.
 
