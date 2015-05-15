@@ -202,7 +202,7 @@ OBJECTIVE_SOURCES += \
 	$$PWD/ActionSheetPicker-3.0/Pickers/ActionSheetDistancePicker.m	\
 	$$PWD/ActionSheetPicker-3.0/Pickers/SWActionSheet.m \
 	$$PWD/ActionSheetPicker-3.0/ObjC-Example/Example/Classes/NSDate+TCUtils.m \
-	$$PWD/ActionSheetPicker-3.0/Example Projects/Example-for-iOS-7-and-6/Example/Classes/NSDate+TCUtils.m
+	$$PWD/ActionSheetPicker-3.0/Example\ Projects/Example-for-iOS-7-and-6/Example/Classes/NSDate+TCUtils.m
 OBJECTIVE_HEADERS += \
 	$$PWD/ActionSheetPicker-3.0/Pickers/AbstractActionSheetPicker.h	\
 	$$PWD/ActionSheetPicker-3.0/Pickers/ActionSheetLocalePicker.h \
@@ -215,5 +215,5 @@ OBJECTIVE_HEADERS += \
 	$$PWD/ActionSheetPicker-3.0/Pickers/ActionSheetDistancePicker.h	\
 	$$PWD/ActionSheetPicker-3.0/Pickers/SWActionSheet.h \
 	$$PWD/ActionSheetPicker-3.0/ObjC-Example/Example/Classes/NSDate+TCUtils.h \
-	$$PWD/ActionSheetPicker-3.0/Example-for-iOS-7-and-6/Example/Classes/NSDate+TCUtils.h
+	$$PWD/ActionSheetPicker-3.0/Example\ Projects/Example-for-iOS-7-and-6/Example/Classes/NSDate+TCUtils.h
 }
