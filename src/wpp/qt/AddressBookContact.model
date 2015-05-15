@@ -1,0 +1,4 @@
+QString firstName
+QString lastName
+QList<QObject*> phones
+QList<QObject*> emails

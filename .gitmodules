@@ -1,0 +1,6 @@
+[submodule "ELCImagePickerController"]
+	path = ELCImagePickerController
+	url = https://github.com/B-Sides/ELCImagePickerController.git
+[submodule "ActionSheetPicker-3.0"]
+	path = ActionSheetPicker-3.0
+	url = https://github.com/skywinder/ActionSheetPicker-3.0.git

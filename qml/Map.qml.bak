@@ -1,0 +1,194 @@
+import QtQuick 2.2
+
+Rectangle {
+	id: "map"
+
+	property string mapSource: "GOOGLE" //GOOGLE, GAODE, BAIDU...
+	property int zoom: 4
+	property real mapScale: 1
+	property real urlScale: 1
+
+	ListModel {
+		id: "tilesModel"
+	}
+
+	Flickable {
+		id: "flickable"
+		anchors.fill: parent
+		contentWidth: gridViewContainerRectangle.width
+		contentHeight: gridViewContainerRectangle.height
+		clip: true
+		boundsBehavior: Flickable.StopAtBounds
+
+		Rectangle {
+			id: "gridViewContainerRectangle"
+			width: mapTilesGridView.width*mapTilesGridView.scale
+			height: mapTilesGridView.height*mapTilesGridView.scale
+			color: "green"
+
+			GridView {
+				id: "mapTilesGridView"
+				boundsBehavior: Flickable.StopAtBounds
+				interactive: false
+				anchors.fill: parent
+				width: parent.width //map.calWorldWidth()
+				height: parent.height
+				clip: true
+				contentWidth: map.calWorldWidth()
+				contentHeight: map.calWorldHeight()
+				//flow: GridView.FlowTopToBottom
+				cellWidth: 256 *map.mapScale
+				cellHeight: 256 *map.mapScale
+				flickableDirection: Flickable.HorizontalAndVerticalFlick
+				model: tilesModel
+				delegate: Rectangle {
+					width:256 *map.mapScale
+					height:256 *map.mapScale
+					Image {
+						source: calTileUrl(xIndex, yIndex)
+						anchors.fill: parent
+						cache: false
+
+					}
+					Rectangle {
+						anchors.fill: parent
+						color: "transparent"
+						border.color: "red"
+						border.width: 1
+					}
+
+					Text {
+						text: "x,y: " + xIndex + "," + yIndex + "=>" + parent.width +"x" + parent.height
+						color: "red"
+					}
+				}//Rectangle-delegate
+			}//GridView
+
+		}
+
+		/*PinchArea {
+			anchors.fill: parent
+			//pinch.target: mapTilesGridView
+
+			onPinchStarted: { //pinch:{scale, center, angle}
+				console.log("map:onPinchStarted:pinch:{scale:"+pinch.scale+",center:"+pinch.center+",angle:"+pinch.angle+"}" );
+			}
+			onPinchFinished: { //pinch:{scale, center, angle}
+				console.log("map:onPinchFinished:pinch:{scale:"+pinch.scale+",center:"+pinch.center+",angle:"+pinch.angle+"}" );
+				map.set(pinch.scale);
+			}
+			property int lastCenterX: -1
+			property int lastCenterY: -1
+			onPinchUpdated: { //pinch:{scale, center, angle}
+				console.log("map:onPinchUpdated:pinch:{scale:"+pinch.scale+",center:"+pinch.center+",angle:"+pinch.angle+"}" );
+				//map.set(pinch.scale);
+				//map.mapScale = pinch.scale;
+				mapTilesGridView.scale = pinch.scale;
+
+				if ( lastCenterX == -1 ) lastCenterX = pinch.center.x;
+				if ( lastCenterY == -1 ) lastCenterY = pinch.center.y;
+
+				//console.log("flickable:contentX,contentY:" + flickable.contentX + "," + flickable.contentY );
+				//new_content_x = new_center_x * scale - ( pinch.center.x - old_content_x )
+				//flickable.contentX = pinch.center.x * pinch.scale - ( lastCenterX - flickable.contentX );
+				//flickable.contentY = pinch.center.y * pinch.scale - ( lastCenterY - flickable.contentY );
+				//console.log("flickable:contentX,contentY(after):" + flickable.contentX + "," + flickable.contentY );
+
+				//flickable.contentX = flickable.contentX * pinch.scale;
+				//flickable.contentY = flickable.contentY * pinch.scale;
+				//mapTilesGridView.width = calWorldWidth();
+				//mapTilesGridView.height = calWorldWidth();
+
+			}
+		}*/
+	}
+
+
+	function calWorldWidth()
+	{
+		var worldWidth = 256 * map.mapScale * Math.pow( 2, zoom );
+		console.log("worldWidth:" + worldWidth);
+		return worldWidth;
+	}
+	function calWorldHeight()
+	{
+		var worldWidth = 256 * map.mapScale * Math.pow( 2, zoom );
+		var worldHeight = worldWidth*3/4;
+		console.log("worldHeight:" + worldHeight);
+		return worldHeight;
+	}
+	function calTileUrl(xIndex, yIndex)
+	{
+		//return "http://mt1.google.com/vt/lyrs=m@269000000&hl=zh-CN&gl=CN&src=app&x="+xIndex+"&y="+yIndex+"&z="+zoom+"&s=Galileo&scale=1";
+		//return "http://emap1.mapabc.com/mapabc/maptile?x="+xIndex+"&y="+yIndex+"&z="+zoom+"&scale="+scale;
+		var url = "http://mt1.google.com/vt/lyrs=m@269000000&hl=zh-CN&gl=CN&src=app&x="+xIndex+"&y="+yIndex+"&z="+zoom+"&s=Galileo&scale="+map.urlScale;
+		console.log("tile-url:" + url);
+		return url;
+	}
+
+	function set(scale)
+	{
+		//var scale = 4;
+		var newScale = map.mapScale * scale;
+		console.log("newScale=" + newScale);
+		if ( newScale >= 2 )//should increase the zoom, and re-calculate the scale
+		{
+			var newScaleIsTwoToPowerWhat = Math.log( newScale )/Math.log(2);
+			console.log("newScaleIsTwoToPowerWhat=" + newScaleIsTwoToPowerWhat);
+			var addToZoom = parseInt( newScaleIsTwoToPowerWhat );
+			console.log("addToZoom=" + addToZoom);
+			if ( newScale / Math.pow(2,addToZoom) > 1 )//scale left
+			{
+				console.log("scale to add...");
+				var newNewScale = newScale / Math.pow(2,addToZoom);
+				console.log("newNewScale=" + newNewScale);
+				map.mapScale = newNewScale;
+			}
+			else
+			{
+				console.log("scale should go back to 1...");
+				map.mapScale = 1;
+			}
+			var newZoom = map.zoom + addToZoom;
+			console.log("zoom should go from " + map.zoom + " => " + newZoom);
+
+			//var decimalZoom = Math.log( Math.pow(2, map.zoom) * newScale )/Math.log(2);
+			//var newNormalizedScale = Math.pow(2, decimalZoom)/Math.pow(2, map.zoom + 1)
+		}
+		else
+		{
+			map.mapScale = newScale;
+		}
+		map.urlScale = map.mapScale;
+
+
+		var worldWidth = calWorldWidth();
+		var worldHeight = calWorldHeight();
+
+		var xCount = worldWidth / (256 * map.mapScale);
+		var yCount = worldHeight / (256 * map.mapScale);
+
+		console.log("xCount:"+xCount);
+		console.log("yCount:"+yCount);
+
+		tilesModel.clear();
+		for ( var y = 0 ; y < yCount ; y++ )
+		{
+			for ( var x = 0 ; x < xCount ; x++ )
+			{
+				tilesModel.append({
+					"xIndex": x,
+					"yIndex": y
+				});
+			}
+
+		}
+	}
+
+	Component.onCompleted: {
+		map.set(1);
+
+
+
+	}
+}

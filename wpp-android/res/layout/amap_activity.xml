@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/map_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff" >
+		<com.amap.api.maps2d.MapView 
+		    xmlns:android="http://schemas.android.com/apk/res/android"
+		    android:id="@+id/map"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent" />
+		<RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentTop="true"
+            android:background="#50000000" >
+            <ImageButton android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/navigation_back"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:onClick="backBtnClicked"
+                android:background="@android:color/transparent"/>
+            <Button android:id="@+id/confirm_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:visibility="gone"
+                android:text="@android:string/ok" />
+        </RelativeLayout>
+</RelativeLayout>

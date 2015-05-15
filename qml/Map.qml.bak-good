@@ -1,0 +1,276 @@
+import QtQuick 2.2
+
+Flickable {
+	id: "map"
+
+	property string mapSource: "GOOGLE" //GOOGLE, GAODE, BAIDU...
+	property int zoom: 4
+	property real mapScale: 1
+	property real urlScale: 1
+
+	//grids info
+	property int rows: calYCount()
+	property int cols: calXCount()
+	property int cellWidth: 256*map.scale
+	property int cellHeight: 256*map.scale
+
+	contentWidth: cols * cellWidth
+	contentHeight: rows * cellHeight
+	clip: true
+	boundsBehavior: Flickable.StopAtBounds
+
+	//property Component delegate
+	ListModel {
+		id: "tilesModel"
+	}
+
+	property Component delegate: Component {
+		Rectangle {
+			property bool toLoad: false
+			property int xIndex: -1
+			property int yIndex: -1
+
+			width:256 *map.mapScale
+			height:256 *map.mapScale
+			Rectangle {
+				anchors.fill: parent
+				color: "transparent"
+				border.color: Qt.rgba(0,0,0,0.3)
+				border.width: 1
+			}
+			Image {
+				source: parent.xIndex >= 0 && parent.yIndex >= 0 ? map.calTileUrl(xIndex, yIndex) : ""
+				anchors.fill: parent
+				cache: false
+				visible: parent.toLoad
+			}
+			/*Rectangle {
+				anchors.fill: parent
+				color: "transparent"
+				border.color: Qt.rgba(0,0,0,0.3)
+				border.width: 1
+				visible: parent.toLoad
+			}*/
+			Text {
+				text: parent.xIndex >= 0 && parent.yIndex >= 0 ?
+						  "x,y: " + parent.xIndex + "," + parent.yIndex + "=>" + parent.width +"x" + parent.height
+						: parent.width +"x" + parent.height
+				color: "red"
+			}
+		}//Rectangle-delegate
+	}//Component-delegate
+
+	contentItem.children: {
+		console.log("rows x cols:" + rows + "x" + cols);
+		var array = [];
+		var cellArray = [];
+		for ( var yIndex = 0 ; yIndex < rows ; yIndex++ )
+		{
+			for ( var xIndex = 0 ; xIndex < cols ; xIndex++ )
+			{
+
+				var modelIndex = yIndex * cols + xIndex;
+				var cellX = xIndex * cellWidth;
+				var cellY = yIndex * cellHeight;
+				console.log("creating tile at:" + xIndex + "," + yIndex);
+				var delegateItem = delegate.createObject( contentItem, {'modelData': tilesModel.get(modelIndex)} );
+				delegateItem.x = cellX;
+				delegateItem.y = cellY;
+				delegateItem.width = cellWidth;
+				delegateItem.height = cellHeight;
+
+				delegateItem.xIndex = xIndex;
+				delegateItem.yIndex = yIndex;
+
+				array.push(delegateItem);
+			}
+		}
+		return array;
+	}
+
+	onFlickStarted: {
+
+	}
+
+	onFlickEnded: {
+		console.log("flick to:" + contentX + "," + contentY );
+		map.showOnDemand();
+	}
+
+	function showOnDemand()
+	{
+		console.log("contentX:" + contentX);
+		console.log("cellWidth:" + cellWidth);
+		console.log("contentY:" + contentY);
+		console.log("cellHeight:" + cellHeight);
+		console.log("width:" + map.width);
+		console.log("height:" + map.height);
+
+		var PRE_LOAD_BUFFER_COUNT = 3;
+		var topLeftXIndex = Math.floor( contentX / cellWidth );
+		console.log("topLeftXIndex:" + topLeftXIndex);
+		var topRightXIndex = Math.ceil( ( contentX + width ) / cellWidth ) - 1;
+		console.log("topRightXIndex:" + topRightXIndex);
+		//add buffer
+		var minXIndex = topLeftXIndex - PRE_LOAD_BUFFER_COUNT;
+		var maxXIndex = topRightXIndex + PRE_LOAD_BUFFER_COUNT;
+		//fix boundary
+		if ( minXIndex < 0 ) minXIndex = 0;
+		if ( minXIndex > cols - 1 ) minXIndex = cols - 1;
+		if ( maxXIndex < 0 ) maxXIndex = 0;
+		if ( maxXIndex > cols - 1 ) maxXIndex = cols - 1;
+
+		var topLeftYIndex = Math.floor( contentY / cellHeight );
+		console.log("topLeftYIndex:" + topLeftYIndex);
+		var bottomLeftYIndex = Math.ceil( ( contentY + height ) / cellHeight ) - 1;
+		console.log("bottomLeftYIndex:" + bottomLeftYIndex)
+		//add buffer
+		var minYIndex = topLeftYIndex - PRE_LOAD_BUFFER_COUNT;
+		var maxYIndex = bottomLeftYIndex + PRE_LOAD_BUFFER_COUNT;
+		//fix boundary
+		if ( minYIndex < 0 ) minYIndex = 0;
+		if ( minYIndex > rows - 1 ) minYIndex = rows - 1;
+		if ( maxYIndex < 0 ) maxYIndex = 0;
+		if ( maxYIndex > rows - 1 ) maxYIndex = rows - 1;
+
+		console.log("xIndex: " + topLeftXIndex + " ~ " + topRightXIndex);
+		console.log("yIndex: " + topLeftYIndex + " ~ " + bottomLeftYIndex);
+
+		for ( var yIndex = minYIndex ; yIndex <= maxYIndex ; yIndex++ )
+		{
+			for ( var xIndex = minXIndex ; xIndex <= maxXIndex ; xIndex++ )
+			{
+				var modelIndex = yIndex * cols + xIndex;
+				var item = contentItem.children[modelIndex];
+				console.log("item at ["+yIndex+"]["+xIndex+"]:" + item);
+				item.toLoad = true;
+
+				/*
+				var modelIndex = yIndex * cols + xIndex;
+				var cellX = xIndex * cellWidth;
+				var cellY = yIndex * cellHeight;
+				var delegateItem = delegate.createObject( contentItem, {'modelData': tilesModel.get(modelIndex)} );
+				delegateItem.x = cellX;
+				delegateItem.y = cellY;
+				delegateItem.width = cellWidth;
+				delegateItem.height = cellHeight;
+				//delegateItem.children.push(  );
+				array.push(delegateItem);*/
+			}
+		}
+	}
+
+	onWidthChanged: {
+		map.showOnDemand();
+	}
+	onHeightChanged: {
+		map.showOnDemand();
+	}
+
+	function calWorldWidth()
+	{
+		var worldWidth = 256 * map.mapScale * Math.pow( 2, zoom );
+		console.log("worldWidth:" + worldWidth);
+		return worldWidth;
+	}
+	function calWorldHeight()
+	{
+		var worldWidth = 256 * map.mapScale * Math.pow( 2, zoom );
+		var worldHeight = worldWidth*3/4;
+		console.log("worldHeight:" + worldHeight);
+		return worldHeight;
+	}
+	function calXCount()
+	{
+		var worldWidth = calWorldWidth();
+		var xCount = worldWidth / (256 * map.mapScale);
+		return xCount;
+	}
+	function calYCount()
+	{
+		var worldHeight = calWorldHeight();
+		var yCount = worldHeight / (256 * map.mapScale);
+		return yCount;
+	}
+
+	function calTileUrl(xIndex, yIndex)
+	{
+		//return "http://mt1.google.com/vt/lyrs=m@269000000&hl=zh-CN&gl=CN&src=app&x="+xIndex+"&y="+yIndex+"&z="+zoom+"&s=Galileo&scale=1";
+		//return "http://emap1.mapabc.com/mapabc/maptile?x="+xIndex+"&y="+yIndex+"&z="+zoom+"&scale="+scale;
+
+		var serverNum = ( yIndex * cols + xIndex ) % 3 + 1;
+		var url = "http://mt" + serverNum + ".google.com/vt/lyrs=m@269000000&hl=zh-CN&gl=CN&src=app&x="+xIndex+"&y="+yIndex+"&z="+zoom+"&s=Galileo&scale="+map.urlScale;
+		console.log("tile-url:" + url);
+		return url;
+	}
+
+	function set(scale)
+	{
+		//var scale = 4;
+		var newScale = map.mapScale * scale;
+		console.log("newScale=" + newScale);
+		if ( newScale >= 2 )//should increase the zoom, and re-calculate the scale
+		{
+			var newScaleIsTwoToPowerWhat = Math.log( newScale )/Math.log(2);
+			console.log("newScaleIsTwoToPowerWhat=" + newScaleIsTwoToPowerWhat);
+			var addToZoom = parseInt( newScaleIsTwoToPowerWhat );
+			console.log("addToZoom=" + addToZoom);
+			if ( newScale / Math.pow(2,addToZoom) > 1 )//scale left
+			{
+				console.log("scale to add...");
+				var newNewScale = newScale / Math.pow(2,addToZoom);
+				console.log("newNewScale=" + newNewScale);
+				map.mapScale = newNewScale;
+			}
+			else
+			{
+				console.log("scale should go back to 1...");
+				map.mapScale = 1;
+			}
+			var newZoom = map.zoom + addToZoom;
+			console.log("zoom should go from " + map.zoom + " => " + newZoom);
+
+			//var decimalZoom = Math.log( Math.pow(2, map.zoom) * newScale )/Math.log(2);
+			//var newNormalizedScale = Math.pow(2, decimalZoom)/Math.pow(2, map.zoom + 1)
+		}
+		else
+		{
+			map.mapScale = newScale;
+		}
+		map.urlScale = map.mapScale;
+
+
+		var worldWidth = calWorldWidth();
+		var worldHeight = calWorldHeight();
+
+		var xCount = worldWidth / (256 * map.mapScale);
+		var yCount = worldHeight / (256 * map.mapScale);
+
+		console.log("xCount:"+xCount);
+		console.log("yCount:"+yCount);
+
+		tilesModel.clear();
+		for ( var y = 0 ; y < yCount ; y++ )
+		{
+			for ( var x = 0 ; x < xCount ; x++ )
+			{
+				tilesModel.append({
+					"xIndex": x,
+					"yIndex": y
+				});
+			}
+
+		}
+	}
+
+	Component.onCompleted: {
+		//if ( anchors.fill != undefined )
+		//{
+		//	width = anchors.fill.width;
+			//height = anchors.fill.height;
+		//}
+
+		map.set(1);
+		map.showOnDemand();
+	}
+}

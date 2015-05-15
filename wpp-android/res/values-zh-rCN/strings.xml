@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ACTIVITY_ENTRY_NAME</string>
+    <string name="date_picker_title">选择日期和时间</string>
+    <string name="cancel">取消</string>
+    <string name="done">确定</string>
+</resources>
