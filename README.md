@@ -11,7 +11,7 @@ You will usually use this project as a git-submodule of your project. Setup with
 cd YourQtProject
 git submodule add https://github.com/minixxie/wpp-qt.git
 ```
-Once you've cloned this project, make sure to download sub-modules dependencies:
+Once you've cloned this project, make sure to download sub-modules dependencies((a) [B-Sides/ELCImagePickerController](https://github.com/B-Sides/ELCImagePickerController), (b) [skywinder/ActionSheetPicker-3.0](https://github.com/skywinder/ActionSheetPicker-3.0)):
 ```
 cd wpp-qt
 git submodule init
