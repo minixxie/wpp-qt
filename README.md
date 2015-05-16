@@ -154,7 +154,8 @@ DateTimeControl {
     }                               
 }                          
 ```
-[![DateTimeControl(ios)](https://github.com/minixxie/wpp-qt/raw/master/doc/screenshot-DateTimeControl-ios.jpg)]
+Screenshot on iOS:
+![DateTimeControl(ios)](https://github.com/minixxie/wpp-qt/raw/master/doc/screenshot-DateTimeControl-ios.jpg)
 
 ## Contact "Us"
 Currently I'm the only author of this project. You may contact me directly via github, or sending issues, or via 2 QQ groups:
