@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
 }
 ```
 Then "reso" variable can be used in QML like this:
-```JSON
+```QML
 Rectange {
 	anchors.fill: parent
     anchors.margins: 10*reso.dp2px //dp2px means changing 10 from "dp" to "px" as all QML properties only accept pixels
