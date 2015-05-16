@@ -207,6 +207,20 @@ void someFunction()
 
 }
 ```
+Since it is just a key-value storage, you have to serialize/de-serialize the data yourself. For example, you can make use of QJsonObject/QJsonDocument to do this, and save the json string.
+## UseCase: keep your cookies consistent across all HTTP requests
+Qt provides QCookieJar for user to implement how to save the cookies and put the cookies to subsequent HTTP requests. In this library, the class CookieJar is for persisting the HTTP cookies into SQLite thru the class LocalStorage.
+```c++
+#include <wpp/qt/CookieJar.h>
+
+QNetworkAccessManager *manager = new QNetworkAccessManager(this);
+manager->setCookieJar(new wpp::qt::CookieJar);
+connect(manager, SIGNAL(finished(QNetworkReply*)),
+        this, SLOT(replyFinished(QNetworkReply*)));
+
+manager->get(QNetworkRequest(QUrl("http://qt-project.org")));
+```
+
 ## Contact "Us"
 Currently I'm the only author of this project. You may contact me directly via github, or sending issues, or via 2 QQ groups:
 - 345043587 Qt手机app开发Android
