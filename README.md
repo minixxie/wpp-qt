@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
 Then "reso" variable can be used in QML like this:
 ```QML
 Rectange {
-	anchors.fill: parent
+    anchors.fill: parent
     anchors.margins: 10*reso.dp2px //dp2px means changing 10 from "dp" to "px" as all QML properties only accept pixels
 }
 ```
@@ -91,7 +91,7 @@ Avatar {
     maskColor: "#ffffff" //assume the background is white, write this to make sure 4 round corners are in white background
     url: "http://xxxxxx/abc.jpg"
     onClicked: {                                    
-		....                    
+        ....                    
     }                                               
 }   
 ```
@@ -132,7 +132,7 @@ Avatar {
     bgTextColor: "#0080ff"
     //url: "http://xxxxxx/abc.jpg"
     onClicked: {                                    
-    	selectPhotoSourceModal.visible=true;
+        selectPhotoSourceModal.visible=true;
     }                                               
 }
 ```
@@ -160,33 +160,34 @@ Screenshot on iOS:
 ## UseCase: Load Phone Contact
 To load phone contact, this library already support both Android and iOS.
 ```c++
+#include <wpp/qt/AddressBookReader.h>
 void SomeClass::someFunc()
 {
-		wpp::qt::AddressBookReader& addressBookReader = wpp::qt::AddressBookReader::getInstance();
-		addressBookReader.asyncFetchAll(this, SLOT(onAddressBookLoaded(QList<QObject*>)));
+    wpp::qt::AddressBookReader& addressBookReader = wpp::qt::AddressBookReader::getInstance();
+    addressBookReader.asyncFetchAll(this, SLOT(onAddressBookLoaded(QList<QObject*>)));
 }
 void SomeClass::onAddressBookLoaded(QList<QObject*> contacts)
 {
-	for ( QObject *obj : contacts )
-	{
-		wpp::qt::AddressBookContact *contact = dynamic_cast<wpp::qt::AddressBookContact *>(obj);
+    for ( QObject *obj : contacts )
+    {
+        wpp::qt::AddressBookContact *contact = dynamic_cast<wpp::qt::AddressBookContact *>(obj);
         qDebug() << "first name: " << contact->getFirstName();
         qDebug() << "last name: " << contact->getLastName();
         qDebug() << "latin full name: " << contact->getLatinFullName();
         qDebug() << "full name: " << contact->getFullName();
         for ( QObject *phoneObj : contact->getPhones() )
         {
-        	wpp::qt::AddressBookContactPhone *phone = dynamic_cast<wpp::qt::AddressBookContactPhone *>(phoneObj);
-        	qDebug() << "phone label: " << phone->getLabel();
+            wpp::qt::AddressBookContactPhone *phone = dynamic_cast<wpp::qt::AddressBookContactPhone *>(phoneObj);
+            qDebug() << "phone label: " << phone->getLabel();
             qDebug() << "phone number: " << phone->getPhone();
         }
         for ( QObject *emailObj : contact->getEmails() )
         {
-			wpp::qt::AddressBookContactEmail *email = dynamic_cast<wpp::qt::AddressBookContactEmail *>(emailObj);
-        	qDebug() << "email label: " << email->getLabel();
+            wpp::qt::AddressBookContactEmail *email = dynamic_cast<wpp::qt::AddressBookContactEmail *>(emailObj);
+            qDebug() << "email label: " << email->getLabel();
             qDebug() << "email address: " << email->getEmail();
         }
-	}
+    }
 }
 ```
 ## Contact "Us"
