@@ -157,6 +157,38 @@ DateTimeControl {
 Screenshot on iOS:
 ![DateTimeControl(ios)](https://github.com/minixxie/wpp-qt/raw/master/doc/screenshot-DateTimeControl-ios.jpg)
 
+## UseCase: Load Phone Contact
+To load phone contact, this library already support both Android and iOS.
+```c++
+void SomeClass::someFunc()
+{
+		wpp::qt::AddressBookReader& addressBookReader = wpp::qt::AddressBookReader::getInstance();
+		addressBookReader.asyncFetchAll(this, SLOT(onAddressBookLoaded(QList<QObject*>)));
+}
+void SomeClass::onAddressBookLoaded(QList<QObject*> contacts)
+{
+	for ( QObject *obj : contacts )
+	{
+		wpp::qt::AddressBookContact *contact = dynamic_cast<wpp::qt::AddressBookContact *>(obj);
+        qDebug() << "first name: " << contact->getFirstName();
+        qDebug() << "last name: " << contact->getLastName();
+        qDebug() << "latin full name: " << contact->getLatinFullName();
+        qDebug() << "full name: " << contact->getFullName();
+        for ( QObject *phoneObj : contact->getPhones() )
+        {
+        	wpp::qt::AddressBookContactPhone *phone = dynamic_cast<wpp::qt::AddressBookContactPhone *>(phoneObj);
+        	qDebug() << "phone label: " << phone->getLabel();
+            qDebug() << "phone number: " << phone->getPhone();
+        }
+        for ( QObject *emailObj : contact->getEmails() )
+        {
+			wpp::qt::AddressBookContactEmail *email = dynamic_cast<wpp::qt::AddressBookContactEmail *>(emailObj);
+        	qDebug() << "email label: " << email->getLabel();
+            qDebug() << "email address: " << email->getEmail();
+        }
+	}
+}
+```
 ## Contact "Us"
 Currently I'm the only author of this project. You may contact me directly via github, or sending issues, or via 2 QQ groups:
 - 345043587 Qt手机app开发Android
