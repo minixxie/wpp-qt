@@ -190,8 +190,26 @@ void SomeClass::onAddressBookLoaded(QList<QObject*> contacts)
     }
 }
 ```
+## UseCase: Use SQLite in easier way
+This library provide a very easy way to use sqlite to persist your data. LocalStorage class will create the sqlite db file named "LocalStorage.db" under a suitable writable folder. The SQLite DB was initialized with a "DataMap" table for storing key-value records. As "key" is unique in the table, records with same "key" will be overwritten.
+```c++
+#include <wpp/qt/LocalStorage.h>
+void someFunction()
+{
+    LocalStorage& localStorage = LocalStorage::getInstance(); //get singleton
+    
+    //persist data
+    QString userId = ....;
+    localStorage.setData("userId", userId);
+
+    //retrieve data
+    QString userId = localStorage.getData("userId");
+
+}
+```
 ## Contact "Us"
 Currently I'm the only author of this project. You may contact me directly via github, or sending issues, or via 2 QQ groups:
 - 345043587 Qt手机app开发Android
 - 19346666 Qt5 for Android,iOS
+
 
