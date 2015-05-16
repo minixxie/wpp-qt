@@ -138,6 +138,6 @@ Avatar {
 ```
 ## Contact "Us"
 Currently I'm the only author of this project. You may contact me directly via github, or sending issues, or via 2 QQ groups:
-1) 345043587 Qt手机app开发Android
-2) 19346666 Qt5 for Android,iOS
+- 345043587 Qt手机app开发Android
+- 19346666 Qt5 for Android,iOS
 
