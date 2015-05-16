@@ -99,27 +99,27 @@ Avatar {
 ## UseCase: use native camera or image picker to upload profile photo
 This is a common use case, which often show a empty photo for clicking to set the profile photo of a user. With this library, you can do this:
 ```QML
-SelectPhotoSourceModal {
-    id: selectPhotoSourceModal
-    anchors.fill: parent
-    maxPick: 1
-    onPhotoTaken: { //string imagePath
-        console.debug("onPhotoTaken:" + imagePath);
-        profilePhoto.url = "file:" + imagePath;
-    }
-    onPhotoChosen: { //variant imagePaths
-        if ( imagePaths.length == 1 )
-        {
-            var imagePath = imagePaths[0];
-            console.debug("onPhotoChosen:" + imagePath);
+    SelectPhotoSourceModal {
+        id: selectPhotoSourceModal
+        anchors.fill: parent
+        maxPick: 1
+        onPhotoTaken: { //string imagePath
+            console.debug("onPhotoTaken:" + imagePath);
             profilePhoto.url = "file:" + imagePath;
         }
+        onPhotoChosen: { //variant imagePaths
+            if ( imagePaths.length == 1 )
+            {
+                var imagePath = imagePaths[0];
+                console.debug("onPhotoChosen:" + imagePath);
+                profilePhoto.url = "file:" + imagePath;
+            }
+        }
+        onCropFinished: {
+        }
+        onCropCancelled: {
+        }
     }
-    onCropFinished: {
-    }
-    onCropCancelled: {
-    }
-}
 
 Avatar {                                        
     id: profilePhoto                                
@@ -136,5 +136,8 @@ Avatar {
     }                                               
 }
 ```
-
+## Contact "Us"
+Currently I'm the only author of this project. You may contact me directly via github, or sending issues, or via 2 QQ groups:
+1) 345043587 Qt手机app开发Android
+2) 19346666 Qt5 for Android,iOS
 
