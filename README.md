@@ -17,6 +17,11 @@ cd wpp-qt
 git submodule init
 git submodule update
 ```
+Then, remember to include the project file in YourProject.pro:
+```
+## import library project "wpp"
+include($$PWD/wpp-qt/wpp.pri)
+```
 
 
 ## To Begin
@@ -156,6 +161,7 @@ DateTimeControl {
 ```
 Screenshot on iOS:
 ![DateTimeControl(ios)](https://github.com/minixxie/wpp-qt/raw/master/doc/screenshot-DateTimeControl-ios.jpg)
+see example: [UsingDateTimeControl](https://github.com/minixxie/wpp-qt/raw/master/examples/UsingDateTimeControl)
 
 ## UseCase: Load Phone Contact
 To load phone contact, this library already support both Android and iOS.

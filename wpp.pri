@@ -1,6 +1,11 @@
 #TEMPLATE = lib
 
 QT += widgets sql concurrent positioning gui_private
+qtHaveModule(webengine) {
+	QT += webengine
+	DEFINES += QT_WEBVIEW_WEBENGINE_BACKEND
+}
+
 
 INCLUDEPATH += $$PWD/src/
 
