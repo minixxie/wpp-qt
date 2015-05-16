@@ -50,4 +50,27 @@ Rectange {
     anchors.margins: 10*reso.dp2px //dp2px means changing 10 from "dp" to "px" as all QML properties only accept pixels
 }
 ```
+## UseCase: TimeAgo
+TimeAgo is a class for generating human readable date/time. For example, it shows "2 hours ago", "15 mins ago", etc. To use it, inject the singleton of this class in main():
+```c++
+#include <wpp/qt/TimeAgo.h>
+int main(int argc, char *argv[])
+{
+    wpp::qt::Application app(argc, argv);
+    QQmlApplicationEngine engine;
+
+    engine.rootContext()->setContextProperty("timeago", &&wpp::qt::TimeAgo::getInstance());//inject into the QML context
+
+    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+
+    return app.exec();
+}
+```
+Usage in QML:
+```QML
+Text {
+    text: timeago.getTimeAgo(unixTimestamp)
+}
+```
+
 
