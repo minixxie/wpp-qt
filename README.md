@@ -136,6 +136,26 @@ Avatar {
     }                                               
 }
 ```
+## UseCase: Native DateTime picker
+Employed the native DateTime picker UI for you:
+```QML
+DateTimeControl {               
+    id: startDateTimeControl        
+    anchors.top: parent.top         
+    anchors.left: parent.left; anchors.right: parent.right;
+    height: 36*reso.dp2px
+    topBorder: true; bottomBorder: true
+    title: qsTr("Date/Time")            
+    dateTime: new Date()                             
+    //timeZoneId: "Asia/Hong_Kong"
+    onPicked: {
+        dateTime = dateTimePicked;
+        console.debug("picked=" + dateTimePicked);
+    }                               
+}                          
+```
+[![DateTimeControl(ios)](https://github.com/minixxie/wpp-qt/raw/master/doc/screenshot-DateTimeControl-ios.jpg)]
+
 ## Contact "Us"
 Currently I'm the only author of this project. You may contact me directly via github, or sending issues, or via 2 QQ groups:
 - 345043587 Qt手机app开发Android
