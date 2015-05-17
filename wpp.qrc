@@ -18,7 +18,6 @@
 		<file>img/android-icons/All_Icons/holo_light/xhdpi/1-navigation-back.png</file>
 		<file>img/loading.200x200.gif</file>
 		<file>img/smileys/kuangxiao.gif</file>
-		<file>qml/AbstractMain.qml</file>
 		<file>qml/ActionSheet.qml</file>
 		<file>qml/AddressBookUI.qml</file>
 		<file>qml/AtUserTab.qml</file>
@@ -73,5 +72,7 @@
 		<file>qml/WebViewJSMap.qml</file>
 		<file>qml/WppTabView.qml</file>
 		<file>qml/google-map.html</file>
+		<file>qmldir</file>
+		<file>qml/AbstractMain.qml</file>
 	</qresource>
 </RCC>

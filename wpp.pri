@@ -222,3 +222,7 @@ OBJECTIVE_HEADERS += \
 	$$PWD/ActionSheetPicker-3.0/ObjC-Example/Example/Classes/NSDate+TCUtils.h \
 	$$PWD/"ActionSheetPicker-3.0/Example Projects/Example-for-iOS-7-and-6/Example/Classes/NSDate+TCUtils.h"
 }
+
+#QML_INFRA_FILES = qmldir
+QML_IMPORT_PATH += $$PWD
+QML2_IMPORT_PATH += $$PWD

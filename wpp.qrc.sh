@@ -7,7 +7,8 @@ cat <<EOF > "$qrc"
 	<qresource prefix="/">
 EOF
 
-files=$(find qml -name "*.qml")
+files="qmldir"
+files="$files $(find qml -name "*.qml")"
 
 qml=$(find qml -name "*.qml")
 images=$(grep "\"qrc.*\"" $qml | sed 's/^.*qrc://' | sed 's/".*$//' | sed 's/^\/\/\///' | sed 's/^\/\///' | sed 's/\///')

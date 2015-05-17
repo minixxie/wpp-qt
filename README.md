@@ -69,7 +69,7 @@ int main(int argc, char *argv[])
     wpp::qt::Application app(argc, argv);
     QQmlApplicationEngine engine;
 
-    engine.rootContext()->setContextProperty("timeago", &&wpp::qt::TimeAgo::getInstance());//inject into the QML context
+    engine.rootContext()->setContextProperty("timeago", &wpp::qt::TimeAgo::getInstance());//inject into the QML context
 
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
@@ -159,8 +159,8 @@ DateTimeControl {
     }                               
 }                          
 ```
-Screenshot on iOS:
-![DateTimeControl(ios)](https://github.com/minixxie/wpp-qt/raw/master/doc/screenshot-DateTimeControl-ios.jpg)
+Screenshot on Android and iOS:
+![DateTimeControl](https://github.com/minixxie/wpp-qt/raw/master/doc/screenshot-DateTimeControl.png)
 see example: [UsingDateTimeControl](https://github.com/minixxie/wpp-qt/raw/master/examples/UsingDateTimeControl)
 
 ## UseCase: Load Phone Contact

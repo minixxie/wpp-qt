@@ -1,7 +1,7 @@
 import QtQuick 2.4
 import QtQuick.Window 2.2
 
-import "./wpp-qt/qml/"
+import wpp.qt.controls 1.0
 
 Window {
     visible: true
