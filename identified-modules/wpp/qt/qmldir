@@ -1,2 +1,2 @@
 module wpp.qt
-DateTimeControl 1.0 qml/DateTimeControl.qml
+DateTimeControl 1.0 DateTimeControl.qml
