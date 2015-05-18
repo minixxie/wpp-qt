@@ -44,6 +44,7 @@ SOURCES += \
 HEADERS += \
 	$$PWD/src/wpp/lang/Pinyin.h \
 	$$PWD/src/wpp/qt/Application.h \
+	$$PWD/src/wpp/qt/QmlApplicationEngine.h \
 	$$PWD/src/wpp/qt/System.h \
 	$$PWD/src/wpp/qt/Keyboard.h \
 	$$PWD/src/wpp/qt/Route.h \
@@ -75,7 +76,7 @@ HEADERS += \
 		$$PWD/src/wpp/qt/NativeMap.h \
 	$$PWD/src/wpp/qt/NativeDateTimePicker.h \
 	$$PWD/src/wpp/qt/IOSTimeZonePicker.h \
-	$$PWD/src/wpp/qt/QObjectStarList.h 
+	$$PWD/src/wpp/qt/QObjectStarList.h
 
 android {
 	SOURCES += \
@@ -112,59 +113,59 @@ LIBS += -framework AddressBook -framework MapKit \
 }
 
 OTHER_FILES += \
-	$$PWD/qml/AbstractMain.qml \
-	$$PWD/qml/RotatableRectangle.qml \
-	$$PWD/qml/Avatar.qml \
-	$$PWD/qml/Avatars.qml \
-	$$PWD/qml/CircleImageMask.qml \
-	$$PWD/qml/DateTime.qml \
-	$$PWD/qml/Dialog.qml \
-	$$PWD/qml/HSlides.qml \
-	$$PWD/qml/Hyperlink.qml \
-	$$PWD/qml/ImageBackground.qml \
-	$$PWD/qml/KTextArea.qml \
-	$$PWD/qml/Line.qml \
-	$$PWD/qml/ListViewDialog.qml \
-	$$PWD/qml/Map.qml \
-	$$PWD/qml/JSMap.qml \
-	$$PWD/qml/WebViewJSMap.qml \
-	$$PWD/qml/StaticImageMap.qml \
-	$$PWD/qml/Overlay.qml \
-	$$PWD/qml/RoundedImage.qml \
-	$$PWD/qml/SelectionList.qml \
-	$$PWD/qml/Spinner.qml \
-	$$PWD/qml/Tab.qml \
-	$$PWD/qml/WppTabView.qml \
-	$$PWD/qml/TextField.qml \
-	$$PWD/qml/SearchField.qml \
-	$$PWD/qml/AddressBookUI.qml \
-	$$PWD/qml/TitleBar.qml \
-	$$PWD/qml/TitleBarIcon.qml \
-	$$PWD/qml/TitleBarBackIcon.qml \
-	$$PWD/qml/TitleBarNextIcon.qml  \
-	$$PWD/qml/Modal.qml \
-	$$PWD/qml/LoadingModal.qml \
-	$$PWD/qml/LoadingIcon.qml \
-	$$PWD/qml/TitleBarButton.qml \
-	$$PWD/qml/SelectionListModal.qml \
-	$$PWD/qml/SelectionListView.qml \
-	$$PWD/qml/LocalAlbumBrowse.qml \
-	$$PWD/qml/SelectPhotoSourceModal.qml \
-	$$PWD/qml/TakePhotoUI.qml \
-	$$PWD/qml/CropImage.qml \
-	$$PWD/qml/PhotoCaptureControls.qml \
-	$$PWD/qml/DownloadUpdateUI.qml \
-	$$PWD/qml/ThickCursor.qml \
-	$$PWD/qml/ComposeUI.qml \
-	$$PWD/qml/DetectLocationUI.qml \
-	$$PWD/qml/AttachPhotoUI.qml \
-	$$PWD/qml/SmileysUI.qml \
-	$$PWD/qml/AtUserTab.qml \
-	$$PWD/qml/SwitchButton.qml \
-	$$PWD/qml/TestSelectionListView.qml \
-	$$PWD/qml/TimezoneModel.qml \
-	$$PWD/qml/TimezoneControl.qml \
-	$$PWD/qml/DateTimeControl.qml
+	$$PWD/identified-modules/wpp/qt/qml/AbstractMain.qml \
+	$$PWD/identified-modules/wpp/qt/qml/RotatableRectangle.qml \
+	$$PWD/identified-modules/wpp/qt/qml/Avatar.qml \
+	$$PWD/identified-modules/wpp/qt/qml/Avatars.qml \
+	$$PWD/identified-modules/wpp/qt/qml/CircleImageMask.qml \
+	$$PWD/identified-modules/wpp/qt/qml/DateTime.qml \
+	$$PWD/identified-modules/wpp/qt/qml/Dialog.qml \
+	$$PWD/identified-modules/wpp/qt/qml/HSlides.qml \
+	$$PWD/identified-modules/wpp/qt/qml/Hyperlink.qml \
+	$$PWD/identified-modules/wpp/qt/qml/ImageBackground.qml \
+	$$PWD/identified-modules/wpp/qt/qml/KTextArea.qml \
+	$$PWD/identified-modules/wpp/qt/qml/Line.qml \
+	$$PWD/identified-modules/wpp/qt/qml/ListViewDialog.qml \
+	$$PWD/identified-modules/wpp/qt/qml/Map.qml \
+	$$PWD/identified-modules/wpp/qt/qml/JSMap.qml \
+	$$PWD/identified-modules/wpp/qt/qml/WebViewJSMap.qml \
+	$$PWD/identified-modules/wpp/qt/qml/StaticImageMap.qml \
+	$$PWD/identified-modules/wpp/qt/qml/Overlay.qml \
+	$$PWD/identified-modules/wpp/qt/qml/RoundedImage.qml \
+	$$PWD/identified-modules/wpp/qt/qml/SelectionList.qml \
+	$$PWD/identified-modules/wpp/qt/qml/Spinner.qml \
+	$$PWD/identified-modules/wpp/qt/qml/Tab.qml \
+	$$PWD/identified-modules/wpp/qt/qml/WppTabView.qml \
+	$$PWD/identified-modules/wpp/qt/qml/TextField.qml \
+	$$PWD/identified-modules/wpp/qt/qml/SearchField.qml \
+	$$PWD/identified-modules/wpp/qt/qml/AddressBookUI.qml \
+	$$PWD/identified-modules/wpp/qt/qml/TitleBar.qml \
+	$$PWD/identified-modules/wpp/qt/qml/TitleBarIcon.qml \
+	$$PWD/identified-modules/wpp/qt/qml/TitleBarBackIcon.qml \
+	$$PWD/identified-modules/wpp/qt/qml/TitleBarNextIcon.qml  \
+	$$PWD/identified-modules/wpp/qt/qml/Modal.qml \
+	$$PWD/identified-modules/wpp/qt/qml/LoadingModal.qml \
+	$$PWD/identified-modules/wpp/qt/qml/LoadingIcon.qml \
+	$$PWD/identified-modules/wpp/qt/qml/TitleBarButton.qml \
+	$$PWD/identified-modules/wpp/qt/qml/SelectionListModal.qml \
+	$$PWD/identified-modules/wpp/qt/qml/SelectionListView.qml \
+	$$PWD/identified-modules/wpp/qt/qml/LocalAlbumBrowse.qml \
+	$$PWD/identified-modules/wpp/qt/qml/SelectPhotoSourceModal.qml \
+	$$PWD/identified-modules/wpp/qt/qml/TakePhotoUI.qml \
+	$$PWD/identified-modules/wpp/qt/qml/CropImage.qml \
+	$$PWD/identified-modules/wpp/qt/qml/PhotoCaptureControls.qml \
+	$$PWD/identified-modules/wpp/qt/qml/DownloadUpdateUI.qml \
+	$$PWD/identified-modules/wpp/qt/qml/ThickCursor.qml \
+	$$PWD/identified-modules/wpp/qt/qml/ComposeUI.qml \
+	$$PWD/identified-modules/wpp/qt/qml/DetectLocationUI.qml \
+	$$PWD/identified-modules/wpp/qt/qml/AttachPhotoUI.qml \
+	$$PWD/identified-modules/wpp/qt/qml/SmileysUI.qml \
+	$$PWD/identified-modules/wpp/qt/qml/AtUserTab.qml \
+	$$PWD/identified-modules/wpp/qt/qml/SwitchButton.qml \
+	$$PWD/identified-modules/wpp/qt/qml/TestSelectionListView.qml \
+	$$PWD/identified-modules/wpp/qt/qml/TimezoneModel.qml \
+	$$PWD/identified-modules/wpp/qt/qml/TimezoneControl.qml \
+	$$PWD/identified-modules/wpp/qt/qml/DateTimeControl.qml
 
 RESOURCES += $$PWD/wpp.qrc
 
@@ -224,5 +225,5 @@ OBJECTIVE_HEADERS += \
 }
 
 #QML_INFRA_FILES = qmldir
-QML_IMPORT_PATH += $$PWD
-QML2_IMPORT_PATH += $$PWD
+QML_IMPORT_PATH += $$PWD/identified-modules #to read qmldir files
+#QML2_IMPORT_PATH += $$PWD/qmldir

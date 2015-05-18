@@ -21,7 +21,7 @@ Rectangle {
 		id: webView
 		anchors.fill: parent
 		//url: "http://maps.google.com/"
-		url: "qrc:/qml/google-map.html"
+		url: "qrc:/identified-modules/wpp/qt/qml/google-map.html"
 
 		/*onLoadStarted: {
 			webView.evaluateJavaScript("alert('Start!');");
