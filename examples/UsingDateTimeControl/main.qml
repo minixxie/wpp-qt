@@ -12,11 +12,11 @@ Window {
 		id: startDateTimeControl
 		anchors.top: parent.top
 		anchors.left: parent.left; anchors.right: parent.right;
-		//height: 36*reso.dp2px
+		height: 36*reso.dp2px
 		topBorder: true; bottomBorder: true
 		title: qsTr("Date/Time")
 		dateTime: new Date()
-		//timeZoneId: "Asia/Hong_Kong"
+		timeZoneId: "Asia/Hong_Kong"
 		onPicked: {
 			dateTime = dateTimePicked;
 			console.debug("picked=" + dateTimePicked);

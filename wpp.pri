@@ -5,6 +5,9 @@ qtHaveModule(webengine) {
 	QT += webengine
 	DEFINES += QT_WEBVIEW_WEBENGINE_BACKEND
 }
+android {
+	QT += androidextras
+}
 
 
 INCLUDEPATH += $$PWD/src/

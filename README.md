@@ -17,7 +17,7 @@ cd wpp-qt
 git submodule init
 git submodule update
 ```
-Then, remember to include the project file in YourProject.pro:
+Then, remember to include the project file in YourQtProject.pro:
 ```
 ## import library project "wpp"
 include($$PWD/wpp-qt/wpp.pri)
@@ -25,12 +25,14 @@ include($$PWD/wpp-qt/wpp.pri)
 
 
 ## To Begin
-To use this library, the first requirement is to substitute QGuiApplication with wpp::qt::Application:
+To use this library, the first requirement is to substitute QGuiApplication with wpp::qt::Application, and QQmlApplicationEngine with wpp::qt::QmlApplicationEngine:
 ```c++
 #include <wpp/qt/Application.h>
+#include <wpp/qt/QmlApplicationEngine.h>
 int main(int argc, char *argv[])
 {
-        wpp::qt::Application app(argc, argv);
+    wpp::qt::Application app(argc, argv);
+    wpp::qt::QmlApplicationEngine engine(app);
         ...
 ```
 The Application class actually inherits from [QGuiApplication](http://doc.qt.io/qt-5/qguiapplication.html) and it registers some wpp library things in addition.
@@ -39,14 +41,11 @@ The Application class actually inherits from [QGuiApplication](http://doc.qt.io/
 All QML elements only support pixel values for x, y, width, height and all size and dimension related properties. With the following code in main(), we can use dp in QML:
 ```c++
 #include <wpp/qt/Application.h>
-#include <wpp/qt/Resolution.h>
+#include <wpp/qt/QmlApplicationEngine.h>
 int main(int argc, char *argv[])
 {
     wpp::qt::Application app(argc, argv);
-    QQmlApplicationEngine engine;
-
-    wpp::qt::Resolution reso( &app, 320 );//create resolution info
-    engine.rootContext()->setContextProperty("reso", &reso);//inject into the QML context
+    wpp::qt::QmlApplicationEngine engine(app);//this class has injected a variable "reso" into QML engine's rootContext
 
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
@@ -67,7 +66,7 @@ TimeAgo is a class for generating human readable date/time. For example, it show
 int main(int argc, char *argv[])
 {
     wpp::qt::Application app(argc, argv);
-    QQmlApplicationEngine engine;
+    wpp::qt::QmlApplicationEngine engine(app);
 
     engine.rootContext()->setContextProperty("timeago", &wpp::qt::TimeAgo::getInstance());//inject into the QML context
 
@@ -231,5 +230,6 @@ manager->get(QNetworkRequest(QUrl("http://qt-project.org")));
 Currently I'm the only author of this project. You may contact me directly via github, or sending issues, or via 2 QQ groups:
 - 345043587 Qt手机app开发Android
 - 19346666 Qt5 for Android,iOS
+
 
 
