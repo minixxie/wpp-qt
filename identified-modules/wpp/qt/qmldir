@@ -1,4 +1,5 @@
 module wpp.qt
+AbstractMain 1.0 AbstractMain.qml
 DateTimeControl 1.0 DateTimeControl.qml
 TitleBar 1.0 TitleBar.qml
 Avatar 1.0 Avatar.qml
