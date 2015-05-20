@@ -6,7 +6,7 @@ Rectangle {
 	property alias text: label.text
 	property bool loading: false
 	property string loadingType: "BAR" //ROLLING, BAR
-	property bool hasPhoneTop: sys.isIOS()
+	property bool hasPhoneTop: Qt.platform.os == "ios" //sys.isIOS()
 	property bool centerTitle: true
 
 	//property alias leftIcon: leftIconLoader.sourceComponent
@@ -14,13 +14,21 @@ Rectangle {
 	property Component rightComponent
 
 	height: phoneTopBar.height + label.height + networkCondition.height
+	//{ var h = phoneTopBar.height + label.height + networkCondition.height;
+	//	console.debug("phoneTopBar-height=" + phoneTopBar.height);
+	//	console.debug("label-height=" + label.height);
+	//	console.debug("networkCondition-height=" + networkCondition.height);
+	//	console.debug("titlebar-height=" + h);
+	//	return h;
+	//}
 	width: parent.width
-	color: "#2a8827" //#94c849" // "#2a8827"
+	color: "#f7f7f7" //"#2a8827" //#94c849" // "#2a8827"
 	clip: true
 
 	Rectangle {
 		id: "phoneTopBar"
 		height: parent.hasPhoneTop? 20*reso.dp2px : 0
+		//{ var h = parent.hasPhoneTop? 20*reso.dp2px : 0 ; console.debug("hasTop=" + h); return h; }
 	}
 
 	Rectangle {
@@ -65,9 +73,9 @@ Rectangle {
 			anchors.left: width > parent.width ? parent.left : undefined
 
 			text: ""
-			color: "#ffffff"
+			color: "#000000" // "#ffffff"
 			font.bold: true
-			font.pixelSize: 18*reso.dp2px
+			font.pixelSize: 16*reso.dp2px
 			horizontalAlignment: Text.AlignHCenter
 			verticalAlignment: Text.AlignVCenter
 
@@ -100,6 +108,15 @@ Rectangle {
 				item.z = z+1;
 			}
 		}
+	}
+
+	Rectangle {
+		id: underline
+		height: 1*reso.dp2px
+		anchors.bottom: parent.bottom
+		anchors.left: parent.left
+		anchors.right: parent.right
+		color: "#b2b2b2"
 	}
 
 	Rectangle {

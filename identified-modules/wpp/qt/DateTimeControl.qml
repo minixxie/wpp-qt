@@ -1,7 +1,7 @@
 import QtQuick 2.2
 import wpp.qt.NativeDateTimePicker 1.0
 
-Item {
+Rectangle {
 	id: dateTimeControl
 
 	property alias title: titleText.text

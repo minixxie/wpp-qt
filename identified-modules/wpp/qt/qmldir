@@ -1,2 +1,3 @@
 module wpp.qt
 DateTimeControl 1.0 DateTimeControl.qml
+TitleBar 1.0 TitleBar.qml
