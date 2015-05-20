@@ -74,28 +74,24 @@ anchors.margins: 10*reso.dp2px //dp2px means changing 10 from "dp" to "px" as al
 }
 ```
 ## UseCase: TimeAgo
-TimeAgo is a class for generating human readable date/time. For example, it shows "2 hours ago", "15 mins ago", etc. To use it, inject the singleton of this class in main():
-```c++
-#include <wpp/qt/TimeAgo.h>
-int main(int argc, char *argv[])
-{
-wpp::qt::Application app(argc, argv);
-wpp::qt::QmlApplicationEngine engine(app);
-
-engine.rootContext()->setContextProperty("timeago", &wpp::qt::TimeAgo::getInstance());//inject into the QML context
-
-engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
-
-return app.exec();
-}
-```
-Usage in QML:
+TimeAgo is a class for generating human readable date/time. For example, it shows "2 hours ago", "15 mins ago", etc. By using wpp::qt::Application and wpp::qt::QuickView in main(), timeago can be used in QML:
 ```QML
 Text {
 text: timeago.getTimeAgo(unixTimestamp)
 }
 ```
-## UseCase: rounded image
+## UseCase: QML TitleBar
+This QML element mimic the TitleBar of NavigationController on iOS.
+```QML
+TitleBar {
+id: titleBar
+anchors.top: parent.top
+anchors.left: parent.left
+anchors.right: parent.right
+text: "Hello"
+}
+```
+## UseCase: circular image
 We usually need to use rounded corner on images, Qt doesn't support it by default. With this library you can do this. But the current version has a limitation that the image should not lie on a boundary of two differnt colors or other background images:
 ```QML
 Avatar {                                        
