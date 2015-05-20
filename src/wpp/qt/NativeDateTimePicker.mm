@@ -36,7 +36,7 @@
 }
 @end
 
-extern wpp::qt::NativeDateTimePicker *__gSingletonDateTimePicker = 0;
+wpp::qt::NativeDateTimePicker *__gSingletonDateTimePicker = 0;
 
 namespace wpp {
 namespace qt {

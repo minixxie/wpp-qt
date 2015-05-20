@@ -57,7 +57,7 @@ void Application::init()
 	qmlRegisterType<wpp::qt::NativeDateTimePicker>("wpp.qt.NativeDateTimePicker", 1, 0, "NativeDateTimePicker");
 	qmlRegisterType<wpp::qt::IOSTimeZonePicker>("wpp.qt.IOSTimeZonePicker", 1, 0, "IOSTimeZonePicker");
 
-
+	enableAutoScreenOrientation(true);
 }
 
 void Application::loadTranslations(const QString& qmFilenameNoExtension)
