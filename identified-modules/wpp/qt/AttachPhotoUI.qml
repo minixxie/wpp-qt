@@ -74,7 +74,7 @@ Rectangle {
 			}
 		}
 	}
-	SelectPhotoSourceModal {
+	ImageSelector {
 		id: "selectPhotoSourceModal"
 		anchors.fill: parent
 		onPhotoTaken: { //string imagePath

@@ -1,6 +1,6 @@
 #TEMPLATE = lib
 
-QT += widgets sql concurrent positioning gui_private
+QT += quick qml widgets sql concurrent positioning gui_private
 qtHaveModule(webengine) {
 	QT += webengine
 	DEFINES += QT_WEBVIEW_WEBENGINE_BACKEND

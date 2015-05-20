@@ -23,7 +23,8 @@ Then, remember to include the project file in YourQtProject.pro:
 include($$PWD/wpp-qt/wpp.pri)
 ```
 To make sure the android part works, please do this:
-1) create android template folder from Qt Creator:
+- create android template folder from Qt Creator:
+
 ![Create Android template folder](https://github.com/minixxie/wpp-qt/raw/master/doc/android-create-template.png)
 
 The above also help add these lines into the pro file:
@@ -39,7 +40,7 @@ android/gradlew.bat
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 ```
-2) Create the link to the android library project "wpp-android"
+- Create the link to the android library project "wpp-android"
 ```bash
 cd YourQtProject
 echo "android.library.reference.1=../../$(pwd|sed 's/.*\///')/wpp-qt/wpp-android" > android/project.properties
@@ -53,13 +54,13 @@ To use this library, the first requirement is to substitute QGuiApplication with
 #include <wpp/qt/QuickView.h>
 int main(int argc, char *argv[])
 {
-wpp::qt::Application app(argc, argv);
+	wpp::qt::Application app(argc, argv);
 
-wpp::qt::QuickView view(&app);
-view.setSource(QUrl(QStringLiteral("qrc:/main.qml")));
-view.show();
+	wpp::qt::QuickView view(&app);
+	view.setSource(QUrl(QStringLiteral("qrc:/main.qml")));
+	view.show();
 
-return app.exec();
+	return app.exec();
 }
 ```
 The Application class actually inherits from [QGuiApplication](http://doc.qt.io/qt-5/qguiapplication.html) and it registers some wpp library things in addition.
@@ -69,103 +70,103 @@ The QuickView class inherits from [QQuickView](http://doc.qt.io/qt-5/qquickview.
 All QML elements only support pixel values for x, y, width, height and all size and dimension related properties. With the main function used in "To Begin", "reso" variable can be used in QML like this:
 ```QML
 Rectange {
-anchors.fill: parent
-anchors.margins: 10*reso.dp2px //dp2px means changing 10 from "dp" to "px" as all QML properties only accept pixels
+	anchors.fill: parent
+	anchors.margins: 10*reso.dp2px //dp2px means changing 10 from "dp" to "px" as all QML properties only accept pixels
 }
 ```
 ## UseCase: TimeAgo
 TimeAgo is a class for generating human readable date/time. For example, it shows "2 hours ago", "15 mins ago", etc. By using wpp::qt::Application and wpp::qt::QuickView in main(), timeago can be used in QML:
 ```QML
 Text {
-text: timeago.getTimeAgo(unixTimestamp)
+	text: timeago.getTimeAgo(unixTimestamp)
 }
 ```
 ## UseCase: QML TitleBar
 This QML element mimic the TitleBar of NavigationController on iOS.
 ```QML
 TitleBar {
-id: titleBar
-anchors.top: parent.top
-anchors.left: parent.left
-anchors.right: parent.right
-text: "Hello"
+	id: titleBar
+	anchors.top: parent.top
+	anchors.left: parent.left
+	anchors.right: parent.right
+	text: "Hello"
 }
 ```
 ## UseCase: circular image
 We usually need to use rounded corner on images, Qt doesn't support it by default. With this library you can do this. But the current version has a limitation that the image should not lie on a boundary of two differnt colors or other background images:
 ```QML
 Avatar {                                        
-id: profilePhoto                                
-anchors.left: parent.left                       
-anchors.top: parent.top          
-anchors.margins: 10*reso.dp2px            
-height: 40*reso.dp2px                           
-width: height
-circleMask: false  //this is the main property to make circle
-maskColor: "#ffffff" //assume the background is white, write this to make sure 4 round corners are in white background
-url: "http://xxxxxx/abc.jpg"
-onClicked: {                                    
-....                    
-}                                               
+	id: profilePhoto                                
+	anchors.left: parent.left                       
+	anchors.top: parent.top          
+	anchors.margins: 10*reso.dp2px            
+	height: 40*reso.dp2px                           
+	width: height
+	circleMask: true  //this is the main property to make circle
+	maskColor: "#ffffff" //assume the background is white, write this to make sure 4 round corners are in white background
+	url: "http://xxxxxx/abc.jpg"
+	onClicked: {                                    
+		//....                    
+	}                                               
 }   
 ```
 
 ## UseCase: use native camera or image picker to upload profile photo
 This is a common use case, which often show a empty photo for clicking to set the profile photo of a user. With this library, you can do this:
 ```QML
-SelectPhotoSourceModal {
-id: selectPhotoSourceModal
-anchors.fill: parent
-maxPick: 1
-onPhotoTaken: { //string imagePath
-console.debug("onPhotoTaken:" + imagePath);
-profilePhoto.url = "file:" + imagePath;
-}
-onPhotoChosen: { //variant imagePaths
-if ( imagePaths.length == 1 )
-{
-var imagePath = imagePaths[0];
-console.debug("onPhotoChosen:" + imagePath);
-profilePhoto.url = "file:" + imagePath;
-}
-}
-onCropFinished: {
-}
-onCropCancelled: {
-}
+ImageSelector {
+	id: imageSelector
+	anchors.fill: parent
+	maxPick: 1
+	onPhotoTaken: { //string imagePath
+		console.debug("onPhotoTaken:" + imagePath);
+		profilePhoto.url = "file:" + imagePath;
+	}
+	onPhotoChosen: { //variant imagePaths
+		if ( imagePaths.length == 1 )
+		{
+			var imagePath = imagePaths[0];
+			console.debug("onPhotoChosen:" + imagePath);
+			profilePhoto.url = "file:" + imagePath;
+		}
+	}
+	onCropFinished: {
+	}
+	onCropCancelled: {
+	}
 }
 
 Avatar {                                        
-id: profilePhoto                                
-anchors.left: parent.left                       
-anchors.top: parent.top          
-anchors.margins: 10*reso.dp2px            
-height: 50*reso.dp2px                           
-width: height    
-bgText: qsTr("Upload Image")
-bgTextColor: "#0080ff"
-//url: "http://xxxxxx/abc.jpg"
-onClicked: {                                    
-selectPhotoSourceModal.visible=true;
-}                                               
+	id: profilePhoto                                
+	anchors.left: parent.left                       
+	anchors.top: parent.top          
+	anchors.margins: 10*reso.dp2px            
+	height: 100*reso.dp2px                           
+	width: height    
+	bgText: qsTr("Upload Image")
+	bgTextColor: "#0080ff"
+	//url: "http://xxxxxx/abc.jpg"
+	onClicked: {                                    
+		imageSelector.visible=true;
+	}                                               
 }
 ```
 ## UseCase: Native DateTime picker
 Employed the native DateTime picker UI for you:
 ```QML
 DateTimeControl {               
-id: startDateTimeControl        
-anchors.top: parent.top         
-anchors.left: parent.left; anchors.right: parent.right;
-height: 36*reso.dp2px
-topBorder: true; bottomBorder: true
-title: qsTr("Date/Time")            
-dateTime: new Date()                             
-//timeZoneId: "Asia/Hong_Kong"
-onPicked: {
-dateTime = dateTimePicked;
-console.debug("picked=" + dateTimePicked);
-}                               
+	id: startDateTimeControl        
+	anchors.top: parent.top         
+	anchors.left: parent.left; anchors.right: parent.right;
+	height: 36*reso.dp2px
+	topBorder: true; bottomBorder: true
+	title: qsTr("Date/Time")            
+	dateTime: new Date()                             
+	//timeZoneId: "Asia/Hong_Kong"
+	onPicked: {
+		dateTime = dateTimePicked;
+		console.debug("picked=" + dateTimePicked);
+	}                               
 }                          
 ```
 Screenshot on Android and iOS:
@@ -178,31 +179,31 @@ To load phone contact, this library already support both Android and iOS.
 #include <wpp/qt/AddressBookReader.h>
 void SomeClass::someFunc()
 {
-wpp::qt::AddressBookReader& addressBookReader = wpp::qt::AddressBookReader::getInstance();
-addressBookReader.asyncFetchAll(this, SLOT(onAddressBookLoaded(QList<QObject*>)));
+	wpp::qt::AddressBookReader& addressBookReader = wpp::qt::AddressBookReader::getInstance();
+	addressBookReader.asyncFetchAll(this, SLOT(onAddressBookLoaded(QList<QObject*>)));
 }
 void SomeClass::onAddressBookLoaded(QList<QObject*> contacts)
 {
-for ( QObject *obj : contacts )
-{
-wpp::qt::AddressBookContact *contact = dynamic_cast<wpp::qt::AddressBookContact *>(obj);
-qDebug() << "first name: " << contact->getFirstName();
-qDebug() << "last name: " << contact->getLastName();
-qDebug() << "latin full name: " << contact->getLatinFullName();
-qDebug() << "full name: " << contact->getFullName();
-for ( QObject *phoneObj : contact->getPhones() )
-{
-wpp::qt::AddressBookContactPhone *phone = dynamic_cast<wpp::qt::AddressBookContactPhone *>(phoneObj);
-qDebug() << "phone label: " << phone->getLabel();
-qDebug() << "phone number: " << phone->getPhone();
-}
-for ( QObject *emailObj : contact->getEmails() )
-{
-wpp::qt::AddressBookContactEmail *email = dynamic_cast<wpp::qt::AddressBookContactEmail *>(emailObj);
-qDebug() << "email label: " << email->getLabel();
-qDebug() << "email address: " << email->getEmail();
-}
-}
+	for ( QObject *obj : contacts )
+	{
+		wpp::qt::AddressBookContact *contact = dynamic_cast<wpp::qt::AddressBookContact *>(obj);
+		qDebug() << "first name: " << contact->getFirstName();
+		qDebug() << "last name: " << contact->getLastName();
+		qDebug() << "latin full name: " << contact->getLatinFullName();
+		qDebug() << "full name: " << contact->getFullName();
+		for ( QObject *phoneObj : contact->getPhones() )
+		{
+			wpp::qt::AddressBookContactPhone *phone = dynamic_cast<wpp::qt::AddressBookContactPhone *>(phoneObj);
+			qDebug() << "phone label: " << phone->getLabel();
+			qDebug() << "phone number: " << phone->getPhone();
+		}
+		for ( QObject *emailObj : contact->getEmails() )
+		{
+			wpp::qt::AddressBookContactEmail *email = dynamic_cast<wpp::qt::AddressBookContactEmail *>(emailObj);
+			qDebug() << "email label: " << email->getLabel();
+			qDebug() << "email address: " << email->getEmail();
+		}
+	}
 }
 ```
 ## UseCase: Use SQLite in easier way
@@ -211,14 +212,14 @@ This library provide a very easy way to use sqlite to persist your data. LocalSt
 #include <wpp/qt/LocalStorage.h>
 void someFunction()
 {
-LocalStorage& localStorage = LocalStorage::getInstance(); //get singleton
+	LocalStorage& localStorage = LocalStorage::getInstance(); //get singleton
 
-//persist data
-QString userId = ....;
-localStorage.setData("userId", userId);
+	//persist data
+	QString userId = ....;
+	localStorage.setData("userId", userId);
 
-//retrieve data
-QString userId = localStorage.getData("userId");
+	//retrieve data
+	QString userId = localStorage.getData("userId");
 
 }
 ```
@@ -237,7 +238,7 @@ manager->get(QNetworkRequest(QUrl("http://qt-project.org")));
 ```
 
 ## Contact "Us"
-Currently I'm the only author of this project. You may contact me directly via github, or sending issues, or via 2 QQ groups:
+Currently I'm the only author of this project. You may contact me directly via github, or sending issues, or via these QQ groups:
 - 345043587 Qt手机app开发Android
 - 19346666 Qt5 for Android,iOS
 

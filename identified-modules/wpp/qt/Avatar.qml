@@ -2,8 +2,9 @@
 
 
 Rectangle {
-	id: "avatar"
-	property alias url: profilePhotoImage.source
+	id: avatar
+	property alias url: img.source
+	property alias fillMode: img.fillMode
 	property bool circleMask: true
 	property alias bgColor: imgBg.bgColor
 	property alias maskColor: circleImageMask.bgColor
@@ -13,7 +14,7 @@ Rectangle {
 
 	ImageBackground {
 		id: imgBg
-		imgTarget: profilePhotoImage
+		imgTarget: img
         Text {
             id: "bgTextElement"
             anchors.fill: parent
@@ -25,7 +26,7 @@ Rectangle {
         }
 	}
 	Image {
-		id: "profilePhotoImage"
+		id: img
 		width: avatar.width
 		height: avatar.height
 		smooth: true
@@ -40,8 +41,8 @@ Rectangle {
 		}
 	}
 	CircleImageMask {
-		id: "circleImageMask"
-		maskedTarget: profilePhotoImage
+		id: circleImageMask
+		maskedTarget: img
 		bgColor: "#ffffff"
 		visible: circleMask
 	}

@@ -18,6 +18,7 @@
 		<file>identified-modules/wpp/qt/HSlides.qml</file>
 		<file>identified-modules/wpp/qt/Hyperlink.qml</file>
 		<file>identified-modules/wpp/qt/ImageBackground.qml</file>
+		<file>identified-modules/wpp/qt/ImageSelector.qml</file>
 		<file>identified-modules/wpp/qt/JSMap.qml</file>
 		<file>identified-modules/wpp/qt/KTextArea.qml</file>
 		<file>identified-modules/wpp/qt/Line.qml</file>
@@ -32,7 +33,6 @@
 		<file>identified-modules/wpp/qt/RotatableRectangle.qml</file>
 		<file>identified-modules/wpp/qt/RoundedImage.qml</file>
 		<file>identified-modules/wpp/qt/SearchField.qml</file>
-		<file>identified-modules/wpp/qt/SelectPhotoSourceModal.qml</file>
 		<file>identified-modules/wpp/qt/SelectionList.qml</file>
 		<file>identified-modules/wpp/qt/SelectionListModal.qml</file>
 		<file>identified-modules/wpp/qt/SelectionListView.qml</file>
