@@ -5,3 +5,4 @@ TitleBar 1.0 TitleBar.qml
 Avatar 1.0 Avatar.qml
 ImageSelector 1.0 ImageSelector.qml
 CropImage 1.0 CropImage.qml
+Overlay 1.0 Overlay.qml
