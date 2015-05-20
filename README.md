@@ -155,6 +155,7 @@ Avatar {
 ```
 
 ![Native Camera and Image Picker](https://github.com/minixxie/wpp-qt/raw/master/doc/screenshot-native-camera-and-image-picker.png)
+see example: [UsingNativeCameraAndImagePicker](https://github.com/minixxie/wpp-qt/raw/master/examples/UsingNativeCameraAndImagePicker)
 
 ## UseCase: Native DateTime picker
 Employed the native DateTime picker UI for you:
