@@ -92,6 +92,8 @@ TitleBar {
 	text: "Hello"
 }
 ```
+![TitleBar](https://github.com/minixxie/wpp-qt/raw/master/doc/screenshot-titlebar.png)
+
 ## UseCase: circular image
 We usually need to use rounded corner on images, Qt doesn't support it by default. With this library you can do this. But the current version has a limitation that the image should not lie on a boundary of two differnt colors or other background images:
 ```QML
