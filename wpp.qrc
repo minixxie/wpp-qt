@@ -13,7 +13,6 @@
 		<file>identified-modules/wpp/qt/DateTime.qml</file>
 		<file>identified-modules/wpp/qt/DateTimeControl.qml</file>
 		<file>identified-modules/wpp/qt/DetectLocationUI.qml</file>
-		<file>identified-modules/wpp/qt/Dialog.qml</file>
 		<file>identified-modules/wpp/qt/DownloadUpdateUI.qml</file>
 		<file>identified-modules/wpp/qt/HSlides.qml</file>
 		<file>identified-modules/wpp/qt/Hyperlink.qml</file>
@@ -53,6 +52,7 @@
 		<file>identified-modules/wpp/qt/TitleBarIcon.qml</file>
 		<file>identified-modules/wpp/qt/TitleBarNextIcon.qml</file>
 		<file>identified-modules/wpp/qt/WebViewJSMap.qml</file>
+		<file>identified-modules/wpp/qt/WppDialog.qml</file>
 		<file>identified-modules/wpp/qt/WppTabView.qml</file>
 		<file>identified-modules/wpp/qt/qmldir</file>
 		<file>identified-modules/wpp/qt/google-map.html</file>

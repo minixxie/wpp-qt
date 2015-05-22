@@ -126,7 +126,7 @@ OTHER_FILES += \
 	$$PWD/identified-modules/wpp/qt/Avatars.qml \
 	$$PWD/identified-modules/wpp/qt/CircleImageMask.qml \
 	$$PWD/identified-modules/wpp/qt/DateTime.qml \
-	$$PWD/identified-modules/wpp/qt/Dialog.qml \
+	$$PWD/identified-modules/wpp/qt/WppDialog.qml \
 	$$PWD/identified-modules/wpp/qt/HSlides.qml \
 	$$PWD/identified-modules/wpp/qt/Hyperlink.qml \
 	$$PWD/identified-modules/wpp/qt/ImageBackground.qml \
