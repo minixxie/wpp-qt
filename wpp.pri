@@ -143,7 +143,7 @@ OTHER_FILES += \
 	$$PWD/identified-modules/wpp/qt/Spinner.qml \
 	$$PWD/identified-modules/wpp/qt/Tab.qml \
 	$$PWD/identified-modules/wpp/qt/WppTabView.qml \
-	$$PWD/identified-modules/wpp/qt/TextField.qml \
+	$$PWD/identified-modules/wpp/qt/WppTextField.qml \
 	$$PWD/identified-modules/wpp/qt/SearchField.qml \
 	$$PWD/identified-modules/wpp/qt/AddressBookUI.qml \
 	$$PWD/identified-modules/wpp/qt/TitleBar.qml \

@@ -4,6 +4,7 @@ import QtQuick.Window 2.2
 Rectangle {
 	id: titleBar
 	property alias text: label.text
+	property alias label: label
 	property bool loading: false
 	property string loadingType: "BAR" //ROLLING, BAR
 	property bool hasPhoneTop: Qt.platform.os == "ios" //sys.isIOS()

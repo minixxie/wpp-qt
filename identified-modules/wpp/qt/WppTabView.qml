@@ -9,7 +9,7 @@ Rectangle {
 	property color tabBgColor: "#eeeeee"
 	property color selectedIndicatorColor: "#aaaaaa"
 	property color bottomBorderColor: "#dddddd"
-	property list<Tab> tabs
+	property list<WppTab> tabs
 	property int defaultIndex: 0
 	property string tabButtonsPosition: "TOP" //TOP, BOTTOM
 

@@ -310,7 +310,7 @@ Rectangle {
 		visible: false
 
 		/*tabs: [
-			Tab {
+			WppTab {
 				id: "smileysTab"
 				title: Image {
 					source: "qrc:/img/smileys/kuangxiao.gif"
@@ -328,7 +328,7 @@ Rectangle {
 				}
 				//onSelected: titleBar.text = qsTr("Home")
 			},
-			Tab {
+			WppTab {
 				id: "atUserTab"
 				title: Text {
 					text: "@"
@@ -342,7 +342,7 @@ Rectangle {
 				content: AtUserTab { anchors.fill: parent }
 				//onSelected: titleBar.text = qsTr("Home")
 			},
-			Tab {
+			WppTab {
 				id: "detectLocationTab"
 				title: Image {
 					source: "qrc:/img/android-icons/All_Icons/holo_light/mdpi/7-location-place.png"
@@ -354,7 +354,7 @@ Rectangle {
 				content: DetectLocationUI { anchors.fill: parent }
 				//onSelected: titleBar.text = qsTr("Home")
 			},
-			Tab {
+			WppTab {
 				id: "addPhotoTab"
 				title: Image {
 					source: "qrc:/img/android-icons/All_Icons/holo_light/mdpi/10-device-access-camera.png"

@@ -1,6 +1,6 @@
 import QtQuick 2.2
 
-TextField {
+WppTextField {
 	id: searchText
 
 	property string magnifyingGlass: "RIGHT" //LEFT, RIGHT, NONE
