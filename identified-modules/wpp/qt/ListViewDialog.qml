@@ -17,7 +17,7 @@ Item {
 
 	visible: false
 
-	Dialog {
+	WppDialog {
 		id: "popup"
 		bgColor: listViewDialog.bgColor
 		contentComponent: Component {

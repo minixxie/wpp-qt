@@ -7,7 +7,7 @@ Rectangle {
 
 	anchors.fill: parent
 
-	Dialog {
+	WppDialog {
 		id: confirmDialog
 		visible: false
 		text: qsTr("Are you sure to quit?")
@@ -107,7 +107,7 @@ Rectangle {
 		mainController.downloadAndroidAPK();
 	}
 
-	Dialog {
+	WppDialog {
 		text: qsTr("New version found, download and update?") +
 			  "\n" +
 			  "\n"+qsTr("Latest: ") + mainController.newVerCode +

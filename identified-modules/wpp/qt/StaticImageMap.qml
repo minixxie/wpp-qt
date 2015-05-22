@@ -1173,7 +1173,7 @@ Rectangle {
 	}
 
 
-	Dialog {
+	WppDialog {
 		id: "placesToChooseDialog"
 		//text: "Test Test"
 		property int listViewCurrentIndex: 0
