@@ -103,7 +103,7 @@ Rectangle {
 
 	function goToDownloadPage()
 	{
-		mainController.qmlFile = "../../wpp/DownloadUpdateUI.qml";
+		mainController.qmlFile = "qrc:/identified-modules/wpp/qt/DownloadUpdateUI.qml";
 		mainController.downloadAndroidAPK();
 	}
 
