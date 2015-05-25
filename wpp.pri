@@ -131,6 +131,8 @@ OTHER_FILES += \
 	$$PWD/identified-modules/wpp/qt/Hyperlink.qml \
 	$$PWD/identified-modules/wpp/qt/ImageBackground.qml \
 	$$PWD/identified-modules/wpp/qt/KTextArea.qml \
+	$$PWD/identified-modules/wpp/qt/KMenu.qml \
+	$$PWD/identified-modules/wpp/qt/KMenuAttach.qml \
 	$$PWD/identified-modules/wpp/qt/Line.qml \
 	$$PWD/identified-modules/wpp/qt/ListViewDialog.qml \
 	$$PWD/identified-modules/wpp/qt/Map.qml \

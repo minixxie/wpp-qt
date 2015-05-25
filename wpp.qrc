@@ -19,6 +19,8 @@
 		<file>identified-modules/wpp/qt/ImageBackground.qml</file>
 		<file>identified-modules/wpp/qt/ImageSelector.qml</file>
 		<file>identified-modules/wpp/qt/JSMap.qml</file>
+		<file>identified-modules/wpp/qt/KMenu.qml</file>
+		<file>identified-modules/wpp/qt/KMenuAttach.qml</file>
 		<file>identified-modules/wpp/qt/KTextArea.qml</file>
 		<file>identified-modules/wpp/qt/Line.qml</file>
 		<file>identified-modules/wpp/qt/ListViewDialog.qml</file>

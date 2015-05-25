@@ -136,7 +136,7 @@ FocusScope {
 		id: menu
 		parent: fullScreen
 		visible: false
-		source: "../qml/ui/KMenu.qml"
+		source: "KMenu.qml"
 	}
 
 	Component.onCompleted: {
