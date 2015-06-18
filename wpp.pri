@@ -83,7 +83,8 @@ HEADERS += \
 		$$PWD/src/wpp/qt/NativeMap.h \
 	$$PWD/src/wpp/qt/NativeDateTimePicker.h \
 	$$PWD/src/wpp/qt/IOSTimeZonePicker.h \
-	$$PWD/src/wpp/qt/QObjectStarList.h
+	$$PWD/src/wpp/qt/QObjectStarList.h \
+	$$PWD/src/wpp/qt/PathStatus.h
 
 android {
 	SOURCES += \

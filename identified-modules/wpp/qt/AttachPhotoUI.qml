@@ -9,15 +9,15 @@ Rectangle {
 	signal photoChosen(variant imagePaths)
 
 	GridView {
-		id: "imageAttachmentList"
+		id: imageAttachmentList
 		anchors.margins: 10*reso.dp2px
 		anchors.fill: parent
-		cellWidth: 80*reso.dp2px
-		cellHeight: 80*reso.dp2px
+		cellWidth: width/4 //(parent.width - 2*imageAttachmentList.anchors.margins)/4
+		cellHeight: cellWidth
 		//orientation: ListView.Horizontal
 		header: Rectangle {
-			width: 80*reso.dp2px
-			height: width
+			width: imageAttachmentList.cellWidth
+			height: imageAttachmentList.cellHeight
 			color: "transparent"
 			Rectangle {
 				anchors.fill: parent
@@ -43,18 +43,19 @@ Rectangle {
 			}
 		}
 		delegate: Rectangle {
-			width: 80*reso.dp2px
-			height: width
+			width: imageAttachmentList.cellWidth
+			height: imageAttachmentList.cellHeight
 			color: "transparent"
 			AnimatedImage {
-				anchors.fill: parent
-				anchors.margins: 20*reso.dp2px
+				//anchors.fill: parent
+				//anchors.margins: 20*reso.dp2px
 				width: 45*reso.dp2px
 				height: 45*reso.dp2px
 				source: "qrc:/img/loading.200x200.gif"
 				anchors.centerIn: parent
 				visible: {
-					return image.source == ""
+					//return image.source == ""
+					return !modelData.isDone;
 				}
 			}
 			Image {
@@ -63,19 +64,20 @@ Rectangle {
 				fillMode: Image.PreserveAspectCrop
 				cache: false
 				source: {
-					if (modelData != "") {
-						var s = "file://" + modelData;
+					return modelData.isDone? "file://" + modelData.path : "";
+					/*if (modelData != "") {
+						var s = "file://" + modelData.path;
 						//console.debug("microblog-attach:"+s);
 						return s;
 					} else {
 						return ""
-					}
+					}*/
 				}
 			}
 		}
 	}
 	ImageSelector {
-		id: "selectPhotoSourceModal"
+		id: selectPhotoSourceModal
 		anchors.fill: parent
 		onPhotoTaken: { //string imagePath
 			attachPhotoUI.photoTaken(imagePath);
