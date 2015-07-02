@@ -5,16 +5,31 @@ Rectangle {
 	id: dateTimeControl
 
 	property alias title: titleText.text
-	property date dateTime: {
+	property alias msecSinceEpoch: dateTimePicker.msecSinceEpoch
+	//property variant msecSinceEpoch: {
+	//	var d = new Date();
+	//	return d.getTime();
+	//}
 
-		var d = new Date();
-		console.debug("DateTimeControl:initialize:dateTime=" + d.getTime()/1000
-					  + "..." + d );
-		return d;
-	}
+	/*property date dateTime: {
+		return sys.currentDateTime(dateTimeControl.timeZoneId);
+
+		//var d = new Date();
+		//console.debug("DateTimeControl:initialize:dateTime=" + d.getTime()/1000
+		//			  + "..." + d );
+		//return d;
+	}*/
 	property string format: "yyyy-MM-dd hh:mm AP"
 	property string timeZoneId: Qt.TimeZone
-	signal picked(var dateTimePicked)
+	/*onTimeZoneIdChanged: {
+		//var dateTime = new Date();
+		console.debug("DateTimeControl.onTimeZoneIdChanged:timezoneId=" + dateTimeControl.timeZoneId);
+		console.debug("DateTimeControl.onTimeZoneIdChanged:dateTime(OLD)=" + dateTime.toString("yyyy-MM-dd hh:mm AP"));
+		dateTime = sys.makeDateTime(dateTimeControl.timeZoneId, dateTime.getTime());
+		console.debug("DateTimeControl.onTimeZoneIdChanged:dateTime(NEW)=" + dateTime.toString("yyyy-MM-dd hh:mm AP"));
+	}*/
+
+	signal picked(variant msecSinceEpoch)
 
 	property alias topBorder: upperBorderLine.visible
 	property alias bottomBorder: lowerBorderLine.visible
@@ -42,20 +57,23 @@ Rectangle {
 	Text {
 		anchors.top: parent.top; anchors.bottom: parent.bottom;
 		anchors.right: parent.right; anchors.rightMargin:10*reso.dp2px;
-		text: Qt.formatDateTime(dateTimeControl.dateTime, format)
+		text: sys.formatDateTime(dateTimeControl.msecSinceEpoch, dateTimeControl.format, dateTimeControl.timeZoneId)
 		font.pixelSize: 12*reso.dp2px
 		color: "#333333"
 		verticalAlignment: Text.AlignVCenter
 	}
 	NativeDateTimePicker {
 		id: dateTimePicker
-		dateTime: {
+		timeZoneId: dateTimeControl.timeZoneId
+		//msecSinceEpoch: dateTimeControl.msecSinceEpoch
+		/*{
 			console.debug("NativeDateTimePicker:init:dateTime=(" + dateTimeControl.dateTime.getTime()/1000
 						  + ")=" + dateTimeControl.dateTime);
-			return dateTimeControl.dateTime
-		}
-		onPicked: {
-			dateTimeControl.picked(dateTime);
+			return new Date(dateTimeControl.msecSinceEpoch);
+		}*/
+		onPicked: {//msecSinceEpoch
+			console.debug("NativeDateTimePicker.onPicked: msecSinceEpoch=" + msecSinceEpoch);
+			dateTimeControl.picked(msecSinceEpoch);
 		}
 	}
 

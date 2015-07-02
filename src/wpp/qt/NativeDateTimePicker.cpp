@@ -14,9 +14,10 @@ void __NativeDateTimePicker__setDateTimeSelected(const QString& iso8601, void *q
 	{
 		wpp::qt::NativeDateTimePicker *p = (wpp::qt::NativeDateTimePicker *)qmlDateTimePickerPtr;
 		QDateTime dateTime = QDateTime::fromString(iso8601, Qt::ISODate);
-		qDebug() << "dateTime selected is!!!! ==== " << dateTime;
-		p->setDateTime( dateTime );
-		p->picked( dateTime );
+		qDebug() << "dateTime selected is!!!! ==== " << dateTime << "(" << dateTime.toMSecsSinceEpoch() << ")";
+		//p->setDateTime( dateTime );
+		p->setMsecSinceEpoch( dateTime.toMSecsSinceEpoch() );
+		p->picked( dateTime.toMSecsSinceEpoch() );
 	}
 }
 
@@ -26,12 +27,15 @@ namespace qt {
 #ifndef Q_OS_IOS
 NativeDateTimePicker::NativeDateTimePicker(QQuickItem *parent)
 	: QQuickItem(parent),
-	  m_dateTime(),
-	  m_timezoneId( wpp::qt::System::getSystemTimezoneId() )
+	  m_msecSinceEpoch(0),
+	  m_timeZoneId( wpp::qt::System::getSystemTimezoneId() )
 {
-	uint initTS = QDateTime::currentDateTime().toTime_t();
-	initTS -= initTS % 60;//assign seconds to 0
-	m_dateTime.setTime_t( initTS );
+	//uint initTS = QDateTime::currentDateTime().toTime_t();
+	//initTS -= initTS % 60;//assign seconds to 0
+	//m_dateTime.setTime_t( initTS );
+	m_msecSinceEpoch = QDateTime::currentMSecsSinceEpoch();
+
+	connect(this, SIGNAL(timeZoneIdChanged()), this, SLOT(onTimeZoneIdChanged));
 }
 
 void NativeDateTimePicker::open()
@@ -47,12 +51,14 @@ void NativeDateTimePicker::open()
 	QDateTime dateTime;
 	dateTime.setTimeZone(QTimeZone("UTC"));
 	dateTime.setTimeSpec(Qt::UTC);
-	dateTime.setTime_t( this->dateTime().toTime_t() );
+	//dateTime.setTime_t( this->dateTime().toTime_t() );
+	dateTime.setMSecsSinceEpoch( this->msecSinceEpoch() );
+
 	QAndroidJniObject initDateISO8601 = QAndroidJniObject::fromString( dateTime.toString(Qt::ISODate) );
 	qDebug() << "QT--initDateISO8601=" << initDateISO8601.toString();
 	qDebug() << "QT--ts=" << dateTime.toTime_t();
 
-	QAndroidJniObject timezoneId = QAndroidJniObject::fromString( QString( System::getSystemTimezoneId() ) );
+	QAndroidJniObject timezoneId = QAndroidJniObject::fromString( this->timeZoneId() );
 	qDebug() << "QT--timezoneId=" << timezoneId.toString();
 
 	jlong qmlDateTimePickerPtr = (jlong)this;
@@ -144,6 +150,11 @@ void NativeDateTimePicker::handleActivityResult(int receiverRequestCode, int res
 }
 
 #endif
+
+void NativeDateTimePicker::onTimeZoneIdChanged()
+{
+	qDebug() << __FUNCTION__ ;
+}
 
 }
 }

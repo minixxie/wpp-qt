@@ -702,6 +702,37 @@ QByteArray System::getSystemTimezoneId()
 	return QTimeZone::systemTimeZoneId();
 #endif
 }
+/*
+QDateTime System::makeDateTime(const QString& ianaId, qint64 msecsSinceEpoch)
+{
+	if ( ianaId.isEmpty() )
+		return QDateTime::fromMSecsSinceEpoch(msecsSinceEpoch, QTimeZone(getSystemTimezoneId()) );
+	else
+		return QDateTime::fromMSecsSinceEpoch(msecsSinceEpoch, QTimeZone(ianaId.toLatin1()) );
+}
+
+QDateTime System::currentDateTime(const QString& ianaId)
+{
+	return makeDateTime(ianaId, QDateTime::currentMSecsSinceEpoch());
+}
+*/
+QString System::formatDateTime(qint64 msecsSinceEpoch, const QString& format, const QString& ianaId)
+{
+	//QDateTime dateTime = makeDateTime(ianaId, msecsSinceEpoch);
+	QDateTime dateTime = QDateTime::fromMSecsSinceEpoch(msecsSinceEpoch);
+	QDateTime utc(dateTime.toTimeSpec(Qt::UTC));
+	QDateTime tzDateTime = utc.toTimeZone( createTimeZone(ianaId) );
+	qDebug() << __FUNCTION__ << ":ianaId=" << ianaId;
+	qDebug() << __FUNCTION__ << ":msecsSinceEpoch=" << msecsSinceEpoch;
+	qDebug() << __FUNCTION__ << ":format=" << format;
+	qDebug() << __FUNCTION__ << ":dateTime=" << dateTime;
+	qDebug() << __FUNCTION__ << ":utc=" << utc;
+	qDebug() << __FUNCTION__ << ":tzDateTime=" << tzDateTime;
+	qDebug() << __FUNCTION__ << ":tzDateTime.toString(format)=" << tzDateTime.toString(format);
+
+	return tzDateTime.toString(format);
+}
+
 
 }//namespace qt
 }//namespace wpp

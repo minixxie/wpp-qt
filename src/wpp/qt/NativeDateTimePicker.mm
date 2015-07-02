@@ -31,8 +31,9 @@
 	QDateTime dateTime = QDateTime::fromTime_t( selectedDate.timeIntervalSince1970 );
 	qDebug() << "QDateTime=" << dateTime;
 
-	m_nativeDateTimePicker->setDateTime(dateTime);
-	emit m_nativeDateTimePicker->picked(dateTime);
+	//m_nativeDateTimePicker->setDateTime(dateTime);
+	m_nativeDateTimePicker->setMsecSinceEpoch(dateTime.toMSecsSinceEpoch());
+	emit m_nativeDateTimePicker->picked(dateTime.toMSecsSinceEpoch());
 }
 @end
 
@@ -44,15 +45,19 @@ namespace qt {
 
 NativeDateTimePicker::NativeDateTimePicker(QQuickItem *parent)
 	: QQuickItem(parent),
-	m_dateTime(),
-	m_timezoneId( wpp::qt::System::getSystemTimezoneId() ),
+	  m_msecSinceEpoch(0),
+	m_timeZoneId( wpp::qt::System::getSystemTimezoneId() ),
 	m_delegate((__bridge_retained void*)[[WppDatePickerDelegate alloc] initWithNativeDateTimePicker:this])
 {
-	uint initTS = QDateTime::currentDateTime().toTime_t();
-	initTS -= initTS % 60;//assign seconds to 0
-	m_dateTime.setTime_t( initTS );
+	//uint initTS = QDateTime::currentDateTime().toTime_t();
+	//initTS -= initTS % 60;//assign seconds to 0
+	//m_dateTime.setTime_t( initTS );
+	m_msecSinceEpoch = QDateTime::currentMSecsSinceEpoch();
 
 	__gSingletonDateTimePicker = this;
+
+	connect(this, SIGNAL(timeZoneIdChanged()), this, SLOT(onTimeZoneIdChanged));
+
 }
 
 void NativeDateTimePicker::open()
@@ -63,9 +68,9 @@ void NativeDateTimePicker::open()
 
 	[UIApplication sharedApplication].statusBarOrientation = UIInterfaceOrientationPortrait;//hacky fix
 
-	qDebug() << "init qDateTime=" << this->dateTime();
-	uint initTS = this->dateTime().toTime_t();
-	initTS -= initTS % 60;//assign seconds to 0
+	qDebug() << "init qDateTime=" << this->msecSinceEpoch();
+	uint initTS = this->msecSinceEpoch()/1000;
+	//initTS -= initTS % 60;//assign seconds to 0
 	qDebug() << "init TS=" << initTS;
 	NSDate *initDate = [NSDate dateWithTimeIntervalSince1970:initTS];
 
@@ -78,7 +83,7 @@ void NativeDateTimePicker::open()
 		action:@selector(dateWasSelected:element:)
 		origin:rvc.view];
 
-	NSString *timezoneId = this->timezoneId().toNSString();
+	NSString *timezoneId = this->timeZoneId().toNSString();
 	NSLog(@"init timezone: %@", timezoneId);
 	actionSheetPicker.timeZone = [NSTimeZone timeZoneWithName:timezoneId];
 

@@ -114,8 +114,13 @@ public:
 
 	Q_INVOKABLE void test();
 
+	//Q_INVOKABLE QDateTime makeDateTime(const QString& ianaId, qint64 msecsSinceEpoch);
+	//Q_INVOKABLE QDateTime currentDateTime(const QString& ianaId);
+	Q_INVOKABLE QString formatDateTime(qint64 msecsSinceEpoch, const QString& format, const QString& ianaId = QString());
+
 	static QTimeZone createTimeZone(const QString& ianaId);
 	static QByteArray getSystemTimezoneId();
+
 signals:
 	void networkChanged();
 	void hasNetworkChanged();

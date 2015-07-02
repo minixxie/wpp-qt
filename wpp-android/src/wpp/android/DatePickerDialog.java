@@ -143,7 +143,7 @@ public class DatePickerDialog
 					int min = timePicker.getCurrentMinute().intValue();
 					Log.e("ClickOK", "time selected=" + hour + ":" + min);
 
-					cal.set(year, month, day, hour, min);
+					cal.set(year, month, day, hour, min, 0);
 					Date date = cal.getTime();
 					long time = cal.getTimeInMillis();
 					Log.e("ClickOK", "time(unix)=" + time);

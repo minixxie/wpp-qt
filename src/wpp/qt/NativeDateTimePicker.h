@@ -17,26 +17,28 @@ class NativeDateTimePicker : public QQuickItem
 #endif
 {
     Q_OBJECT
-	Q_PROPERTY(QDateTime dateTime READ dateTime WRITE setDateTime NOTIFY dateTimeChanged)
-	Q_PROPERTY(QString timezoneId READ timezoneId WRITE setTimezoneId NOTIFY timezoneIdChanged)
+	Q_PROPERTY(qint64 msecSinceEpoch READ msecSinceEpoch WRITE setMsecSinceEpoch NOTIFY msecSinceEpochChanged)
+	Q_PROPERTY(QString timeZoneId READ timeZoneId WRITE setTimeZoneId NOTIFY timeZoneIdChanged)
 
 private:
-	QDateTime m_dateTime;
-	QString m_timezoneId;
+	qint64 m_msecSinceEpoch;
+	QString m_timeZoneId;
 
 public:
 	explicit NativeDateTimePicker(QQuickItem *parent = 0);
 
-	const QDateTime& dateTime() const { return m_dateTime; }
-	void setDateTime( const QDateTime& dateTime ) { this->m_dateTime = dateTime; emit dateTimeChanged(); }
+	qint64 msecSinceEpoch() const { return m_msecSinceEpoch; }
+	void setMsecSinceEpoch( qint64 msecSinceEpoch )
+	{ if ( this->m_msecSinceEpoch == msecSinceEpoch ) return; this->m_msecSinceEpoch = msecSinceEpoch; emit msecSinceEpochChanged(); }
 
-	const QString& timezoneId() const { return m_timezoneId; }
-	void setTimezoneId( const QString& timezoneId ) { this->m_timezoneId = timezoneId; emit timezoneIdChanged(); }
+	const QString& timeZoneId() const { return m_timeZoneId; }
+	void setTimeZoneId( const QString& timeZoneId )
+	{ if ( this->m_timeZoneId == timeZoneId ) return; this->m_timeZoneId = timeZoneId; emit timeZoneIdChanged(); }
 
 signals:
-	void dateTimeChanged();
-	void timezoneIdChanged();
-	void picked(const QDateTime& dateTime);
+	void msecSinceEpochChanged();
+	void timeZoneIdChanged();
+	void picked(qint64 msecSinceEpoch);
 
 public slots:
 	void open();
@@ -49,6 +51,7 @@ private:
 	//QAndroidJniObject takePhotoSavedUri;
 	void handleActivityResult(int receiverRequestCode, int resultCode, const QAndroidJniObject & data);
 #endif
+	void onTimeZoneIdChanged();
 };
 
 }
