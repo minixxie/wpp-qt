@@ -27,6 +27,14 @@ public:
 	Q_INVOKABLE void setIsDone(bool isDone) { if ( this->isDone != isDone ) { this->isDone = isDone; emit this->isDoneChanged(); } }
 	Q_SIGNAL void isDoneChanged();
 
+	Q_INVOKABLE void done(const QString& newPath)
+	{
+		this->isDone = true;
+		this->path = newPath;
+		emit this->isDoneChanged();
+		emit this->pathChanged();
+	}
+
 	static QStringList toStringList(const QList<QObject*>& list)
 	{
 		QStringList result;

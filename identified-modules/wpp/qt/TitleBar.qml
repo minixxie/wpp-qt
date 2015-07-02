@@ -9,6 +9,8 @@ Rectangle {
 	property string loadingType: "BAR" //ROLLING, BAR
 	property bool hasPhoneTop: Qt.platform.os == "ios" //sys.isIOS()
 	property bool centerTitle: true
+	property alias bottomBorder: underline.visible
+	property alias bottomBorderColor: underline.color
 
 	//property alias leftIcon: leftIconLoader.sourceComponent
 	property Component leftComponent
@@ -113,7 +115,7 @@ Rectangle {
 
 	Rectangle {
 		id: underline
-		height: 1*reso.dp2px
+		height: visible? 1*reso.dp2px : 0
 		anchors.bottom: parent.bottom
 		anchors.left: parent.left
 		anchors.right: parent.right

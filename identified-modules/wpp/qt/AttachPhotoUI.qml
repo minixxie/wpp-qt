@@ -64,6 +64,7 @@ Rectangle {
 				fillMode: Image.PreserveAspectCrop
 				cache: false
 				source: {
+					console.debug("AttachPhotoUI:image=" + modelData.path);
 					return modelData.isDone? "file://" + modelData.path : "";
 					/*if (modelData != "") {
 						var s = "file://" + modelData.path;
