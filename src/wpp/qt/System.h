@@ -116,10 +116,18 @@ public:
 
 	//Q_INVOKABLE QDateTime makeDateTime(const QString& ianaId, qint64 msecsSinceEpoch);
 	//Q_INVOKABLE QDateTime currentDateTime(const QString& ianaId);
-	Q_INVOKABLE QString formatDateTime(qint64 msecsSinceEpoch, const QString& format, const QString& ianaId = QString());
+	Q_INVOKABLE QString formatDateTime(qint64 msecsSinceEpoch, const QString& format, const QString& ianaId = QTimeZone::systemTimeZoneId());
 
-	static QTimeZone createTimeZone(const QString& ianaId);
-	static QByteArray getSystemTimezoneId();
+	Q_INVOKABLE static QTimeZone createTimeZone(const QString& ianaId = QTimeZone::systemTimeZoneId());
+	Q_INVOKABLE static QByteArray getSystemTimezoneId();
+	Q_INVOKABLE static QTimeZone getSystemTimezone()
+	{
+		return createTimeZone(getSystemTimezoneId());
+	}
+	Q_INVOKABLE QString timezoneAbbreviation(qint64 msecsSinceEpoch, const QString& ianaId = QTimeZone::systemTimeZoneId());
+	Q_INVOKABLE QString timezoneShortName(qint64 msecsSinceEpoch, const QString& ianaId = QTimeZone::systemTimeZoneId());
+	Q_INVOKABLE QString timezoneLongName(qint64 msecsSinceEpoch, const QString& ianaId = QTimeZone::systemTimeZoneId(), const QLocale& locale = QLocale());
+
 
 signals:
 	void networkChanged();

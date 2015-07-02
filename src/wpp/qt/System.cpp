@@ -672,6 +672,7 @@ void System::registerApplePushNotificationService()
 
 QTimeZone System::createTimeZone(const QString& ianaId)
 {
+
 	//to handle bug before Qt 5.5.0: https://bugreports.qt.io/browse/QTBUG-35908
 #ifdef Q_OS_ANDROID
 	if ( ianaId == "Asia/Hong_Kong"
@@ -702,6 +703,8 @@ QByteArray System::getSystemTimezoneId()
 	return QTimeZone::systemTimeZoneId();
 #endif
 }
+
+
 /*
 QDateTime System::makeDateTime(const QString& ianaId, qint64 msecsSinceEpoch)
 {
@@ -732,6 +735,25 @@ QString System::formatDateTime(qint64 msecsSinceEpoch, const QString& format, co
 
 	return tzDateTime.toString(format);
 }
+
+QString System::timezoneAbbreviation(qint64 msecsSinceEpoch, const QString& ianaId)
+{
+	QTimeZone timezone = createTimeZone(ianaId);
+	return timezone.abbreviation(QDateTime::fromMSecsSinceEpoch(msecsSinceEpoch));
+}
+QString System::timezoneShortName(qint64 msecsSinceEpoch, const QString& ianaId)
+{
+	QTimeZone timezone = createTimeZone(ianaId);
+	qDebug() << __FUNCTION__ << ":shortname=" << timezone.displayName(QDateTime::fromMSecsSinceEpoch(msecsSinceEpoch), QTimeZone::ShortName);
+	return timezone.displayName(QDateTime::fromMSecsSinceEpoch(msecsSinceEpoch), QTimeZone::ShortName);
+}
+QString System::timezoneLongName(qint64 msecsSinceEpoch, const QString& ianaId, const QLocale& locale)
+{
+	QTimeZone timezone = createTimeZone(ianaId);
+	qDebug() << __FUNCTION__ << ":longname=" << timezone.displayName(QDateTime::fromMSecsSinceEpoch(msecsSinceEpoch), QTimeZone::LongName);
+	return timezone.displayName(QDateTime::fromMSecsSinceEpoch(msecsSinceEpoch), QTimeZone::LongName, locale);
+}
+
 
 
 }//namespace qt
