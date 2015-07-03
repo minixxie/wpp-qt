@@ -160,7 +160,7 @@ OTHER_FILES += \
 	$$PWD/identified-modules/wpp/qt/SelectionListModal.qml \
 	$$PWD/identified-modules/wpp/qt/SelectionListView.qml \
 	$$PWD/identified-modules/wpp/qt/LocalAlbumBrowse.qml \
-	$$PWD/identified-modules/wpp/qt/SelectPhotoSourceModal.qml \
+	$$PWD/identified-modules/wpp/qt/ImageSelector.qml \
 	$$PWD/identified-modules/wpp/qt/TakePhotoUI.qml \
 	$$PWD/identified-modules/wpp/qt/CropImage.qml \
 	$$PWD/identified-modules/wpp/qt/PhotoCaptureControls.qml \
