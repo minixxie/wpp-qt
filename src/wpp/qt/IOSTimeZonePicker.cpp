@@ -12,7 +12,7 @@ namespace qt {
 #ifndef Q_OS_IOS
 IOSTimeZonePicker::IOSTimeZonePicker(QQuickItem *parent)
 	: QQuickItem(parent),
-	  m_timezoneId( wpp::qt::System::getSystemTimezoneId() )
+	  m_timezoneId( QTimeZone::systemTimeZoneId() )
 {
 
 }

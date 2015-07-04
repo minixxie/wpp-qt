@@ -4,7 +4,7 @@ import wpp.qt.NativeCamera 1.0
 import wpp.qt.ImagePicker 1.0
 
 SelectionListModal {
-	id: "selectionListModal"
+	id: selectionListModal
 
 	property string selectedPhotoPath: ""
 	property int selectedPhotoRotation: 0
@@ -26,15 +26,15 @@ SelectionListModal {
 	}
 
 	LoadingModal {
-		id: "loadingModal"
+		id: loadingModal
 		anchors.fill: parent
 		visible: false
 	}
 
 	Component {
-		id : "cropImageUI"
+		id : cropImageUI
 		CropImage {
-			id: "cropImageUIObject"
+			id: cropImageUIObject
 			//anchors.fill : parent
 			source: selectionListModal.selectedPhotoPath
 			rotation: selectionListModal.selectedPhotoRotation
@@ -50,7 +50,7 @@ SelectionListModal {
 		}
 	}
 	NativeCamera {
-		id: "nativeCamera"
+		id: nativeCamera
 		onImagePathChanged: {
 			//var absPath = imagePath.replace(/^file:\/\//, '' );
 			//absPath = absPath.replace(/^file:/, '');
@@ -63,7 +63,7 @@ SelectionListModal {
 		}
 	}
 	ImagePicker {
-		id: "nativeImagePicker"
+		id: nativeImagePicker
 		/*onImagePathChanged: {
 			//var absPath = imagePath.replace(/^file:\/\//, '' );
 			//absPath = absPath.replace(/^file:/, '');

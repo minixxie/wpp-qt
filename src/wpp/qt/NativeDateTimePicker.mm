@@ -46,7 +46,7 @@ namespace qt {
 NativeDateTimePicker::NativeDateTimePicker(QQuickItem *parent)
 	: QQuickItem(parent),
 	  m_msecSinceEpoch(0),
-	m_timeZoneId( wpp::qt::System::getSystemTimezoneId() ),
+	m_timeZoneId( QTimeZone::systemTimeZoneId() ),
 	m_delegate((__bridge_retained void*)[[WppDatePickerDelegate alloc] initWithNativeDateTimePicker:this])
 {
 	//uint initTS = QDateTime::currentDateTime().toTime_t();

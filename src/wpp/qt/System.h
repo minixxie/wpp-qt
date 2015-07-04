@@ -118,12 +118,13 @@ public:
 	//Q_INVOKABLE QDateTime currentDateTime(const QString& ianaId);
 	Q_INVOKABLE QString formatDateTime(qint64 msecsSinceEpoch, const QString& format, const QString& ianaId = QTimeZone::systemTimeZoneId());
 
-	Q_INVOKABLE static QTimeZone createTimeZone(const QString& ianaId = QTimeZone::systemTimeZoneId());
-	Q_INVOKABLE static QByteArray getSystemTimezoneId();
-	Q_INVOKABLE static QTimeZone getSystemTimezone()
-	{
-		return createTimeZone(getSystemTimezoneId());
-	}
+	//Q_INVOKABLE static QTimeZone createTimeZone(const QString& ianaId = QTimeZone::systemTimeZoneId());
+
+	//Q_INVOKABLE static QByteArray getSystemTimezoneId();
+	//Q_INVOKABLE static QTimeZone getSystemTimezone()
+	//{
+	//	return QTimeZone(getSystemTimezoneId()); //createTimeZone(getSystemTimezoneId());
+	//}
 	Q_INVOKABLE QString timezoneAbbreviation(qint64 msecsSinceEpoch, const QString& ianaId = QTimeZone::systemTimeZoneId());
 	Q_INVOKABLE QString timezoneShortName(qint64 msecsSinceEpoch, const QString& ianaId = QTimeZone::systemTimeZoneId());
 	Q_INVOKABLE QString timezoneLongName(qint64 msecsSinceEpoch, const QString& ianaId = QTimeZone::systemTimeZoneId(), const QLocale& locale = QLocale());

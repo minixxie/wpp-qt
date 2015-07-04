@@ -64,6 +64,7 @@ if (Build.VERSION.SDK_INT <19){
 
 			if ( maxPick() != 1 )
 			{
+				qDebug() << __FUNCTION__ << ":maxPack!=1: set EXTRA_ALLOW_MULTIPLE";
 				intent.callObjectMethod("putExtra","(Ljava/lang/String;Z)Landroid/content/Intent;",
 									Intent__EXTRA_ALLOW_MULTIPLE.object<jobject>(), true);
 			}
@@ -101,6 +102,7 @@ if (Build.VERSION.SDK_INT <19){
 
 			if ( maxPick() != 1 )
 			{
+				qDebug() << __FUNCTION__ << ":maxPack!=1: set EXTRA_ALLOW_MULTIPLE";
 				intent.callObjectMethod("putExtra","(Ljava/lang/String;Z)Landroid/content/Intent;",
 									Intent__EXTRA_ALLOW_MULTIPLE.object<jobject>(), true);
 			}
