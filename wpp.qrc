@@ -30,6 +30,7 @@
 		<file>identified-modules/wpp/qt/Map.qml</file>
 		<file>identified-modules/wpp/qt/Modal.qml</file>
 		<file>identified-modules/wpp/qt/Overlay.qml</file>
+		<file>identified-modules/wpp/qt/PhoneNumberCountryCodeModel.qml</file>
 		<file>identified-modules/wpp/qt/PhotoCaptureControls.qml</file>
 		<file>identified-modules/wpp/qt/RotatableRectangle.qml</file>
 		<file>identified-modules/wpp/qt/RoundedImage.qml</file>
@@ -47,6 +48,7 @@
 		<file>identified-modules/wpp/qt/TimezoneControl.qml</file>
 		<file>identified-modules/wpp/qt/TimezoneModel.qml</file>
 		<file>identified-modules/wpp/qt/TitleBar.qml</file>
+		<file>identified-modules/wpp/qt/TitleBar20.qml</file>
 		<file>identified-modules/wpp/qt/TitleBarBackIcon.qml</file>
 		<file>identified-modules/wpp/qt/TitleBarButton.qml</file>
 		<file>identified-modules/wpp/qt/TitleBarIcon.qml</file>

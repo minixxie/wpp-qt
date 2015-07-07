@@ -175,7 +175,8 @@ OTHER_FILES += \
 	$$PWD/identified-modules/wpp/qt/TestSelectionListView.qml \
 	$$PWD/identified-modules/wpp/qt/TimezoneModel.qml \
 	$$PWD/identified-modules/wpp/qt/TimezoneControl.qml \
-	$$PWD/identified-modules/wpp/qt/DateTimeControl.qml
+	$$PWD/identified-modules/wpp/qt/DateTimeControl.qml \
+	$$PWD/identified-modules/wpp/qt/PhoneNumberCountryCodeModel.qml
 
 RESOURCES += $$PWD/wpp.qrc
 

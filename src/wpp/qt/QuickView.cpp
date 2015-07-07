@@ -59,7 +59,7 @@ void QuickView::init()
 	this->engine()->rootContext()->setContextProperty("sys", &wpp::qt::System::getInstance());
 	this->engine()->rootContext()->setContextProperty("timeago", &wpp::qt::TimeAgo::getInstance());
 
-	this->engine()->rootContext()->setContextProperty("wpp", new wpp::qt::Wpp() );
+	//this->engine()->rootContext()->setContextProperty("wpp", new wpp::qt::Wpp() );
 
 }
 

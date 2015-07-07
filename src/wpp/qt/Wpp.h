@@ -7,16 +7,26 @@
 namespace wpp {
 namespace qt {
 
+class Application;
 class Wpp : public QObject
 {
 	Q_OBJECT
+	Q_PROPERTY(double dp2px READ dp2px NOTIFY dp2pxChanged)
+private:
+	Application *app;
+	double m_dp2px;
+public:
+	Wpp(Application *app);
+	Q_INVOKABLE double dp2px() const { return m_dp2px; }
+	Q_SIGNAL void dp2pxChanged();
+
 /*	Q_PROPERTY(TimeAgo timeago READ timeago)
 private:
-	TimeAgo& m_timeago;
+	//TimeAgo& m_timeago;
 
 public:
 	Wpp()
-		: m_timeago(TimeAgo::getInstance())
+		//: m_timeago(TimeAgo::getInstance())
 	{
 	}
 

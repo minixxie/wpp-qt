@@ -41,7 +41,7 @@ namespace qt {
 
 IOSTimeZonePicker::IOSTimeZonePicker(QQuickItem *parent)
 	: QQuickItem(parent),
-	m_timezoneId( wpp::qt::System::getSystemTimezoneId() )
+	m_timezoneId( QTimeZone::systemTimeZoneId() )
 //	m_delegate((__bridge_retained void*)[[WppTimeZonePickerDelegate alloc] initWithNativeTimeZonePicker:this])
 {
 }
