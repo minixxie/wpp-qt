@@ -22,6 +22,7 @@ SelectionListModal {
 		if ( visible )
 		{
 			Qt.inputMethod.hide();
+			//nativeImagePicker.open();
 		}
 	}
 

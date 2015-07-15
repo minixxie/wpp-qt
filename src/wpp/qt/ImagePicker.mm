@@ -491,6 +491,7 @@ extern void asyncProcessImages(id iosImagePicker, NSArray *info, QThread *uiThre
 }
 - (void)elcImagePickerControllerDidCancel:(ELCImagePickerController *)picker
 {
+	m_iosImagePicker->__hideUI();
 }
 
 @end

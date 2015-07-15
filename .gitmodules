@@ -4,3 +4,6 @@
 [submodule "ActionSheetPicker-3.0"]
 	path = ActionSheetPicker-3.0
 	url = https://github.com/skywinder/ActionSheetPicker-3.0.git
+[submodule "PhotoPicker"]
+	path = PhotoPicker
+	url = https://github.com/donglua/PhotoPicker.git
