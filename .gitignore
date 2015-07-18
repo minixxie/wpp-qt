@@ -1,3 +1,4 @@
 *.pro.user*
 build-*Debug
 build-*Release
+wpp-android/build
