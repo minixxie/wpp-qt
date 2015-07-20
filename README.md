@@ -27,7 +27,7 @@ Then, remember to include the project file in YourQtProject.pro:
 include($$PWD/wpp-qt/wpp.pri)
 ```
 To make sure the android part works, please do this:
-- create android template folder from Qt Creator, and remember to use "Gradle" as your packager:
+- create android template folder from Qt Creator, and remember to "Use Gradle" as your packager:
 
 ![Create Android template folder](https://github.com/minixxie/wpp-qt/raw/master/doc/android-create-template.png)
 
@@ -63,27 +63,28 @@ dependencies {
 To use this library, the first requirement is to substitute QGuiApplication with wpp::qt::Application, and use wpp::qt::QuickView instead of QQmlApplicationEngine:
 ```c++
 #include <wpp/qt/Application.h>
-#include <wpp/qt/QuickView.h>
+#include <wpp/qt/QmlApplicationEngine.h>
+
 int main(int argc, char *argv[])
 {
-	wpp::qt::Application app(argc, argv);
+	wpp::qt::Application app(argc, argv);//changed from QGuiApplication
 
-	wpp::qt::QuickView view(&app);
-	view.setSource(QUrl(QStringLiteral("qrc:/main.qml")));
-	view.show();
+	wpp::qt::QmlApplicationEngine engine(&app);//changed from QQmlApplicationEngine, which provides "wpp" object in QML
+    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
-	return app.exec();
+    return app.exec();
 }
+
 ```
 The Application class actually inherits from [QGuiApplication](http://doc.qt.io/qt-5/qguiapplication.html) and it registers some wpp library things in addition.
-The QuickView class inherits from [QQuickView](http://doc.qt.io/qt-5/qquickview.html) and it handles the density independent pixel stuff.
+The QmlApplicationEngine class inherits from [QQmlApplicationEngine](http://doc.qt.io/qt-5/qqmlapplicationengine.html) and it injects "wpp" object into the QML root context.
 
 ## UseCase: density independent pixel
 All QML elements only support pixel values for x, y, width, height and all size and dimension related properties. With the main function used in "To Begin", "reso" variable can be used in QML like this:
 ```QML
 Rectange {
 	anchors.fill: parent
-	anchors.margins: 10*reso.dp2px //dp2px means changing 10 from "dp" to "px" as all QML properties only accept pixels
+	anchors.margins: 10*wpp.dp2px //dp2px means changing 10 from "dp" to "px" as all QML properties only accept pixels
 }
 ```
 ## UseCase: TimeAgo
