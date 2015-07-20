@@ -11,7 +11,11 @@ You will usually use this project as a git-submodule of your project. Setup with
 cd YourQtProject
 git submodule add https://github.com/minixxie/wpp-qt.git
 ```
-Once you've cloned this project, make sure to download sub-modules dependencies((a) [B-Sides/ELCImagePickerController](https://github.com/B-Sides/ELCImagePickerController), (b) [skywinder/ActionSheetPicker-3.0](https://github.com/skywinder/ActionSheetPicker-3.0)):
+Once you've cloned this project, make sure to download sub-modules dependencies:
+* [B-Sides/ELCImagePickerController](https://github.com/B-Sides/ELCImagePickerController)
+* [skywinder/ActionSheetPicker-3.0](https://github.com/skywinder/ActionSheetPicker-3.0))
+* [donglua/PhotoPicker](https://github.com/donglua/PhotoPicker.git)
+* [leolin310148/ShortcutBadger](https://github.com/leolin310148/ShortcutBadger.git)
 ```bash
 cd wpp-qt
 git submodule init
@@ -23,7 +27,7 @@ Then, remember to include the project file in YourQtProject.pro:
 include($$PWD/wpp-qt/wpp.pri)
 ```
 To make sure the android part works, please do this:
-- create android template folder from Qt Creator:
+- create android template folder from Qt Creator, and remember to use "Gradle" as your packager:
 
 ![Create Android template folder](https://github.com/minixxie/wpp-qt/raw/master/doc/android-create-template.png)
 
@@ -42,8 +46,16 @@ ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 ```
 - Create the link to the android library project "wpp-android"
 ```bash
-cd YourQtProject
-echo "android.library.reference.1=../../$(pwd|sed 's/.*\///')/wpp-qt/wpp-android" > android/project.properties
+# YourQtProject/android/settings.gradle:
+include 'wpp-android'
+project(':wpp-android').projectDir = new File('../../YourQtProject/wpp-qt/wpp-android')
+```
+```bash
+# YourQtProject/android/build.gradle:
+dependencies {
+    ...
+    compile project(':wpp-android')
+}
 ```
 
 
@@ -243,14 +255,9 @@ this, SLOT(replyFinished(QNetworkReply*)));
 manager->get(QNetworkRequest(QUrl("http://qt-project.org")));
 ```
 
-## Contact "Us"
-Currently I'm the only author of this project. You may contact me directly via github, or sending issues, or via these QQ groups:
-- 345043587 Qt手机app开发Android
-- 19346666 Qt5 for Android,iOS
 
 
 ## LICENSE
-<br/>
 
         Copyright 2015 Simon, Tse Chi Ming
 
@@ -265,5 +272,14 @@ Currently I'm the only author of this project. You may contact me directly via g
         WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
         See the License for the specific language governing permissions and
         limitations under the License.
-<br/>
 
+## Acknowledgement
+Deep thanks to these engineers, they have given me much help and contributed their code into my repository:
+- [xiangxi](https://github.com/xiangxi)
+- [diablogatox](https://github.com/diablogatox)
+- [hongtoushizi](https://github.com/hongtoushizi)
+
+## Contact "Us"
+Currently I'm the only author of this project. You may contact me directly via github, or sending issues, or via these QQ groups:
+- 345043587 Qt手机app开发Android
+- 19346666 Qt5 for Android,iOS

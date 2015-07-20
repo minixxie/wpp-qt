@@ -8,6 +8,9 @@ qtHaveModule(webengine) {
 android {
 	QT += androidextras
 }
+macx {
+	QT += macextras
+}
 
 
 INCLUDEPATH += $$PWD/src/

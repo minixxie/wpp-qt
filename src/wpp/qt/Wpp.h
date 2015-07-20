@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include "TimeAgo.h"
+#include "System.h"
 
 namespace wpp {
 namespace qt {

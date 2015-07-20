@@ -1,7 +1,9 @@
 #include "System.h"
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-
+#ifdef Q_OS_MAC
+	#include <QtMac>
+#endif
 namespace wpp
 {
 namespace qt
@@ -80,12 +82,17 @@ void System::addToImageGallery(const QString& imageFullPath)
 	UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
 }
 
-#ifdef Q_OS_IOS
 void System::setAppIconUnreadCount(int count)
 {
+#ifdef Q_OS_IOS
 	[[UIApplication sharedApplication] setApplicationIconBadgeNumber:count];
-}
 #endif
+#ifdef Q_OS_MAC
+	QtMac::setApplicationIconBadgeNumber(count);
+#endif
+
+}
+
 
 
 }//namespace qt
