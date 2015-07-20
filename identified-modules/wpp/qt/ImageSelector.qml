@@ -1,4 +1,6 @@
-import QtQuick 2.1
+import QtQuick 2.4
+import QtQuick.Controls 1.4
+import QtQuick.Controls.Styles 1.4
 
 import wpp.qt.NativeCamera 1.0
 import wpp.qt.ImagePicker 1.0

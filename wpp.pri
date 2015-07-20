@@ -119,6 +119,7 @@ HEADERS += \
 
 LIBS += -framework AddressBook -framework MapKit \
 	-framework AssetsLibrary -framework MobileCoreServices #required by ELCImagePickerController
+LIBS += -lqtquickcontrolsplugin #work-around for https://bugreports.qt.io/browse/QTBUG-44867
 }
 
 OTHER_FILES += \

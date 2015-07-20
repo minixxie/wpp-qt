@@ -7,7 +7,10 @@ int main(int argc, char *argv[])
 
 	app.registerApplePushNotificationService();
 
+	//https://bugreports.qt.io/browse/QTBUG-44867
+
 	wpp::qt::QmlApplicationEngine engine;
+	//QQmlApplicationEngine engine;
 	engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
     return app.exec();
