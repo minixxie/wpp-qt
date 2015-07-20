@@ -3,7 +3,7 @@
 import "./"
 
 Rectangle {
-	id: "downloadUpdateUI"
+	id: downloadUpdateUI
 
 	property double percentage: 0
 	property color baseColor: "#2a8827"
@@ -14,7 +14,7 @@ Rectangle {
 	color: downloadUpdateUI.baseColor
 
 	Text {
-		id: "label"
+		id: label
 		anchors.top: parent.top
 		anchors.topMargin:120*wpp.dp2px
 		anchors.left: parent.left
@@ -27,7 +27,7 @@ Rectangle {
 		verticalAlignment: Text.AlignVCenter
 	}
 	Rectangle {
-		id: "progressBar"
+		id: progressBar
 		anchors.top: label.bottom
 		anchors.left: parent.left
 		anchors.right: parent.right
@@ -43,7 +43,7 @@ Rectangle {
 		}
 	}
 	Text {
-		id: "percentageProgress"
+		id: percentageProgress
 		anchors.top: progressBar.bottom
 		anchors.margins:10*wpp.dp2px
 		anchors.left: parent.left
@@ -57,7 +57,7 @@ Rectangle {
 	}
 
 	Rectangle {
-		id: "installButton"
+		id: installButton
 		anchors.margins: 30*wpp.dp2px
 		anchors.top: percentageProgress.bottom
 		anchors.topMargin: 50*wpp.dp2px

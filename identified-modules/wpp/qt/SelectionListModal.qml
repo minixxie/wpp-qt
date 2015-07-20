@@ -1,7 +1,7 @@
 import QtQuick 2.1
 
 Modal {
-	id: "selectionListModal"
+	id: selectionListModal
 
 	property alias model: selectionListView.model
 	signal selected(int selectedIndex, variant selectedItem)
@@ -16,7 +16,7 @@ Modal {
 		onClicked: selectionListModal.visible = false
 	}
 	Rectangle {
-		id: "listContainer"
+		id: listContainer
 		//width:300*wpp.dp2px
 		//height:width
 		width: 250*wpp.dp2px
@@ -28,7 +28,7 @@ Modal {
 		anchors.verticalCenter: parent.verticalCenter
 
 		SelectionListView {
-			id: "selectionListView"
+			id: selectionListView
 			anchors.fill: parent
 			onSelected: {
 				selectionListModal.selected(selectedIndex, selectedItem)

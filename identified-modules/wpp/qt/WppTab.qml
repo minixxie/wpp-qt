@@ -3,7 +3,7 @@
 import "./"
 
 Item {
-	id: "tab"
+	id: tab
 	property Item title
 	property Item content
 	property bool isSelected: false

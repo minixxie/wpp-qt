@@ -14,7 +14,7 @@ import QtWebKit.experimental 1.0
  * 高德 static map API: http://developer.amap.com/api/static-map-api/guide-2/
  */
 Rectangle {
-	id: "mapUI"
+	id: mapUI
 	clip: true
 
 	WebView {

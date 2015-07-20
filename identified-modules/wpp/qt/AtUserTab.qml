@@ -1,7 +1,7 @@
 import QtQuick 2.1
 
 Rectangle {
-	id: "atUserTab"
+	id: atUserTab
 	anchors.fill: parent
 
 	property alias model: gridView.model
@@ -9,7 +9,7 @@ Rectangle {
 	signal selected(string userId, string nickname)
 
 	Text {
-		id: "loadingText"
+		id: loadingText
 		text: qsTr("Loading...")
 		anchors.centerIn: parent
 		color: "#7f7f7f"
@@ -17,7 +17,7 @@ Rectangle {
 		visible: !atUserTab.modelReady
 	}
 	GridView {
-		id: "gridView"
+		id: gridView
 		anchors.fill: parent
 		clip: true
 		cellWidth: 80*wpp.dp2px

@@ -1,7 +1,7 @@
 import QtQuick 2.1
 
 Modal {
-	id: "loadingModal"
+	id: loadingModal
 	parent: fullScreen
 
 	AnimatedImage {

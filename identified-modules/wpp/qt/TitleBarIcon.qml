@@ -2,7 +2,7 @@
 import QtGraphicalEffects 1.0
 
 Rectangle {
-    id: "iconFrame"
+    id: iconFrame
     property alias source: iconImage.source
 	property alias hasNew: redDot.visible
 	property alias hasNewColor: redDot.color
@@ -13,7 +13,7 @@ Rectangle {
 	height: 44*wpp.dp2px
 	width: height
 	Image {
-        id: "iconImage"
+        id: iconImage
 		x: ( parent.height - height )/2
 		y: x
 		width: 32*wpp.dp2px
@@ -39,7 +39,7 @@ Rectangle {
         color: "#ffffffff"
     }
     MouseArea {
-        id: "iconMouseArea"
+        id: iconMouseArea
 		x:0; y:0
 		anchors.fill: parent
 		onClicked: {

@@ -2,17 +2,17 @@ import QtQuick 2.1
 import QtGraphicalEffects 1.0
 
 Rectangle {
-    id: "localAlbumBrowse"
+    id: localAlbumBrowse
 
     property alias isFolderPage: galleryListGridView.visible
     property string action: "NONE" // NONE, PICK_ONE, PICK_MANY
     signal selected
 
     Rectangle {
-        id: "navigationBar"
+        id: navigationBar
         height: 24*wpp.dp2px
         Text {
-            id: "localGalleriesText"
+            id: localGalleriesText
             text: qsTr("Local Galleries")
             height: parent.height
             verticalAlignment: Text.AlignVCenter
@@ -33,7 +33,7 @@ Rectangle {
             }
         }
         Text {
-            id: "photoListAlbumNameText"
+            id: photoListAlbumNameText
             height: parent.height
             verticalAlignment: Text.AlignVCenter
             text: ""
@@ -44,7 +44,7 @@ Rectangle {
     }
 
     GridView {
-        id: "galleryListGridView"
+        id: galleryListGridView
         clip: true
         anchors.top: navigationBar.bottom
         anchors.left: parent.left
@@ -57,7 +57,7 @@ Rectangle {
             width: galleryListGridView.cellWidth
             height: galleryListGridView.cellHeight
             Rectangle {
-                id: "folderThumbnailImage"
+                id: folderThumbnailImage
                 anchors.fill: parent
                 anchors.margins: 2*wpp.dp2px
                 border.width: 1
@@ -69,7 +69,7 @@ Rectangle {
                         imgTarget: folderCoverImage
                     }
                     Image {
-                        id: "folderCoverImage"
+                        id: folderCoverImage
                         anchors.fill: parent
                         source: "file://" + modelData.photos[0].absolutePath
                         asynchronous: true
@@ -84,7 +84,7 @@ Rectangle {
                 height:20*wpp.dp2px
                 color: Qt.rgba(0,0,0,0.6)
                 Image {
-                    id: "folderIcon"
+                    id: folderIcon
                     anchors.top: parent.top
                     anchors.left: parent.left
                     anchors.leftMargin: 5*wpp.dp2px
@@ -96,7 +96,7 @@ Rectangle {
                     fillMode: Image.PreserveAspectFit
                 }
                 Text {
-                    id: "folderNameText"
+                    id: folderNameText
                     anchors.top: parent.top
                     anchors.left: folderIcon.right
                     anchors.bottom: parent.bottom
@@ -110,7 +110,7 @@ Rectangle {
                     color: "#ffffff"
                 }
                 Text {
-                    id: "folderPhotoCountText"
+                    id: folderPhotoCountText
                     anchors.top: parent.top
                     anchors.right: parent.right
                     anchors.rightMargin: 5*wpp.dp2px
@@ -141,7 +141,7 @@ Rectangle {
 
     property var currentFolder
     GridView {
-        id: "photoListGridView"
+        id: photoListGridView
         visible: false
         clip: true
         anchors.top: navigationBar.bottom
@@ -160,7 +160,7 @@ Rectangle {
                 imgTarget: photoImage
             }
             Image {
-                id: "photoImage"
+                id: photoImage
                 anchors.fill: parent
                 anchors.margins: 1
                 source: "file://" + modelData.absolutePath
@@ -171,7 +171,7 @@ Rectangle {
             }
 
                 Image {
-                    id: "photoTickIcon"
+                    id: photoTickIcon
                     anchors.fill: parent
                     visible: modelData.isSelected
                     source: "qrc:/img/android-icons/All_Icons/holo_dark/xhdpi/1-navigation-accept.png"

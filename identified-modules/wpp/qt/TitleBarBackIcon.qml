@@ -1,7 +1,7 @@
 ﻿import QtQuick 2.1
 
 Rectangle {
-	id: "backIconFrame"
+	id: backIconFrame
 
 	property string iconType: "DARK"
 	property alias mouseAreaZ: backIconMouseArea.z
@@ -17,7 +17,7 @@ Rectangle {
 	}
 
 	Image {
-		id: "backIcon"
+		id: backIcon
 		source: backIconFrame.iconType == "DARK" ?
             "qrc:/img/android-icons/All_Icons/holo_dark/mdpi/1-navigation-previous-item.png" :
 			"qrc:/img/android-icons/All_Icons/holo_light/mdpi/1-navigation-previous-item.png"
@@ -30,7 +30,7 @@ Rectangle {
 		fillMode: Image.PreserveAspectFit
 	}
 	MouseArea {
-		id: "backIconMouseArea"
+		id: backIconMouseArea
 		x:0; y:0
 		z: parent.z+1
 		onZChanged: {

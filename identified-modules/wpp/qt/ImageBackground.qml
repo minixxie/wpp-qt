@@ -1,7 +1,7 @@
 import QtQuick 2.1
 
 Rectangle {
-	id: "imageBackground"
+	id: imageBackground
 	property var bgColor: ["#f7f7f7"]
 	//property color bgColor: "#f7f7f7"
 	property Item imgTarget //target to have background

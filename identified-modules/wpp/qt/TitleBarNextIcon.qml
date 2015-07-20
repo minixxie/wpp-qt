@@ -1,7 +1,7 @@
 ﻿import QtQuick 2.1
 
 Rectangle {
-	id: "nextIconFrame"
+	id: nextIconFrame
 
 	property string iconType: "DARK"
 	signal clicked
@@ -12,7 +12,7 @@ Rectangle {
 	height: 44*wpp.dp2px
 	width: height
 	Image {
-		id: "nextIcon"
+		id: nextIcon
 		source: nextIconFrame.iconType == "DARK" ?
 			"qrc:/img/android-icons/All_Icons/holo_dark/mdpi/1-navigation-next-item.png" :
 			"qrc:/img/android-icons/All_Icons/holo_light/mdpi/1-navigation-next-item.png"
@@ -24,7 +24,7 @@ Rectangle {
 		fillMode: Image.PreserveAspectFit
 	}
 	MouseArea {
-		id: "nextIconMouseArea"
+		id: nextIconMouseArea
 		x:0; y:0
 		anchors.fill: parent
 		onClicked: {

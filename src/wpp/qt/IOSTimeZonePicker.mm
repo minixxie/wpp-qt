@@ -2,7 +2,7 @@
 
 #include "IOSTimeZonePicker.h"
 
-#include "System.h"
+#include <QTimeZone>
 
 #import <ActionSheetLocalePicker.h>
 

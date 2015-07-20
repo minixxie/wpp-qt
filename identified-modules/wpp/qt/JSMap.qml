@@ -4,7 +4,7 @@ import "https://maps.googleapis.com/maps/api/js?v=3.exp" as GoogleMap
 
 Text {
 
-	id: "mapCanvas"
+	id: mapCanvas
 	//var map
 	/*Component.onCompleted: {
 		var mapOptions = {

@@ -11,7 +11,7 @@ import QtQuick.Controls.Styles 1.2
  * 高德 static map API: http://developer.amap.com/api/static-map-api/guide-2/
  */
 Rectangle {
-	id: "mapUI"
+	id: mapUI
 	anchors.fill: parent
 	clip: true
 
@@ -260,7 +260,7 @@ Rectangle {
 
 
 	Image {
-		id: "mapImageBuffer1"
+		id: mapImageBuffer1
 		cache: false
 		source: mapUI.url1
 		onProgressChanged: {
@@ -323,12 +323,12 @@ Rectangle {
 		]
 		transitions: [
 			Transition {
-				NumberAnimation { id:"scaleAnimation1"; properties: "scale"; duration: 200; easing.type: Easing.Linear; }
+				NumberAnimation { id:scaleAnimation1; properties: "scale"; duration: 200; easing.type: Easing.Linear; }
 			}
 		]
 	}
 	Image {
-		id: "mapImageBuffer2"
+		id: mapImageBuffer2
 		cache: false
 		source: mapUI.url2
 		onProgressChanged: {
@@ -390,7 +390,7 @@ Rectangle {
 		]
 		transitions: [
 			Transition {
-				NumberAnimation { id:"scaleAnimation2"; properties: "scale"; duration: 200; easing.type: Easing.Linear; }
+				NumberAnimation { id:scaleAnimation2; properties: "scale"; duration: 200; easing.type: Easing.Linear; }
 			}
 		]
 	}
@@ -430,8 +430,8 @@ Rectangle {
 	/*MultiPointTouchArea {
 		anchors.fill: parent
 		touchPoints: [
-			TouchPoint { id: "point1" },
-			TouchPoint { id: "point2" }
+			TouchPoint { id: point1 },
+			TouchPoint { id: point2 }
 		]
 		onTouchUpdated: { //list<TouchPoint> touchPoints
 			console.log("multi-touch(onTouchUpdated):");
@@ -465,7 +465,7 @@ Rectangle {
 	}*/
 	MouseArea {
 		//visible: false
-		id: "mapMouseArea"
+		id: mapMouseArea
 		anchors.fill: parent
 		drag.target: mapUI.bufferNum == 1 ? mapImageBuffer1 : mapImageBuffer2
 		drag.axis: Drag.XAndYAxis
@@ -882,7 +882,7 @@ Rectangle {
 	}
 
 	Rectangle {
-		id: "zoomInButton"
+		id: zoomInButton
 		anchors.top: parent.top
 		anchors.topMargin: 20*wpp.dp2px
 		anchors.right: parent.right
@@ -903,7 +903,7 @@ Rectangle {
 			verticalAlignment: Text.AlignVCenter
 		}
 		MouseArea {
-			id: "zoomInButtonMouseArea"
+			id: zoomInButtonMouseArea
 			z: mapMouseArea.z+1
 			anchors.fill: parent
 			onClicked: mapUI.zoomIn()
@@ -914,7 +914,7 @@ Rectangle {
 		}
 	}
 	Rectangle {
-		id: "zoomOutButton"
+		id: zoomOutButton
 		anchors.top: zoomInButton.bottom
 		anchors.topMargin: 10*wpp.dp2px
 		anchors.right: parent.right
@@ -946,7 +946,7 @@ Rectangle {
 	}
 
 	Rectangle {
-		id: "locationSearchButton"
+		id: locationSearchButton
 		x: zoomInButton.x
 		y: parent.height - 20*wpp.dp2px - height
 		color: Qt.rgba(1,1,1,0.6)
@@ -982,7 +982,7 @@ Rectangle {
 	}
 
 	SelectionList {
-		id: "chooseMapSourceButton"
+		id: chooseMapSourceButton
 		anchors.left: parent.left
 		anchors.leftMargin: 5*wpp.dp2px
 		anchors.bottom: parent.bottom
@@ -994,7 +994,7 @@ Rectangle {
 		border.width: 1
 		radius: 2*wpp.dp2px
 		ListModel {
-			id: "mapSourcelistData"
+			id: mapSourcelistData
 			ListElement { value: "Google"; key: "GOOGLE"; }
 			ListElement { value: "Baidu"; key: "BAIDU"; }
 			ListElement { value: "高德"; key: "AMAP"; }
@@ -1021,10 +1021,10 @@ Rectangle {
 	}
 
 	/*ComboBox {
-		id: "mapSourceList"
+		id: mapSourceList
 		currentIndex: 0
 		model: ListModel {
-			id: "mapSources"
+			id: mapSources
 			ListElement { text: "Google"; value: "GOOGLE" }
 			ListElement { text: "Baidu"; value: "BAIDU" }
 		}
@@ -1043,7 +1043,7 @@ Rectangle {
 	}*/
 
 	/*Rectangle {
-		id: "mapSourceList"
+		id: mapSourceList
 		width: 80*wpp.dp2px
 		height: mapSourceListColumn.height
 		color: "#ffffff"
@@ -1055,7 +1055,7 @@ Rectangle {
 		anchors.left: chooseMapSourceButton.left
 		anchors.leftMargin: chooseMapSourceButton.leftMargin
 		Column {
-			id: "mapSourceListColumn"
+			id: mapSourceListColumn
 			Rectangle {
 				width: mapSourceList.width
 				height: 30*wpp.dp2px
@@ -1118,7 +1118,7 @@ Rectangle {
 		}
 	}
 	Rectangle {
-		id: "chooseMapSourceButton"
+		id: chooseMapSourceButton
 		anchors.left: parent.left
 		anchors.leftMargin: 5*wpp.dp2px
 		anchors.bottom: parent.bottom
@@ -1132,7 +1132,7 @@ Rectangle {
 		height: 30*wpp.dp2px
 		visible: mapUI.selectSource
 		Text {
-			id: "chooseMapSourceButtonText"
+			id: chooseMapSourceButtonText
 			color: "#555555"
 			height: parent.height
 			anchors.left: parent.left
@@ -1174,12 +1174,12 @@ Rectangle {
 
 
 	WppDialog {
-		id: "placesToChooseDialog"
+		id: placesToChooseDialog
 		//text: "Test Test"
 		property int listViewCurrentIndex: 0
 		z: mapMouseArea.z + 1
 		ListModel {
-			id: "placesListModel"
+			id: placesListModel
 			/*ListElement {
 				pk: 1
 				name: "Hong Kong"
@@ -1239,7 +1239,7 @@ Rectangle {
 				height: placesListView.y + placesListView.height
 				color: "transparent"
 				Image {
-					id: "markerIcon"
+					id: markerIcon
 					source: "qrc:/img/android-icons/All_Icons/holo_light/mdpi/7-location-place.png"
 					x: 0
 					y: 0
@@ -1249,7 +1249,7 @@ Rectangle {
 					fillMode: Image.PreserveAspectFit
 				}
 				Text {
-					id: "placesCountText"
+					id: placesCountText
 					x: markerIcon.width
 					width: placesToChooseDialog.contentWidth - x
 					height: 20*wpp.dp2px
@@ -1257,21 +1257,21 @@ Rectangle {
 					text: qsTr("%1 place(s) to choose").arg(placesListView.model.count)
 				}
 				Rectangle {
-					id: "dialogTitleSeparator"
+					id: dialogTitleSeparator
 					y: placesCountText.y + placesCountText.height
 					width: parent.width
 					height: 1
 					color: Qt.rgba(0,0,0,0.5)
 				}
 				ListView {
-					id: "placesListView"
+					id: placesListView
 					y: dialogTitleSeparator.y + dialogTitleSeparator.height
 					width: placesToChooseDialog.contentWidth
 					height: 300*wpp.dp2px
 					clip: true
 					model: placesListModel
 					delegate: Rectangle {
-						id: "placesListViewItem"
+						id: placesListViewItem
 						width: placesToChooseDialog.contentWidth
 						height: 30*wpp.dp2px
 						color: model.index == placesToChooseDialog.listViewCurrentIndex ? Qt.rgba(0,0.796,0,0.3) : "transparent"

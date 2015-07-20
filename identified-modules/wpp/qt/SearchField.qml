@@ -33,7 +33,7 @@ WppTextField {
 
 
 	Image {
-		id: "searchIcon"
+		id: searchIcon
 		source: "qrc:/img/android-icons/All_Icons/holo_light/mdpi/2-action-search.png"
 		width: 24*wpp.dp2px
 		height: 24*wpp.dp2px

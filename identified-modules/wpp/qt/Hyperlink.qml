@@ -3,11 +3,11 @@ import QtQuick 2.1
 import "./"
 
 Text {
-	id: "link"
+	id: link
 	signal clicked
 
 	MouseArea {
-		id: "mouseArea"
+		id: mouseArea
 		anchors.fill: parent
 		onClicked: link.clicked()
 		Overlay {

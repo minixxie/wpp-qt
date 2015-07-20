@@ -3,7 +3,7 @@
 import "./"
 
 Rectangle {
-	id: "tabView"
+	id: tabView
 	property int tabWidth: 50*wpp.dp2px
 	property int tabHeight: tabButtonsPosition == "TOP" ? 24*wpp.dp2px : 50*wpp.dp2px
 	property color tabBgColor: "#eeeeee"
@@ -20,7 +20,7 @@ Rectangle {
 
 
 		Rectangle {
-			id: "tabTitlesContainer"
+			id: tabTitlesContainer
 			x: 0
 			y: tabView.tabButtonsPosition == "TOP" ? 0 : parent.height - height
 			width: parent.width
@@ -38,12 +38,12 @@ Rectangle {
 					color: "transparent"
 
 					Rectangle {
-						id: "tabHeaderContainer"
+						id: tabHeaderContainer
 						width: parent.width
 						height: parent.height - selectedIndicatorRect.height
 						color: "transparent"
 						Rectangle {
-							id: "newIndicator"
+							id: newIndicator
 							width: 8*wpp.dp2px
 							height: width
 							radius: height/2
@@ -92,7 +92,7 @@ Rectangle {
 
 			}
 			Rectangle {
-				id: "bottomBorder"
+				id: bottomBorder
 				width: parent.width
 				height: 1*wpp.dp2px
 				color: tabView.bottomBorderColor
@@ -101,14 +101,14 @@ Rectangle {
 		}
 
 		Rectangle {
-			id: "tabContentsContainer"
+			id: tabContentsContainer
 			x: 0
 			y: tabView.tabButtonsPosition == "TOP" ? tabTitlesContainer.height : 0
 			width: parent.width //*tabs.length
 			height: parent.height - tabTitlesContainer.height
 			color: "#ffffff"
 			ListView {
-				id: "tabContents"
+				id: tabContents
 				anchors.fill: parent
 				model: tabs
 				orientation: ListView.Horizontal

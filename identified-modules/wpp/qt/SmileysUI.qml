@@ -1,20 +1,20 @@
 import QtQuick 2.1
 
 Rectangle {
-	id: "smileysUI"
+	id: smileysUI
 	anchors.fill: parent
 	//color: "red"
 	property alias smileyListModel: repeater.model
 	signal smileyClicked(string escapedText, string imageSource)
 
 	Flow {
-		id: "grid"
+		id: grid
 		property int rowCount: Math.ceil( repeater.model.count / colCount )
 		property int colCount: 5
 		anchors.margins: 10*wpp.dp2px
 		anchors.fill: parent
 		Repeater {
-			id: "repeater"
+			id: repeater
 			Rectangle {
 				//color: c
 				width: grid.width / grid.colCount
@@ -47,7 +47,7 @@ Rectangle {
 	}
 
 	/*GridView {
-		id: "grid"
+		id: grid
 		property int colCount: 5
 
 		anchors.fill: parent

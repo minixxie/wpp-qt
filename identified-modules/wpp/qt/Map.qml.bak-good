@@ -1,7 +1,7 @@
 import QtQuick 2.2
 
 Flickable {
-	id: "map"
+	id: map
 
 	property string mapSource: "GOOGLE" //GOOGLE, GAODE, BAIDU...
 	property int zoom: 4
@@ -21,7 +21,7 @@ Flickable {
 
 	//property Component delegate
 	ListModel {
-		id: "tilesModel"
+		id: tilesModel
 	}
 
 	property Component delegate: Component {

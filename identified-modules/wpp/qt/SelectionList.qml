@@ -1,7 +1,7 @@
 import QtQuick 2.1
 
 Rectangle {
-	id: "selectionList"
+	id: selectionList
 
 	property bool modal: false
 	//property variant model
@@ -26,7 +26,7 @@ Rectangle {
 	}
 
 	Text {
-		id: "currentText"
+		id: currentText
 		anchors.left: parent.left
         anchors.leftMargin: 10*wpp.dp2px
 		anchors.rightMargin: anchors.leftMargin
@@ -38,7 +38,7 @@ Rectangle {
 		verticalAlignment: Text.AlignVCenter
 	}
 	Text {
-		id: "arrowText"
+		id: arrowText
 		text: parent.arrowDirection == 0 ? "▽" : "△"  //" ▽" //" ▴" //" ▾"
 		height: parent.height
         color: currentText.color
@@ -51,7 +51,7 @@ Rectangle {
 	}
 
 	Rectangle {
-		id: "dropdown"
+		id: dropdown
 		x: 0
 		y: selectionList.arrowDirection == 0 ? currentText.y + currentText.height : currentText.y - height
 		width: selectionList.width
@@ -65,7 +65,7 @@ Rectangle {
 		Column {
 			anchors.fill: parent
 			Repeater {
-				id: "dropdownRepeater"
+				id: dropdownRepeater
 				//model: selectionList.model
 				Rectangle {
 					width: dropdown.width
@@ -75,7 +75,7 @@ Rectangle {
 							   ( index == selectionList.currentIndex ? "#cccccc" : "transparent" )
 					property var listItem: model.modelData? model.modelData: model
 					Text {
-						id: "listItemText"
+						id: listItemText
 						anchors.left: parent.left
 						anchors.leftMargin: 5*wpp.dp2px
 						anchors.rightMargin: anchors.leftMargin
@@ -85,7 +85,7 @@ Rectangle {
 						verticalAlignment: Text.AlignVCenter
 					}
 					MouseArea {
-						id: "itemMouseArea"
+						id: itemMouseArea
 						anchors.fill: parent
 						hoverEnabled: true
 						onClicked: {
@@ -98,7 +98,7 @@ Rectangle {
 	}
 
 	SelectionListModal {
-		id: "popup"
+		id: popup
 		//parent: selectionList.fullScreenParent
 		parent: fullScreen
 		visible: false
@@ -117,7 +117,7 @@ Rectangle {
 /*
 
 	ListViewDialog {
-		id: "popup"
+		id: popup
 		model: selectionList.model
 		//anchors.fill: fullScreenParent
 		currentIndex: selectionList.currentIndex
@@ -137,7 +137,7 @@ Rectangle {
 	}
 */
 	MouseArea {
-		id: "selectionListMouseArea"
+		id: selectionListMouseArea
 		anchors.fill: parent
 		onClicked: {
 			Qt.inputMethod.hide();

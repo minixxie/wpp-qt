@@ -3,7 +3,7 @@ import QtQuick.Controls 1.3
 import QtQuick.Controls.Styles 1.3
 
 Item {
-    id: "cropImage"
+    id: cropImage
     property int cropSize : 128*wpp.dp2px
     property alias source : preview.source
     property alias rotation: imageRotation.angle
@@ -18,21 +18,21 @@ Item {
 	signal cropFinished(int id)
 
 	Rectangle {
-		id: "cropUI"
+		id: cropUI
 		anchors.top: parent.top
 		anchors.left: parent.left
 		anchors.right: parent.right
 		//anchors.bottom: buttonUI.top
 		height: parent.height - buttonUI.height
 		Image {
-			id: "preview"
+			id: preview
 			cache: false
 			anchors.fill : parent
 			fillMode: Image.PreserveAspectFit
 			smooth: true
 			//z: 1
             transform: Rotation {
-                id: "imageRotation";
+                id: imageRotation
                 origin.x: preview.width/2;
                 origin.y: preview.height/2;
                 axis { x: 0; y: 0; z: 1 }
@@ -116,7 +116,7 @@ Item {
 
 
 			Rectangle {
-				id: "cropArea"
+				id: cropArea
 				z: preview.z + 1
 				width: {
 
@@ -140,7 +140,7 @@ Item {
 				y: ( parent.height - height)/2
 				color: "transparent"
 				MouseArea {
-					id: "cropAreaMouseArea"
+					id: cropAreaMouseArea
 					z: cropArea.z + 1
 					anchors.fill: parent
 					drag.target: parent
@@ -152,7 +152,7 @@ Item {
 
 
 				Rectangle {
-					id: "topLeftResizer"
+					id: topLeftResizer
 					width:20*wpp.dp2px
 					height:width
 					color: "transparent"
@@ -166,7 +166,7 @@ Item {
 						color: Qt.rgba(1,1,1,0.4)
 					}
 					MouseArea {
-						id: "topLeftResizerMouseArea"
+						id: topLeftResizerMouseArea
 						anchors.fill: parent
 						drag.target: parent
 						drag.threshold: 0
@@ -250,7 +250,7 @@ Item {
 					}
 				}
 				Rectangle {
-					id: "topRightResizer"
+					id: topRightResizer
 					width:20*wpp.dp2px
 					height:width
 					color: "transparent"
@@ -264,7 +264,7 @@ Item {
 						color: Qt.rgba(1,1,1,0.4)
 					}
 					MouseArea {
-						id: "topRightResizerMouseArea"
+						id: topRightResizerMouseArea
 						anchors.fill: parent
 						drag.target: parent
 						drag.threshold: 0
@@ -359,7 +359,7 @@ Item {
 					}
 				}
 				Rectangle {
-					id: "bottomLeftResizer"
+					id: bottomLeftResizer
 					width:20*wpp.dp2px
 					height:width
 					color: "transparent"
@@ -373,7 +373,7 @@ Item {
 						color: Qt.rgba(1,1,1,0.4)
 					}
 					MouseArea {
-						id: "bottomLeftResizerMouseArea"
+						id: bottomLeftResizerMouseArea
 						anchors.fill: parent
 						drag.target: parent
 						drag.threshold: 0
@@ -472,7 +472,7 @@ Item {
 					}
 				}
 				Rectangle {
-					id: "bottomRightResizer"
+					id: bottomRightResizer
 					width:20*wpp.dp2px
 					height:width
 					color: "transparent"
@@ -486,7 +486,7 @@ Item {
 						color: Qt.rgba(1,1,1,0.4)
 					}
 					MouseArea {
-						id: "bottomRightResizerMouseArea"
+						id: bottomRightResizerMouseArea
 						anchors.fill: parent
 						drag.target: parent
 						drag.threshold: 0
@@ -622,7 +622,7 @@ Item {
 
 	}
 	Rectangle {
-		id: "buttonUI"
+		id: buttonUI
 		height: 50*wpp.dp2px
 		anchors.bottom: parent.bottom
 		anchors.left: parent.left
@@ -630,7 +630,7 @@ Item {
 		color: "#dddddd"
 
 		Button {
-			id: "cropButton"
+			id: cropButton
 			width: 140*wpp.dp2px
 			height: 44*wpp.dp2px
 			anchors.verticalCenter: parent.verticalCenter
@@ -682,7 +682,7 @@ Item {
 			}
 		}
 		Button {
-			id: "reshootButton"
+			id: reshootButton
 			width: 140*wpp.dp2px
 			height: 44*wpp.dp2px
 			anchors.verticalCenter: parent.verticalCenter

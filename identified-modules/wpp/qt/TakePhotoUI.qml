@@ -3,7 +3,7 @@ import QtMultimedia 5.2
 //VideoOutput requires: Android 3.0 (API 11)
 
 Rectangle {
-	id: "takePhotoUI"
+	id: takePhotoUI
 
 	property bool isPreview : false
 

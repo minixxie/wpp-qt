@@ -1,7 +1,7 @@
 ﻿import QtQuick 2.1
 
 Rectangle {
-	id: "clipRectangle"
+	id: clipRectangle
 	//property alias dimension: clipRectangle.width
 	property color bgColor
 	property Item maskedTarget //target to be masked
@@ -14,7 +14,7 @@ Rectangle {
 	color: "transparent"
 	clip: true
 	Rectangle {
-		id: "innerCircle"
+		id: innerCircle
 		x: -border.width + safeMargin
 		y: x
 		width: maskedTarget.width + 2*border.width

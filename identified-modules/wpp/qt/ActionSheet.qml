@@ -4,7 +4,7 @@ Rectangle {
 	property alias model: listview.model
 
 	ListView {
-		id: "listview"
+		id: listview
 
 	}
 }

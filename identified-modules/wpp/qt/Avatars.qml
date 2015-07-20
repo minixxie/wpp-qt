@@ -2,7 +2,7 @@
 
 
 Rectangle {
-	id: "avatar"
+	id: avatar
 	property var urls: []
 	property bool circleMask: true
 	property alias maskColor: circleImageMask.bgColor
@@ -13,7 +13,7 @@ Rectangle {
 	ImageBackground {
 		imgTarget: profilePhotoImage
         Text {
-            id: "bgTextElement"
+            id: bgTextElement
             anchors.fill: parent
             text: avatar.bgText
             font.pixelSize: 12*wpp.dp2px
@@ -26,7 +26,7 @@ Rectangle {
 		id: column
 		Row {
 			Image {
-				id: "image1"
+				id: image1
 				width: avatar.width/2
 				height: avatar.height/2
 				smooth: true
@@ -40,7 +40,7 @@ Rectangle {
 				visible: source != "";
 			}
 			Image {
-				id: "image2"
+				id: image2
 				width: avatar.width/2
 				height: avatar.height/2
 				smooth: true
@@ -56,7 +56,7 @@ Rectangle {
 		}
 		Row {
 			Image {
-				id: "image3"
+				id: image3
 				width: avatar.width/2
 				height: avatar.height/2
 				smooth: true
@@ -70,7 +70,7 @@ Rectangle {
 				visible: source != "";
 			}
 			Image {
-				id: "image4"
+				id: image4
 				width: avatar.width/2
 				height: avatar.height/2
 				smooth: true
@@ -95,7 +95,7 @@ Rectangle {
 		}
 	}
 	CircleImageMask {
-		id: "circleImageMask"
+		id: circleImageMask
 		maskedTarget: column
 		bgColor: "#ffffff"
 		visible: circleMask

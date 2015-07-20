@@ -6,7 +6,7 @@ Rectangle {
 		width: parent.width*0.8
 		height: parent.height*0.8
 		ListModel {
-			id: "myModel"
+			id: myModel
 			ListElement {
 				key: "GOOGLE"; value: "Google"
 			}

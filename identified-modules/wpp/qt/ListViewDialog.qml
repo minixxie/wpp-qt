@@ -1,7 +1,7 @@
 import QtQuick 2.1
 
 Item {
-	id: "listViewDialog"
+	id: listViewDialog
 
 	property variant model
 	property variant currentItem
@@ -18,7 +18,7 @@ Item {
 	visible: false
 
 	WppDialog {
-		id: "popup"
+		id: popup
 		bgColor: listViewDialog.bgColor
 		contentComponent: Component {
 			Rectangle {
@@ -26,7 +26,7 @@ Item {
 				height: 300*wpp.dp2px
 				color: listViewDialog.bgColor
 				Text {
-					id: "sentenceText"
+					id: sentenceText
 					anchors.top: parent.top
 					anchors.left: parent.left
 					anchors.right: parent.right
@@ -34,7 +34,7 @@ Item {
 					visible: text != ""
 				}
 				ListView {
-					id: "listView"
+					id: listView
 					anchors.topMargin: sentenceText.visible? 10*wpp.dp2px: 0
 					anchors.top: sentenceText.bottom
 					anchors.left: parent.left
@@ -46,7 +46,7 @@ Item {
 					//height: 280*wpp.dp2px
 					clip: true
 					delegate: Rectangle {
-						id: "listViewItem"
+						id: listViewItem
 						width: popup.contentWidth
 						height: 30*wpp.dp2px
 						color: model.index == listViewDialog.currentIndex ? Qt.rgba(0,0.796,0,0.3) : "transparent"
@@ -82,7 +82,7 @@ Item {
 					}
 				}
 				Text {
-					id: "loadingText"
+					id: loadingText
 					anchors.centerIn: parent
 					text: listViewDialog.loading ? qsTr("Loading...") : ""
 					visible: text != ""

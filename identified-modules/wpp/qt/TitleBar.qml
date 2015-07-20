@@ -29,13 +29,13 @@ Rectangle {
 	clip: true
 
 	Rectangle {
-		id: "phoneTopBar"
+		id: phoneTopBar
 		height: parent.hasPhoneTop? 20*wpp.dp2px : 0
 		//{ var h = parent.hasPhoneTop? 20*wpp.dp2px : 0 ; console.debug("hasTop=" + h); return h; }
 	}
 
 	Rectangle {
-		id: "leftComponentRectangle"
+		id: leftComponentRectangle
 		x: 0
 		y: phoneTopBar.y + phoneTopBar.height
 		z: parent.z+1
@@ -43,7 +43,7 @@ Rectangle {
 		width: height
 		color: "transparent"
 		Loader {
-			id: "leftComponentLoader"
+			id: leftComponentLoader
 			x: (parent.width - width)/2
 			y: (parent.height - height)/2
 			z: parent.z+1
@@ -59,7 +59,7 @@ Rectangle {
 		}
 	}
 	Rectangle {
-		id: "labelBox"
+		id: labelBox
 		width: parent.width - 2*height
 		height: 44*wpp.dp2px
 		clip: true
@@ -69,7 +69,7 @@ Rectangle {
 		z: parent.z+1
 
 		Text {
-			id: "label"
+			id: label
 			height: parent.height
 			//width: parent.width - 2*height
 			anchors.centerIn: width > parent.width || !titleBar.centerTitle ? undefined : parent
@@ -94,7 +94,7 @@ Rectangle {
 		}
 	}
 	Rectangle {
-		id: "rightComponentRectangle"
+		id: rightComponentRectangle
 		x: parent.width - width
 		y: phoneTopBar.y + phoneTopBar.height
 		z: parent.z+1
@@ -102,7 +102,7 @@ Rectangle {
 		width: height
 		color: "transparent"
 		Loader {
-			id: "rightComponentLoader"
+			id: rightComponentLoader
 			x: (parent.width - width)/2
 			y: (parent.height - height)/2
 			z: parent.z+1
@@ -123,7 +123,7 @@ Rectangle {
 	}
 
 	Rectangle {
-		id: "loadingIndicator"
+		id: loadingIndicator
 		color: "#fc8215"
 		height: 2*wpp.dp2px
 		width:100*wpp.dp2px
@@ -131,7 +131,7 @@ Rectangle {
 		y: parent.height - height
 		visible: loadingType == "BAR" && loading
 		SequentialAnimation on x {
-			id: "loadingAnimation"
+			id: loadingAnimation
 			running: loading
 			loops: Animation.Infinite // The animation is set to loop indefinitely
 			NumberAnimation { from: -loadingIndicator.width; to: 320*wpp.dp2px; duration: 1000; easing.type: Easing.InOutQuad }
@@ -139,7 +139,7 @@ Rectangle {
 		}
 	}
 	Rectangle {
-		id: "networkCondition"
+		id: networkCondition
 		width: parent.width
 		height: !wpp.hasNetwork ? 20*wpp.dp2px : 0
 		color: "#ffffbf"
@@ -148,7 +148,7 @@ Rectangle {
 		anchors.bottom: parent.bottom
 		visible: !wpp.hasNetwork
 		Text {
-			id: "networkConditionText"
+			id: networkConditionText
 			anchors.fill: parent
 			font.pixelSize: 12*wpp.dp2px
 			color: "#ff0000"

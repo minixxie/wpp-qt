@@ -2,7 +2,7 @@
 import QtGraphicalEffects 1.0
 
 Rectangle {
-	id: "myAddressBookUI"
+	id: myAddressBookUI
 	color: "#ffffff"
 	property alias keyword: searchField.text
 	property bool alwaysShowDetails: false
@@ -60,7 +60,7 @@ Rectangle {
 	}
 
 	SearchField {
-		id: "searchField"
+		id: searchField
 		anchors.top: parent.top
 		anchors.topMargin:5*wpp.dp2px
 		anchors.left: parent.left
@@ -96,7 +96,7 @@ Rectangle {
 
 
     ListView {
-		id:"addressBookPlacesListView"
+		id: addressBookPlacesListView
 		anchors.top: searchField.bottom;
 		anchors.topMargin:5*wpp.dp2px
 		anchors.left: parent.left
@@ -105,7 +105,7 @@ Rectangle {
 		boundsBehavior: Flickable.StopAtBounds
         clip: true
 		Component {
-			id: "sectionHeader"
+			id: sectionHeader
 			Rectangle {
 				width: addressBookPlacesListView.width
 				height: 24*wpp.dp2px
@@ -181,7 +181,7 @@ Rectangle {
 			}
 
 			Rectangle {
-				id: "sectionHeaderRectangle"
+				id: sectionHeaderRectangle
 				visible: {
 					//console.debug("name:" + modelData.latinFullName + ":isFirstPersonInGroup=" + modelData.isFirstPersonInGroup);
 					if ( myAddressBookUI.keyword != '' )
@@ -287,7 +287,7 @@ Rectangle {
 			}
 
 			Text {
-				id: "phoneContactNameText"
+				id: phoneContactNameText
 				verticalAlignment: Text.AlignVCenter
 				anchors.left: addressBookContactProfilePhoto.right
 				anchors.leftMargin: 10*wpp.dp2px
@@ -303,7 +303,7 @@ Rectangle {
 				font.bold: true
 			}
 			Text {
-				id: "emptyPhonesAndEmailsMsg"
+				id: emptyPhonesAndEmailsMsg
 				anchors.top:phoneContactNameText.bottom
 				anchors.leftMargin: 10*wpp.dp2px
 				anchors.left:addressBookContactProfilePhoto.right
@@ -317,7 +317,7 @@ Rectangle {
 				visible: false
 			}
 			Column {
-				id: "phoneContactPhoneListColumn"
+				id: phoneContactPhoneListColumn
 				anchors.top:emptyPhonesAndEmailsMsg.bottom
 				anchors.leftMargin: 10*wpp.dp2px
 				anchors.left:addressBookContactProfilePhoto.right
@@ -329,14 +329,14 @@ Rectangle {
 				Repeater {
 					model: modelData.phones
 					Rectangle {
-						id: "contactPhoneItemBox"
+						id: contactPhoneItemBox
 						anchors.left: parent.left
 						anchors.right: parent.right
 						height: 40*wpp.dp2px
 						color: "transparent"
 						property var phoneObj: modelData
 						Image {
-							id: "contactPhoneItemBoxTickIcon"
+							id: contactPhoneItemBoxTickIcon
 							source: "qrc:/img/android-icons/All_Icons/holo_light/xhdpi/1-navigation-back.png"
 							width: 20*wpp.dp2px
 							height: 20*wpp.dp2px
@@ -348,7 +348,7 @@ Rectangle {
 							visible: false // modelData.isInvited
 						}
 						ColorOverlay {
-							id: "isPhoneSelectedColorOverlay"
+							id: isPhoneSelectedColorOverlay
 							source: contactPhoneItemBoxTickIcon
 							anchors.fill: contactPhoneItemBoxTickIcon
 							color: "#ff0080ff"
@@ -370,7 +370,7 @@ Rectangle {
 						}
 
 						Text {
-							id: "contactPhoneText"
+							id: contactPhoneText
 							anchors.left: parent.left
 							anchors.right: contactPhoneItemBoxTickIcon.left
 							anchors.rightMargin: 5*wpp.dp2px
@@ -395,7 +395,7 @@ Rectangle {
 							verticalAlignment: Text.AlignVCenter
 						}
 						Text {
-							id: "contactPhoneDescription"
+							id: contactPhoneDescription
 							anchors.top: contactPhoneText.bottom
 							anchors.left: parent.left
 							anchors.right: contactPhoneItemBoxTickIcon.left
@@ -463,7 +463,7 @@ Rectangle {
 				}//Repeater
 			}//Column
 			Column {
-				id: "phoneContactEmailListColumn"
+				id: phoneContactEmailListColumn
 				anchors.top:phoneContactPhoneListColumn.bottom
 				anchors.leftMargin: 10*wpp.dp2px
 				anchors.left:addressBookContactProfilePhoto.right
@@ -475,14 +475,14 @@ Rectangle {
 				Repeater {
 					model: modelData.emails
 					Rectangle {
-						id: "contactEmailItemBox"
+						id: contactEmailItemBox
 						anchors.left: parent.left
 						anchors.right: parent.right
 						height: 40*wpp.dp2px
 						color: "transparent"
 						property var emailObj: modelData
 						Image {
-							id: "contactEmailItemBoxTickIcon"
+							id: contactEmailItemBoxTickIcon
 							source: "qrc:/img/android-icons/All_Icons/holo_light/xhdpi/1-navigation-back.png"
 							width: 20*wpp.dp2px
 							height: 20*wpp.dp2px
@@ -494,7 +494,7 @@ Rectangle {
 							visible: false // modelData.isInvited
 						}
 						ColorOverlay {
-							id: "isEmailSelectedColorOverlay"
+							id: isEmailSelectedColorOverlay
 							source: contactEmailItemBoxTickIcon
 							anchors.fill: contactEmailItemBoxTickIcon
 							color: "#ff0080ff"
@@ -515,7 +515,7 @@ Rectangle {
 						}
 
 						Text {
-							id: "contactEmailText"
+							id: contactEmailText
 							anchors.left: parent.left
 							anchors.right: contactEmailItemBoxTickIcon.left
 							anchors.rightMargin: 5*wpp.dp2px
@@ -540,7 +540,7 @@ Rectangle {
 							verticalAlignment: Text.AlignVCenter
 						}
 						Text {
-							id: "contactEmailDescription"
+							id: contactEmailDescription
 							anchors.top: contactEmailText.bottom
 							anchors.left: parent.left
 							anchors.right: contactEmailItemBoxTickIcon.left
@@ -632,7 +632,7 @@ Rectangle {
 				visible: false // modelData.isInvited
 			}
 			ColorOverlay {
-				id: "addressBookContactAcceptImgOverlay"
+				id: addressBookContactAcceptImgOverlay
 				source: addressBookContactAcceptImg
 				anchors.fill: addressBookContactAcceptImg
 				color: "#ff0080ff"
@@ -656,20 +656,20 @@ Rectangle {
     }
 
 	Rectangle {
-		id: "letterIndexBarRect"
+		id: letterIndexBarRect
 		anchors.top: addressBookPlacesListView.top;
 		anchors.right: parent.right
 		anchors.bottom: parent.bottom
 		width: 24*wpp.dp2px
 		color: "#ffffff"
 		Column {
-			id: "letterIndexBar"
+			id: letterIndexBar
 			anchors.fill: parent
 			visible: myAddressBookUI.keyword == ''
 			z: addressBookPlacesListView.z + 1
 			property int oneLetterIndexHeight: letterIndexBar.height / myAddressBookUI._indexChars.length
 			Repeater {
-				id: "letterIndexBarRepeater"
+				id: letterIndexBarRepeater
 				model: myAddressBookUI._indexChars.length
 				Rectangle {
 					width: letterIndexBar.width
@@ -710,7 +710,7 @@ Rectangle {
 		}
 	}
 	MouseArea {
-		id: "indexColumnBarMouseArea"
+		id: indexColumnBarMouseArea
 		anchors.fill: letterIndexBarRect
 		onMouseYChanged: {
 			//console.debug("mouse-y:"+mouseY);
@@ -749,7 +749,7 @@ Rectangle {
 		radius: 4*wpp.dp2px
 		visible: indexColumnBarMouseArea.pressed
 		Text {
-			id: "enlargeCurrentLetterText"
+			id: enlargeCurrentLetterText
 			anchors.fill: parent
 			color: "#ffffff"
 			font.pixelSize: 46*wpp.dp2px

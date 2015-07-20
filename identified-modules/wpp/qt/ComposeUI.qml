@@ -61,7 +61,7 @@ Rectangle {
 	}
 
 	Rectangle {
-		id: "topBorder"
+		id: topBorder
 		anchors.top: parent.top
 		anchors.left: parent.left
 		anchors.right: parent.right
@@ -70,7 +70,7 @@ Rectangle {
 	}
 
 	Avatar {
-		id: "meAsCommenterProfilePhoto"
+		id: meAsCommenterProfilePhoto
 		anchors.top: parent.top
 		anchors.left: parent.left
 		anchors.margins: 10*wpp.dp2px
@@ -299,7 +299,7 @@ Rectangle {
 	}
 
 	WppTabView {
-		id: "specialPanels"
+		id: specialPanels
 		anchors.top: commentInputBoxRectangle.bottom
 		anchors.left: parent.left
 		anchors.right: parent.right
@@ -312,7 +312,7 @@ Rectangle {
 
 		/*tabs: [
 			WppTab {
-				id: "smileysTab"
+				id: smileysTab
 				title: Image {
 					source: "qrc:/img/smileys/kuangxiao.gif"
 					smooth: true
@@ -330,7 +330,7 @@ Rectangle {
 				//onSelected: titleBar.text = qsTr("Home")
 			},
 			WppTab {
-				id: "atUserTab"
+				id: atUserTab
 				title: Text {
 					text: "@"
 					font.pixelSize: 24*wpp.dp2px
@@ -344,7 +344,7 @@ Rectangle {
 				//onSelected: titleBar.text = qsTr("Home")
 			},
 			WppTab {
-				id: "detectLocationTab"
+				id: detectLocationTab
 				title: Image {
 					source: "qrc:/img/android-icons/All_Icons/holo_light/mdpi/7-location-place.png"
 					smooth: true
@@ -356,7 +356,7 @@ Rectangle {
 				//onSelected: titleBar.text = qsTr("Home")
 			},
 			WppTab {
-				id: "addPhotoTab"
+				id: addPhotoTab
 				title: Image {
 					source: "qrc:/img/android-icons/All_Icons/holo_light/mdpi/10-device-access-camera.png"
 					smooth: true

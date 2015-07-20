@@ -1,7 +1,7 @@
 import QtQuick 2.1
 
 ListView {
-	id: "listView"
+	id: listView
 
 	property color selectedColor: Qt.rgba(0,0.796,0,0.3)
 	property color separatorColor: Qt.rgba(0,0,0,0.3)
@@ -15,7 +15,7 @@ ListView {
 
 	clip: true
 	delegate: Rectangle {
-		id: "listViewItem"
+		id: listViewItem
 		width: listView.width
 		height: listView.itemHeight
 		color: model.index == listView.currentIndex ? listView.selectedColor : "transparent"
@@ -29,7 +29,7 @@ ListView {
 		}*/
 
 		Rectangle {
-			id: "itemIcon"
+			id: itemIcon
 			visible: itemIconImage.visible
 			height: parent.height
 			width: itemIconImage.width
@@ -37,7 +37,7 @@ ListView {
 			//anchors.leftMargin: 2*parent.height*0.2
 			color: "transparent"
 			Image {
-				id: "itemIconImage"
+				id: itemIconImage
 				height: parent.height*0.8
 				width: visible? height : 0
 				visible: source != ""
@@ -46,7 +46,7 @@ ListView {
 			}
 		}
 		Text {
-			id: "itemText"
+			id: itemText
 			anchors.left: itemIcon.right
 			anchors.top: parent.top
 			anchors.bottom: parent.bottom

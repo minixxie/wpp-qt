@@ -1,7 +1,7 @@
 import QtQuick 2.1
 
 Rectangle {
-	id: "loadingIcon"
+	id: loadingIcon
 	width: 90*wpp.dp2px
 	height: width
 	color: Qt.rgba(0,0,0,0.8)

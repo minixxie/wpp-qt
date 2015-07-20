@@ -1,10 +1,10 @@
 import QtQuick 2.1
 
 Rectangle {
-	id: "attachPhotoUI"
+	id: attachPhotoUI
 	anchors.fill: parent
 
-	property alias model: imageAttachmentList.model
+	property alias model: imageAttachmentList.mode
 	signal photoTaken(string imagePath)
 	signal photoChosen(variant imagePaths)
 

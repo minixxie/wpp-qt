@@ -1,7 +1,7 @@
 import QtQuick 2.2
 
 Rectangle {
-	id: "map"
+	id: map
 
 	property string mapSource: "GOOGLE" //GOOGLE, GAODE, BAIDU...
 	property int zoom: 4
@@ -9,11 +9,11 @@ Rectangle {
 	property real urlScale: 1
 
 	ListModel {
-		id: "tilesModel"
+		id: tilesModel
 	}
 
 	Flickable {
-		id: "flickable"
+		id: flickable
 		anchors.fill: parent
 		contentWidth: gridViewContainerRectangle.width
 		contentHeight: gridViewContainerRectangle.height
@@ -21,13 +21,13 @@ Rectangle {
 		boundsBehavior: Flickable.StopAtBounds
 
 		Rectangle {
-			id: "gridViewContainerRectangle"
+			id: gridViewContainerRectangle
 			width: mapTilesGridView.width*mapTilesGridView.scale
 			height: mapTilesGridView.height*mapTilesGridView.scale
 			color: "green"
 
 			GridView {
-				id: "mapTilesGridView"
+				id: mapTilesGridView
 				boundsBehavior: Flickable.StopAtBounds
 				interactive: false
 				anchors.fill: parent

@@ -1,7 +1,7 @@
-#include "System.h"
+#include "Wpp.h"
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#ifdef Q_OS_MAC
+#if defined(Q_OS_MAC) && !defined(Q_OS_IOS)
 	#include <QtMac>
 #endif
 namespace wpp
@@ -9,7 +9,7 @@ namespace wpp
 namespace qt
 {
 
-void System::initDeviceId()
+void Wpp::initDeviceId()
 {
 	NSUUID *identifierForVendor = [[UIDevice currentDevice] identifierForVendor];
 	NSString *deviceId = [identifierForVendor UUIDString];
@@ -19,7 +19,7 @@ void System::initDeviceId()
 	emit this->deviceIdChanged();
 }
 
-int System::getIOSVersion()
+int Wpp::getIOSVersion()
 {
 
 	NSArray *comp = [[UIDevice currentDevice].systemVersion componentsSeparatedByString:@"."];
@@ -27,12 +27,12 @@ int System::getIOSVersion()
 	return [[comp objectAtIndex:0] intValue];
 }
 
-void System::enableAutoScreenOrientation(bool enable)
+void Wpp::enableAutoScreenOrientation(bool enable)
 {
 	__IMPLEMENTATION_DETAIL_ENABLE_AUTO_ROTATE = enable;
 }
 
-void System::registerApplePushNotificationService()
+void Wpp::registerApplePushNotificationService()
 {
 	UIApplication *application = [UIApplication sharedApplication];
 	if ([application respondsToSelector:@selector(registerUserNotificationSettings:)]) {
@@ -70,7 +70,7 @@ void System::registerApplePushNotificationService()
 */
 }
 
-void System::addToImageGallery(const QString& imageFullPath)
+void Wpp::addToImageGallery(const QString& imageFullPath)
 {
 //http://stackoverflow.com/questions/12609301/how-to-save-the-image-on-iphone-in-the-gallery
 
@@ -82,12 +82,12 @@ void System::addToImageGallery(const QString& imageFullPath)
 	UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
 }
 
-void System::setAppIconUnreadCount(int count)
+void Wpp::setAppIconUnreadCount(int count)
 {
 #ifdef Q_OS_IOS
 	[[UIApplication sharedApplication] setApplicationIconBadgeNumber:count];
 #endif
-#ifdef Q_OS_MAC
+#if defined(Q_OS_MAC) && !defined(Q_OS_IOS)
 	QtMac::setApplicationIconBadgeNumber(count);
 #endif
 

@@ -16,7 +16,7 @@ Rectangle {
 		id: imgBg
 		imgTarget: img
         Text {
-            id: "bgTextElement"
+            id: bgTextElement
             anchors.fill: parent
             text: avatar.bgText
             font.pixelSize: 12*wpp.dp2px

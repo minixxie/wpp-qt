@@ -3,7 +3,7 @@ import QtQuick.Controls 1.3
 import QtQuick.Controls.Styles 1.3
 
 Rectangle {
-	id: "dialog"
+	id: dialog
 	property alias text: textMessage.text
 	property Component contentComponent: null
 	property string type: "MSG" //MSG, CONFIRM, MSG_TIMER
@@ -49,13 +49,13 @@ Rectangle {
         color: Qt.rgba(0,0,0,0.36)
 	}
 	MouseArea {//to implement modal
-		id: "modalMouseArea"
+		id: modalMouseArea
 		anchors.fill: parent
 		z: parent.z + 1
 	}
 
 	Rectangle {
-		id: "contentFrame"
+		id: contentFrame
 		z: modalMouseArea.z + 1
 		x: dialog.xAxis
 		y: (parent.height - height)/2
@@ -72,7 +72,7 @@ Rectangle {
 		//opacity: 0.96
 
 		Text {
-			id: "textMessage"
+			id: textMessage
 			anchors.top: parent.top
 			anchors.left: parent.left
 			anchors.right: parent.right
@@ -89,7 +89,7 @@ Rectangle {
 			visible: contentComponent == null
 		}
 		Loader {
-			id: "contentLoader"
+			id: contentLoader
 			anchors.top: parent.top
 			anchors.left: parent.left
 			anchors.right: parent.right
@@ -102,7 +102,7 @@ Rectangle {
 		}
 
 		Line {
-			id: "hLine"
+			id: hLine
 			anchors.bottom: buttonPanel.top
 			width: parent.width
 			//x1: 0; y1: contentComponent != null? contentLoader.y + contentLoader.height + 20*wpp.dp2px: textMessage.y + textMessage.height + 20*wpp.dp2px
@@ -113,7 +113,7 @@ Rectangle {
 		}
 
 		Rectangle {
-			id: "buttonPanel"
+			id: buttonPanel
 			//anchors.top: hLine.bottom
 			anchors.left: parent.left
 			anchors.right: parent.right
@@ -124,7 +124,7 @@ Rectangle {
 			height: dialog.seconds > 0 ? 0 : 40*wpp.dp2px
             color: "transparent"
 			Button {
-				id: "cancelButton"
+				id: cancelButton
 				width: (parent.width - 2*x)/2 - 1
 				height: parent.height
 				//text: qsTr("Cancel")
@@ -151,7 +151,7 @@ Rectangle {
 				}
 			}
 			Line {
-				id: "vLine"
+				id: vLine
 				width: 1
 				height: parent.height
 				x1:cancelButton.x + cancelButton.width ; y1:0
@@ -160,7 +160,7 @@ Rectangle {
 				color: dialog.borderColor
 			}
 			Button {
-				id: "okButton"
+				id: okButton
 				x: dialog.type=="MSG"? 0 : vLine.x + vLine.width
 				width: dialog.type=="MSG"? parent.width - 2*x: cancelButton.width
 				height: parent.height

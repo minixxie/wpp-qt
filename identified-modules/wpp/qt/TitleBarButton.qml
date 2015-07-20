@@ -1,7 +1,7 @@
 ﻿import QtQuick 2.1
 
 Rectangle {
-	id: "titleBarButton"
+	id: titleBarButton
 
 	property string iconType: "DARK"
 	property alias text: buttonLabel.text
@@ -24,7 +24,7 @@ Rectangle {
 		border.width: 1
 		radius: 2*wpp.dp2px
 		Text {
-			id: "buttonLabel"
+			id: buttonLabel
             anchors.top: parent.top
             anchors.left: parent.left
             anchors.bottom: parent.bottom
@@ -35,7 +35,7 @@ Rectangle {
 			font.pixelSize: 12*wpp.dp2px
 		}
         Image {
-            id: "rightIcon"
+            id: rightIcon
             source: ""
             height: 18*wpp.dp2px
             width: height
@@ -44,7 +44,7 @@ Rectangle {
             anchors.verticalCenter: parent.verticalCenter
         }
 		MouseArea {
-			id: "mouseArea"
+			id: mouseArea
 			x:0; y:0
 			anchors.fill: parent
 			onClicked: {

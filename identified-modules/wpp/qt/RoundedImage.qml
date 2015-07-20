@@ -3,7 +3,7 @@
 import "./"
 
 Rectangle {
-	id: "avatar"
+	id: avatar
 	property alias url: profilePhotoImage.source
 	property bool circleMask: true
 	property alias maskColor: circleImageMask.bgColor
@@ -15,7 +15,7 @@ Rectangle {
 		imgTarget: profilePhotoImage
 	}
 	Image {
-		id: "profilePhotoImage"
+		id: profilePhotoImage
 		width: avatar.width
 		height: avatar.height
 		smooth: true
@@ -26,7 +26,7 @@ Rectangle {
 		}
 	}
 	CircleImageMask {
-		id: "circleImageMask"
+		id: circleImageMask
 		maskedTarget: profilePhotoImage
 		bgColor: "#ffffff"
 		visible: circleMask

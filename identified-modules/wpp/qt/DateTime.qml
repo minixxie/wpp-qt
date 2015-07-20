@@ -3,7 +3,7 @@
 
 
 Rectangle {
-    id: "dateTime"
+    id: dateTime
 
 	property string type: "DATE_TIME" //DATE, DATE_TIME
 	property date date: new Date()
@@ -90,7 +90,7 @@ Rectangle {
     }
 
     Spinner {
-		id: "yearSpinner"
+		id: yearSpinner
 		//from: currentYear > yy ? yy : currentYear;
 		//to: currentYear + 5
 		from: 1900
@@ -133,7 +133,7 @@ Rectangle {
 //    property int dayIndex: daySpinner.index;
 
 	Spinner {
-		id: "monthSpinner"
+		id: monthSpinner
         from: 1
         to: 12
         digit: parseInt(date.getMonth()) + 1
@@ -187,7 +187,7 @@ Rectangle {
 	property int dayIndexBackup: -1
 
     Spinner {
-		id: "daySpinner"
+		id: daySpinner
 		widthsize: dateTime.dwidth
 		heightsize: dateTime.dheight
 		anchors.leftMargin: -1
@@ -224,7 +224,7 @@ Rectangle {
     }
 
     Spinner {
-        id: "hourSpinner"
+        id: hourSpinner
 		visible: dateTime.type == "DATE_TIME"
         from: 0
         to: 23
@@ -242,7 +242,7 @@ Rectangle {
     }
 
     Rectangle {
-        id: "colon"
+        id: colon
 		visible: dateTime.type == "DATE_TIME"
 		width:10*wpp.dp2px
 		height: hourSpinner.height
@@ -265,7 +265,7 @@ Rectangle {
     }
 
     Spinner {
-		id: "minuteSpinner"
+		id: minuteSpinner
 		visible: dateTime.type == "DATE_TIME"
 		from: 0
 		to: 59

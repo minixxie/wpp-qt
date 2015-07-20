@@ -1,7 +1,7 @@
 import QtQuick 2.1
 
 Rectangle {
-	id: "fullScreen"
+	id: fullScreen
 	property alias source: pageLoader.source
 	property bool toCheckForUpdate: true
 
@@ -47,7 +47,7 @@ Rectangle {
 	}
 
 	/*Flickable {
-		id: "logFlickable"
+		id: logFlickable
 		anchors.top: parent.top
 		anchors.left: parent.left
 		anchors.right: parent.right
@@ -56,12 +56,12 @@ Rectangle {
 		contentHeight: logRec.height
 		visible: false
 		Rectangle {
-			id: "logRec"
+			id: logRec
 			width: logFlickable.width
 			color: Qt.rgba(1,1,1,0.3)
 			height: logText.height > 100*wpp.dp2px ? logText.height : 100*wpp.dp2px
 			Text {
-				id: "logText"
+				id: logText
 				width: parent.width
 				text: mainController != undefined ? mainController.log : ""
 				font.pixelSize: 10*wpp.dp2px

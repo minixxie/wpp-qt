@@ -206,7 +206,7 @@ FocusScope {
 		font.family: "Helvetica";
 	}
 	Rectangle {
-		id: "clearButton"
+		id: clearButton
 		height: 16*wpp.dp2px
 		width: height
 		anchors.verticalCenter: parent.verticalCenter
@@ -250,7 +250,7 @@ FocusScope {
 
 		}
 		Image {
-			id: "clearButtonIcon"
+			id: clearButtonIcon
 			anchors.fill: parent
 			anchors.margins: 2*wpp.dp2px
 			source: "qrc:/img/android-icons/All_Icons/holo_light/mdpi/1-navigation-cancel.png"

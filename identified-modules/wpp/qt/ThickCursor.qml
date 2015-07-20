@@ -1,7 +1,7 @@
 import QtQuick 2.1
 
 Rectangle {
-	id: "thickCursor"
+	id: thickCursor
 	property Item textBox
 
 	width:2*wpp.dp2px
