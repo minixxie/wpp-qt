@@ -129,6 +129,7 @@ public:
 	Q_INVOKABLE QString timezoneShortName(qint64 msecsSinceEpoch, const QString& ianaId = QTimeZone::systemTimeZoneId());
 	Q_INVOKABLE QString timezoneLongName(qint64 msecsSinceEpoch, const QString& ianaId = QTimeZone::systemTimeZoneId(), const QLocale& locale = QLocale());
 
+	Q_INVOKABLE void setAppIconUnreadCount(int count);
 
 signals:
 	void networkChanged();

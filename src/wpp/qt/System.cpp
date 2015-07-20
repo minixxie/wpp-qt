@@ -754,6 +754,24 @@ QString System::timezoneLongName(qint64 msecsSinceEpoch, const QString& ianaId, 
 	return timezone.displayName(QDateTime::fromMSecsSinceEpoch(msecsSinceEpoch), QTimeZone::LongName, locale);
 }
 
+void System::setAppIconUnreadCount(int count)
+{
+#ifdef Q_OS_ANDROID
+	QAndroidJniObject activity = QtAndroid::androidActivity();
+	qDebug() << __FUNCTION__ << "activity.isValid()=" << activity.isValid();
+
+	//    ShortcutBadger.with(getApplicationContext()).count(badgeCount);
+	QAndroidJniObject shortcutBadger = QAndroidJniObject::callStaticObjectMethod(
+				"me/leolin/shortcutbadger/ShortcutBadger", "with",
+				"(Landroid/content/Context;)Lme/leolin/shortcutbadger/ShortcutBadger;",
+				activity.object<jobject>());
+	qDebug() << __FUNCTION__ << "shortcutBadger.isValid()=" << shortcutBadger.isValid();
+
+	shortcutBadger.callMethod<void>("count","(I)V",count);
+
+#endif
+
+}
 
 
 }//namespace qt

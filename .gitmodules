@@ -7,3 +7,6 @@
 [submodule "PhotoPicker"]
 	path = PhotoPicker
 	url = https://github.com/donglua/PhotoPicker.git
+[submodule "ShortcutBadger"]
+	path = ShortcutBadger
+	url = https://github.com/leolin310148/ShortcutBadger.git
