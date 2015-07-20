@@ -209,6 +209,8 @@ DateTimeControl {
 ```
 Screenshot on Android and iOS:
 ![DateTimeControl](https://github.com/minixxie/wpp-qt/raw/master/doc/screenshot-DateTimeControl.png)
+![DateTimeControl](https://github.com/minixxie/wpp-qt/raw/master/doc/screenshot-DateTimeControl-android.png)
+![DateTimeControl](https://github.com/minixxie/wpp-qt/raw/master/doc/screenshot-DateTimeControl-ios.png)
 see example: [UsingDateTimeControl](https://github.com/minixxie/wpp-qt/raw/master/examples/UsingDateTimeControl)
 
 ## UseCase: Load Phone Contact
