@@ -8,6 +8,7 @@ Rectangle {
 	property int tabHeight: tabButtonsPosition == "TOP" ? 24*reso.dp2px : 50*reso.dp2px
 	property color tabBgColor: "#eeeeee"
 	property color selectedIndicatorColor: "#aaaaaa"
+	property alias selectedIndicatorHeight: selectedIndicatorRect.height
 	property color bottomBorderColor: "#dddddd"
 	property list<WppTab> tabs
 	property int defaultIndex: 0
@@ -69,7 +70,7 @@ Rectangle {
 						}
 					}
 					Rectangle {
-						id: "selectedIndicatorRect"
+						id: selectedIndicatorRect
 						color: tabView.selectedIndicatorColor
 						//anchors.bottom: parent.bottom
 						width: parent.width - 2*x
