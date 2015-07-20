@@ -178,9 +178,9 @@ FocusScope {
         x: textInput.x
         //y: (parent.height - font.pixelSize - ( textfield.border.width * 2) )/2
         color:"#aaaaaa"
-		//visible: sys.isAndroid() ? ( textInput.text == "" && !textInput.activeFocus ) : (textInput.text == "" || (!textInput.activeFocus && textInput.text=="" ))
+		//visible: wpp.isAndroid() ? ( textInput.text == "" && !textInput.activeFocus ) : (textInput.text == "" || (!textInput.activeFocus && textInput.text=="" ))
 
-			//sys.isAndroid()? (textInput.text == "" && !textInput.activeFocus) : (textInput.text == "" && !textInput.activeFocus)
+			//wpp.isAndroid()? (textInput.text == "" && !textInput.activeFocus) : (textInput.text == "" && !textInput.activeFocus)
 		visible: {
 			var v =
 			(textInput.text == "" || (!textInput.activeFocus && textInput.text=="" )) && !textInput.inputMethodComposing;

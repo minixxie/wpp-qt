@@ -109,7 +109,8 @@ void ImagePicker::open()
 							MultiImageSelectorActivity__EXTRA_SELECT_MODE.object<jstring>(), MultiImageSelectorActivity__MODE_MULTI);
 		*/
 
-		if ( maxPick() > 1 )
+		qDebug() << __FUNCTION__ << ":maxPick()=" << maxPick();
+		if ( maxPick() >= 1 )
 		{
 			intent.callMethod<void>("setPhotoCount","(I)V", (jint)maxPick());
 		}
@@ -247,7 +248,10 @@ void ImagePicker::handleActivityResult(int receiverRequestCode, int resultCode, 
 	int PICK_FROM_FILE = 2;
 	int PICK_FROM_FILE_KITKAT = 3;
 	jint Activity__RESULT_OK = QAndroidJniObject::getStaticField<jint>(
-				"android.app.Activity", "RESULT_OK");
+				"android/app/Activity", "RESULT_OK");
+	qDebug() << __FUNCTION__ <<":receiverRequestCode=" << receiverRequestCode
+								<< ",resultCode=" << resultCode
+								<< ",Activity__RESULT_OK=" << Activity__RESULT_OK;
 
 	if ( ( receiverRequestCode == PICK_FROM_FILE || receiverRequestCode == PICK_FROM_FILE_KITKAT
 		   || receiverRequestCode == 200

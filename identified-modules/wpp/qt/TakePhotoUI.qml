@@ -82,7 +82,7 @@ Rectangle {
 		height: parent.height - 50*wpp.dp2px
 
 		source: camera
-		autoOrientation: true
+		//autoOrientation: true
 	}
 
 	PhotoCaptureControls {

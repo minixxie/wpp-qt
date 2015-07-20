@@ -1014,7 +1014,7 @@ Rectangle {
 		}
 		arrowDirection: 1
 		modal: true
-		fullScreenParent: parent
+		//fullScreenParent: parent
 		onSelected: {
 			mapUI.src = currentItem.key;
 		}

@@ -3,6 +3,10 @@ Web++ framework for Qt
 * Android support: minSDK: 10, targetSDK: 22
 * iOS support: iOS7+
 
+## System Requirements
+* Gradle (don't use Apache Ant)
+* Android SDK with android-22 installed
+
 ## Introduction
 
 This is a framework supplementary to Qt for mobile, for creating mobile apps for iOS and Android. More platforms support will be added later, currently this library only support iOS and Android.
@@ -58,6 +62,10 @@ dependencies {
     ...
     compile project(':wpp-android')
 }
+```
+```XML
+# YourQtProject/android/AndroidManifest.xml
+    <uses-sdk android:minSdkVersion="10" android:targetSdkVersion="22"/>
 ```
 
 
@@ -168,6 +176,15 @@ Avatar {
 	}                                               
 }
 ```
+```XML
+# android/AndroidManifest.xml: register 2 activities
+        <activity android:name="me.iwf.photopicker.PhotoPickerActivity" android:theme="@style/Theme.AppCompat.NoActionBar">
+            <meta-data android:name="android.app.lib_name" android:value="-- %%INSERT_APP_LIB_NAME%% --"/>
+        </activity>
+        <activity android:name="me.iwf.photopicker.PhotoPagerActivity" android:theme="@style/Theme.AppCompat.NoActionBar">
+            <meta-data android:name="android.app.lib_name" android:value="-- %%INSERT_APP_LIB_NAME%% --"/>
+        </activity>
+```
 
 ![Native Camera and Image Picker](https://github.com/minixxie/wpp-qt/raw/master/doc/screenshot-native-camera-and-image-picker.png)
 see example: [UsingNativeCameraAndImagePicker](https://github.com/minixxie/wpp-qt/raw/master/examples/UsingNativeCameraAndImagePicker)
@@ -264,6 +281,9 @@ In C++, e.g.:
 ```c++
 #include <wpp/qt/System.h>
 
+	wpp::qt::Application app(argc, argv);
+	app.registerApplePushNotificationService(); //necessary for iOS, this function does nothing on other platforms
+
 	int count = 7;
 	wpp::qt::System::getInstance().setAppIconUnreadCount(count);
 ```
@@ -274,6 +294,7 @@ In QML, e.g.:
 		wpp.setAppIconUnreadCount(count);
     }
 ```
+see example: [UsingBadgeUnreadCount](https://github.com/minixxie/wpp-qt/raw/master/examples/UsingBadgeUnreadCount)
 
 ## LICENSE
 

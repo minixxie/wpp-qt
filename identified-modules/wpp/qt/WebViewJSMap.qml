@@ -1,6 +1,6 @@
 import QtQuick 2.1
 import QtWebKit 3.0
-import QtWebKit.experimental 1.0
+//import QtWebKit.experimental 1.0
 //http://stackoverflow.com/questions/22445960/expose-and-add-qwebview-widget-object-to-qml
 //http://rschroll.github.io/beru/2013/08/21/qtwebview.experimental.html
 //http://stackoverflow.com/questions/14342220/invoke-c-method-from-webviews-javascript/14365144#14365144

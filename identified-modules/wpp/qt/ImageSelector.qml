@@ -103,11 +103,11 @@ SelectionListModal {
 		if ( selectedItem.key == "TAKE_PHOTO" )
 		{
             visible = false;
-			if ( sys.isDesktop() )
+			if ( wpp.isDesktop() )
 			{
 				selectionListModal.needQMLCamera();
 			}
-			//else if ( sys.isIOS() )
+			//else if ( wpp.isIOS() )
 			else //android, ios
 			{
 				nativeCamera.open();
@@ -117,11 +117,11 @@ SelectionListModal {
 		else//BROWSE
 		{
             visible = false;
-			if ( sys.isDesktop() )
+			if ( wpp.isDesktop() )
 			{
 				selectionListModal.needQMLAlbumBrowser();
 			}
-			//else if ( sys.isIOS() )
+			//else if ( wpp.isIOS() )
 			else //android, ios
 			{
 				nativeImagePicker.open();//android,ios

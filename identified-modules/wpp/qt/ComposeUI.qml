@@ -41,8 +41,8 @@ Rectangle {
 
 	function show()
 	{
-		//sys.setSoftInputModeAdjustPan();
-		//sys.setSoftInputModeAdjustResize();
+		//wpp.setSoftInputModeAdjustPan();
+		//wpp.setSoftInputModeAdjustResize();
 		visible = true;
 		//specialPanels.visible = false;
 		commentInputBox.forceActiveFocus();
@@ -50,7 +50,7 @@ Rectangle {
 	}
 	function hide()
 	{
-		//sys.setSoftInputModeAdjustPan();
+		//wpp.setSoftInputModeAdjustPan();
 		//console.debug("ComposeUI.hide()....");
 		Qt.inputMethod.hide();
 		visible = false;

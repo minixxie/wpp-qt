@@ -768,7 +768,7 @@ Rectangle {
 
 	/*Component.onCompleted: {
 		createEventUIController.loadAddressBook();
-		//sys.hasNetworkChanged.connect( myAddressBookUI.mayAccessNetwork );
+		//wpp.hasNetworkChanged.connect( myAddressBookUI.mayAccessNetwork );
 		//mayAccessNetwork();
 	}*/
 }

@@ -4,4 +4,11 @@
       package="wpp.android"
       android:versionCode="1"
       android:versionName="1.0">
+	<activity android:name="me.iwf.photopicker.PhotoPickerActivity" android:theme="@style/Theme.AppCompat.NoActionBar">
+            <meta-data android:name="android.app.lib_name" android:value="-- %%INSERT_APP_LIB_NAME%% --"/>
+        </activity>
+	<activity android:name="me.iwf.photopicker.PhotoPagerActivity" android:theme="@style/Theme.AppCompat.NoActionBar">
+            <meta-data android:name="android.app.lib_name" android:value="-- %%INSERT_APP_LIB_NAME%% --"/>
+        </activity>
+
 </manifest>

@@ -85,7 +85,7 @@ Rectangle {
 
 	function onHasNetworkChanged()
 	{
-		if ( sys != undefined && sys.hasNetwork && fullScreen.toCheckForUpdate )
+		if ( wpp!= undefined && wpp.hasNetwork && fullScreen.toCheckForUpdate )
 		{
 			mainController.checkForUpdates();
 		}
@@ -98,7 +98,7 @@ Rectangle {
 
 	Component.onCompleted: {
 		mainController.checkForUpdates();
-		sys.hasNetworkChanged.connect( onHasNetworkChanged );
+		wpp.hasNetworkChanged.connect( onHasNetworkChanged );
 	}
 
 	function goToDownloadPage()
@@ -120,11 +120,11 @@ Rectangle {
 			visible = false;
 			mainController.verCode = "";
 			mainController.newVerCode = "";
-			if ( sys.isIOS() )
+			if ( wpp.isIOS() )
 			{
 				mainController.linkToAppleStore();
 			}
-			else if ( sys.isAndroid() )
+			else if ( wpp.isAndroid() )
 			{
 				fullScreen.goToDownloadPage();
 			}
@@ -142,7 +142,7 @@ Rectangle {
 		}
 		visible: mainController != undefined ? mainController.showUpdateDialog : false
 			/*if ( mainController != undefined )
-				return (sys.isAndroid() || sys.isIOS()) && mainController.verCode != mainController.newVerCode;
+				return (wpp.isAndroid() || wpp.isIOS()) && mainController.verCode != mainController.newVerCode;
 			else
 				return false;
 		}*/

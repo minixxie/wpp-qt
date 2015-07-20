@@ -31,8 +31,8 @@ Window {
 		msecSinceEpoch: new Date().getTime()
 		timeZoneId: "Asia/Hong_Kong"
 		onPicked: {
-			dateTime = dateTimePicked;
-			console.debug("picked=" + dateTimePicked);
+			var dateTime = new Date(msecSinceEpoch);
+			console.debug("picked=" + dateTime);
 		}
 	}
 }

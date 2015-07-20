@@ -5,8 +5,10 @@ int main(int argc, char *argv[])
 {
 	wpp::qt::Application app(argc, argv);
 
+	app.registerApplePushNotificationService();
+
 	wpp::qt::QmlApplicationEngine engine;
 	engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
-	return app.exec();
+    return app.exec();
 }
