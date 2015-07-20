@@ -11,7 +11,7 @@ Rectangle {
 		id: "grid"
 		property int rowCount: Math.ceil( repeater.model.count / colCount )
 		property int colCount: 5
-		anchors.margins: 10*reso.dp2px
+		anchors.margins: 10*wpp.dp2px
 		anchors.fill: parent
 		Repeater {
 			id: "repeater"
@@ -24,8 +24,8 @@ Rectangle {
 				Image {
 					anchors.centerIn: parent
 					source: listItem.imageFile
-					width:32*reso.dp2px
-					height:32*reso.dp2px
+					width:32*wpp.dp2px
+					height:32*wpp.dp2px
 					smooth: true
 					fillMode: Image.PreserveAspectFit
 				}
@@ -53,8 +53,8 @@ Rectangle {
 		anchors.fill: parent
 		model: smileysList
 		cellWidth: width/colCount
-		cellHeight: 50*reso.dp2px
-		anchors.margins: 10*reso.dp2px
+		cellHeight: 50*wpp.dp2px
+		anchors.margins: 10*wpp.dp2px
 
 		delegate: Rectangle {
 			color: c
@@ -64,8 +64,8 @@ Rectangle {
 			Image {
 				anchors.centerIn: parent
 				source: src
-				width:32*reso.dp2px
-				height:32*reso.dp2px
+				width:32*wpp.dp2px
+				height:32*wpp.dp2px
 			}
 		}
 	}*/

@@ -12,13 +12,13 @@ Item {
 	property string timezoneId
 	signal selected(string timezoneId)
 
-	height: 36*reso.dp2px + upperBorderLine.height + lowerBorderLine.height
+	height: 36*wpp.dp2px + upperBorderLine.height + lowerBorderLine.height
 
 	Rectangle {//top line
 		id: upperBorderLine
 		anchors.top: parent.top
 		anchors.left: parent.left; anchors.right: parent.right
-		height: visible?1*reso.dp2px:0
+		height: visible?1*wpp.dp2px:0
 		color: "#dddddd"
 		visible: false
 	}
@@ -26,9 +26,9 @@ Item {
 	Text {
 		id: title
 		anchors.top: parent.top; anchors.bottom: parent.bottom;
-		anchors.left: parent.left; anchors.leftMargin:10*reso.dp2px;
+		anchors.left: parent.left; anchors.leftMargin:10*wpp.dp2px;
 		text: qsTr("Time Zone")
-		font.pixelSize: 12*reso.dp2px
+		font.pixelSize: 12*wpp.dp2px
 		color: "#333333"
 		verticalAlignment: Text.AlignVCenter
 	}
@@ -39,8 +39,8 @@ Item {
 		id: timezoneCombo
 		visible: Qt.platform.os != "ios" //for iOS, uses IOSTimeZonePicker
 		anchors.top: parent.top; anchors.bottom: parent.bottom;
-		anchors.left: parent.left; anchors.leftMargin:10*reso.dp2px;
-		anchors.right: parent.right; anchors.rightMargin:10*reso.dp2px;
+		anchors.left: parent.left; anchors.leftMargin:10*wpp.dp2px;
+		anchors.right: parent.right; anchors.rightMargin:10*wpp.dp2px;
 		editable: false
 		model: timezoneModel
 		onActivated: {
@@ -60,7 +60,7 @@ Item {
 					text: control.currentText
 					horizontalAlignment: Text.AlignRight
 					verticalAlignment: Text.AlignVCenter
-					font.pixelSize: 12*reso.dp2px
+					font.pixelSize: 12*wpp.dp2px
 					font.bold: false
 					color: "#333333"
 					elide: Text.ElideRight
@@ -89,7 +89,7 @@ Item {
 		id: lowerBorderLine
 		anchors.bottom: parent.bottom
 		anchors.left: parent.left; anchors.right: parent.right
-		height: visible?1*reso.dp2px:0
+		height: visible?1*wpp.dp2px:0
 		color: "#dddddd"
 		visible: false
 	}
@@ -105,13 +105,13 @@ Item {
 		id: timezoneText
 		visible: Qt.platform.os == "ios"
 		text: timezoneControl.timezoneId
-		font.pixelSize: 12*reso.dp2px
+		font.pixelSize: 12*wpp.dp2px
 		color: "#333333"
 		anchors.top: parent.top
 		anchors.right: parent.right
 		anchors.bottom: parent.bottom
 		verticalAlignment: Text.AlignVCenter
-		anchors.rightMargin: 10*reso.dp2px
+		anchors.rightMargin: 10*wpp.dp2px
 	}
 	MouseArea {
 		enabled: Qt.platform.os == "ios"

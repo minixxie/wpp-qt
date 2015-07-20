@@ -1,0 +1,3 @@
+include 'wpp-android'
+project(':wpp-android').projectDir = new File('../../UsingDateTimeControl/../../wpp-android')
+

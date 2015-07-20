@@ -79,7 +79,7 @@ Rectangle {
 		z: 1
 
 		width: parent.width
-		height: parent.height - 50*reso.dp2px
+		height: parent.height - 50*wpp.dp2px
 
 		source: camera
 		autoOrientation: true

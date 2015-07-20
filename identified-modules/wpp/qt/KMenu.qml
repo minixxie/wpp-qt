@@ -4,18 +4,18 @@ import QtQuick.Controls 1.3
 Rectangle {
 	id: kmenu
 
-	property real itemWidth: 60*reso.dp2px
-	property real itemHeight: 36*reso.dp2px
+	property real itemWidth: 60*wpp.dp2px
+	property real itemHeight: 36*wpp.dp2px
 	property color defaultItemColor: "transparent"
 	property color pressedColor: "#cc666666"
 	property color lineColor: "#88888888"
-	property real lineWidth: 1*reso.dp2px
+	property real lineWidth: 1*wpp.dp2px
 	property color fontColor: "#ffffff"
-	property real fontSize: 12*reso.dp2px
+	property real fontSize: 12*wpp.dp2px
 
 	color: "#cc000000"
-	border.width: 2*reso.dp2px
-	radius: 6*reso.dp2px
+	border.width: 2*wpp.dp2px
+	radius: 6*wpp.dp2px
 	width: {
 		return (copy.visible ? itemWidth : 0)
 				+ (paste.visible ? itemWidth : 0)
@@ -198,9 +198,9 @@ Rectangle {
 		anchors.verticalCenter: kmenu.verticalCenter
 		anchors.verticalCenterOffset: {
 			if (invert) {
-				return -(kmenu.height/2 + kmenAttach.height/2 - 1*reso.dp2px)
+				return -(kmenu.height/2 + kmenAttach.height/2 - 1*wpp.dp2px)
 			} else {
-				return kmenu.height/2 + kmenAttach.height/2 - 1*reso.dp2px
+				return kmenu.height/2 + kmenAttach.height/2 - 1*wpp.dp2px
 			}
 		}
 	}

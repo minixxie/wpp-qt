@@ -3,8 +3,12 @@ import QtQuick.Window 2.2
 
 import wpp.qt 1.0
 
-Rectangle {
+Window {
 	id: rootItem
+	width: 320
+	height: 480
+	visible: true
+
 	color: "#efeef4"
 
 	TitleBar {
@@ -18,13 +22,13 @@ Rectangle {
 	DateTimeControl {
 		id: startDateTimeControl
 		anchors.top: titleBar.bottom
-		anchors.topMargin: 10*reso.dp2px
+		anchors.topMargin: 10*wpp.dp2px
 		anchors.left: parent.left; anchors.right: parent.right;
-		height: 36*reso.dp2px
+		height: 36*wpp.dp2px
 		topBorder: true; bottomBorder: true
 		color: "#ffffff"
 		title: qsTr("Date/Time")
-		dateTime: new Date()
+		msecSinceEpoch: new Date().getTime()
 		timeZoneId: "Asia/Hong_Kong"
 		onPicked: {
 			dateTime = dateTimePicked;

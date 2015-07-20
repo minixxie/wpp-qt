@@ -6,8 +6,8 @@ ListView {
 	property color selectedColor: Qt.rgba(0,0.796,0,0.3)
 	property color separatorColor: Qt.rgba(0,0,0,0.3)
 	property color textColor: "#7f7f7f"
-	property real itemHeight: 30*reso.dp2px
-	property font font: { size:12*reso.dp2px }
+	property real itemHeight: 30*wpp.dp2px
+	property font font: { size:12*wpp.dp2px }
 	signal selected(int selectedIndex, variant selectedItem)
 
 	property int currentIndex: 0
@@ -52,7 +52,7 @@ ListView {
 			anchors.bottom: parent.bottom
 			anchors.right: parent.right
 			verticalAlignment: Text.AlignVCenter
-			anchors.leftMargin: itemIcon.visible? 0 : 10*reso.dp2px
+			anchors.leftMargin: itemIcon.visible? 0 : 10*wpp.dp2px
 			anchors.rightMargin: anchors.leftMargin
 			color: "#000000"// listView.textColor
 			font: listView.font

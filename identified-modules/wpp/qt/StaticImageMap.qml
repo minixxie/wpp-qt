@@ -884,20 +884,20 @@ Rectangle {
 	Rectangle {
 		id: "zoomInButton"
 		anchors.top: parent.top
-		anchors.topMargin: 20*reso.dp2px
+		anchors.topMargin: 20*wpp.dp2px
 		anchors.right: parent.right
-		anchors.rightMargin: 10*reso.dp2px
+		anchors.rightMargin: 10*wpp.dp2px
 		color: Qt.rgba(1,1,1,0.6)
 		border.color: "#7f7f7f"
 		border.width: 1
-		radius:2*reso.dp2px
-		width: 40*reso.dp2px
-		height: 40*reso.dp2px
+		radius:2*wpp.dp2px
+		width: 40*wpp.dp2px
+		height: 40*wpp.dp2px
 		Text {
 			color: "#999999"
 			anchors.fill: parent
 			text: "+"
-			font.pixelSize: 32*reso.dp2px
+			font.pixelSize: 32*wpp.dp2px
 			font.bold: true
 			horizontalAlignment: Text.AlignHCenter
 			verticalAlignment: Text.AlignVCenter
@@ -916,20 +916,20 @@ Rectangle {
 	Rectangle {
 		id: "zoomOutButton"
 		anchors.top: zoomInButton.bottom
-		anchors.topMargin: 10*reso.dp2px
+		anchors.topMargin: 10*wpp.dp2px
 		anchors.right: parent.right
-		anchors.rightMargin: 10*reso.dp2px
+		anchors.rightMargin: 10*wpp.dp2px
 		color: Qt.rgba(1,1,1,0.6)
 		border.color: "#7f7f7f"
 		border.width: 1
-		radius:2*reso.dp2px
-		width: 40*reso.dp2px
-		height: 40*reso.dp2px
+		radius:2*wpp.dp2px
+		width: 40*wpp.dp2px
+		height: 40*wpp.dp2px
 		Text {
 			color: "#999999"
 			anchors.fill: parent
 			text: "-"
-			font.pixelSize: 32*reso.dp2px
+			font.pixelSize: 32*wpp.dp2px
 			font.bold: true
 			horizontalAlignment: Text.AlignHCenter
 			verticalAlignment: Text.AlignVCenter
@@ -948,18 +948,18 @@ Rectangle {
 	Rectangle {
 		id: "locationSearchButton"
 		x: zoomInButton.x
-		y: parent.height - 20*reso.dp2px - height
+		y: parent.height - 20*wpp.dp2px - height
 		color: Qt.rgba(1,1,1,0.6)
 		border.color: "#7f7f7f"
 		border.width: 1
-		radius:2*reso.dp2px
-		width: 40*reso.dp2px
-		height: 40*reso.dp2px
+		radius:2*wpp.dp2px
+		width: 40*wpp.dp2px
+		height: 40*wpp.dp2px
 		visible: geoPosition.isEnabled()
 		Image {
 			anchors.centerIn: parent
-			width: 32*reso.dp2px
-			height: 32*reso.dp2px
+			width: 32*wpp.dp2px
+			height: 32*wpp.dp2px
 			source: "qrc:/img/android-icons/All_Icons/holo_light/mdpi/10-device-access-location-searching.png"
 			smooth: true
 			fillMode: Image.PreserveAspectFit
@@ -984,15 +984,15 @@ Rectangle {
 	SelectionList {
 		id: "chooseMapSourceButton"
 		anchors.left: parent.left
-		anchors.leftMargin: 5*reso.dp2px
+		anchors.leftMargin: 5*wpp.dp2px
 		anchors.bottom: parent.bottom
-		anchors.bottomMargin: 5*reso.dp2px
-		width: 80*reso.dp2px
-		height: 30*reso.dp2px
+		anchors.bottomMargin: 5*wpp.dp2px
+		width: 80*wpp.dp2px
+		height: 30*wpp.dp2px
 		//anchors.top: titleBar.bottom
 		border.color: "#7f7f7f"
 		border.width: 1
-		radius: 2*reso.dp2px
+		radius: 2*wpp.dp2px
 		ListModel {
 			id: "mapSourcelistData"
 			ListElement { value: "Google"; key: "GOOGLE"; }
@@ -1028,12 +1028,12 @@ Rectangle {
 			ListElement { text: "Google"; value: "GOOGLE" }
 			ListElement { text: "Baidu"; value: "BAIDU" }
 		}
-		width: 80*reso.dp2px
-		height: 30*reso.dp2px
+		width: 80*wpp.dp2px
+		height: 30*wpp.dp2px
 		anchors.bottom: parent.bottom
 		anchors.left: parent.left
-		anchors.leftMargin: 10*reso.dp2px
-		anchors.bottomMargin: 10*reso.dp2px
+		anchors.leftMargin: 10*wpp.dp2px
+		anchors.bottomMargin: 10*wpp.dp2px
 		onCurrentIndexChanged: {
 			mapUI.src = mapSources.get(currentIndex).value;
 		}
@@ -1044,12 +1044,12 @@ Rectangle {
 
 	/*Rectangle {
 		id: "mapSourceList"
-		width: 80*reso.dp2px
+		width: 80*wpp.dp2px
 		height: mapSourceListColumn.height
 		color: "#ffffff"
 		border.color: "#dddddd"
 		border.width: 2
-		radius:2*reso.dp2px
+		radius:2*wpp.dp2px
 		visible: false
 		anchors.bottom: chooseMapSourceButton.top
 		anchors.left: chooseMapSourceButton.left
@@ -1058,16 +1058,16 @@ Rectangle {
 			id: "mapSourceListColumn"
 			Rectangle {
 				width: mapSourceList.width
-				height: 30*reso.dp2px
+				height: 30*wpp.dp2px
 				Text {
 					width: parent.width
-					height: 30*reso.dp2px
+					height: 30*wpp.dp2px
 					text: qsTr("Google")
 					verticalAlignment: Text.AlignVCenter
-					font.pixelSize: 16*reso.dp2px
+					font.pixelSize: 16*wpp.dp2px
 					color: "#555555"
 					anchors.left: parent.left
-					anchors.leftMargin: 5*reso.dp2px
+					anchors.leftMargin: 5*wpp.dp2px
 					anchors.rightMargin: anchors.leftMargin
 				}
 				MouseArea {
@@ -1090,16 +1090,16 @@ Rectangle {
 			}
 			Rectangle {
 				width: mapSourceList.width
-				height: 30*reso.dp2px
+				height: 30*wpp.dp2px
 				Text {
 					width: parent.width
-					height: 30*reso.dp2px
+					height: 30*wpp.dp2px
 					text: qsTr("Baidu")
 					verticalAlignment: Text.AlignVCenter
-					font.pixelSize: 16*reso.dp2px
+					font.pixelSize: 16*wpp.dp2px
 					color: "#555555"
 					anchors.left: parent.left
-					anchors.leftMargin: 5*reso.dp2px
+					anchors.leftMargin: 5*wpp.dp2px
 					anchors.rightMargin: anchors.leftMargin
 				}
 				MouseArea {
@@ -1120,26 +1120,26 @@ Rectangle {
 	Rectangle {
 		id: "chooseMapSourceButton"
 		anchors.left: parent.left
-		anchors.leftMargin: 5*reso.dp2px
+		anchors.leftMargin: 5*wpp.dp2px
 		anchors.bottom: parent.bottom
-		anchors.bottomMargin: 5*reso.dp2px
+		anchors.bottomMargin: 5*wpp.dp2px
 		color: "#ffffff"
 		border.color: "#dddddd"
 		border.width: 2
-		radius:2*reso.dp2px
-		//width: 40*reso.dp2px
+		radius:2*wpp.dp2px
+		//width: 40*wpp.dp2px
 		width: chooseMapSourceButtonText.width + 2*chooseMapSourceButtonText.anchors.leftMargin
-		height: 30*reso.dp2px
+		height: 30*wpp.dp2px
 		visible: mapUI.selectSource
 		Text {
 			id: "chooseMapSourceButtonText"
 			color: "#555555"
 			height: parent.height
 			anchors.left: parent.left
-			anchors.leftMargin: 5*reso.dp2px
+			anchors.leftMargin: 5*wpp.dp2px
 			anchors.rightMargin: anchors.leftMargin
 			verticalAlignment: Text.AlignVCenter
-			font.pixelSize: 16*reso.dp2px
+			font.pixelSize: 16*wpp.dp2px
 			text: mapUI.src == "BAIDU" ? qsTr("Baidu") : qsTr("Google")
 		}
 		MouseArea {
@@ -1157,7 +1157,7 @@ Rectangle {
 
 	Rectangle {
 		width: parent.width
-		height: 20*reso.dp2px
+		height: 20*wpp.dp2px
 		anchors.top: parent.top
 		visible: selectPlace
 		color: Qt.rgba(1,1,0,1)
@@ -1165,7 +1165,7 @@ Rectangle {
 			visible: parent.visible
 			anchors.fill: parent
 			color: "#0080ff"
-			font.pixelSize: 12*reso.dp2px
+			font.pixelSize: 12*wpp.dp2px
 			text: qsTr("Press and Hold to select a place.")
 			horizontalAlignment: Text.AlignHCenter
 			verticalAlignment: Text.AlignVCenter
@@ -1243,7 +1243,7 @@ Rectangle {
 					source: "qrc:/img/android-icons/All_Icons/holo_light/mdpi/7-location-place.png"
 					x: 0
 					y: 0
-					width: 20*reso.dp2px
+					width: 20*wpp.dp2px
 					height: width
 					smooth: true
 					fillMode: Image.PreserveAspectFit
@@ -1252,7 +1252,7 @@ Rectangle {
 					id: "placesCountText"
 					x: markerIcon.width
 					width: placesToChooseDialog.contentWidth - x
-					height: 20*reso.dp2px
+					height: 20*wpp.dp2px
 					verticalAlignment: Text.AlignVCenter
 					text: qsTr("%1 place(s) to choose").arg(placesListView.model.count)
 				}
@@ -1267,18 +1267,18 @@ Rectangle {
 					id: "placesListView"
 					y: dialogTitleSeparator.y + dialogTitleSeparator.height
 					width: placesToChooseDialog.contentWidth
-					height: 300*reso.dp2px
+					height: 300*wpp.dp2px
 					clip: true
 					model: placesListModel
 					delegate: Rectangle {
 						id: "placesListViewItem"
 						width: placesToChooseDialog.contentWidth
-						height: 30*reso.dp2px
+						height: 30*wpp.dp2px
 						color: model.index == placesToChooseDialog.listViewCurrentIndex ? Qt.rgba(0,0.796,0,0.3) : "transparent"
 						Text {
 							anchors.fill: parent
 							verticalAlignment: Text.AlignVCenter
-							anchors.leftMargin: 10*reso.dp2px
+							anchors.leftMargin: 10*wpp.dp2px
 							anchors.rightMargin: anchors.leftMargin
 							text: name
 						}

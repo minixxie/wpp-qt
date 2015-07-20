@@ -6,8 +6,8 @@ Modal {
 
 	AnimatedImage {
 		z: loadingModal.z + 1
-		width:50*reso.dp2px
-		height:50*reso.dp2px
+		width:50*wpp.dp2px
+		height:50*wpp.dp2px
 		source: "qrc:/img/loading.200x200.gif"
 		anchors.verticalCenter: parent.verticalCenter
 		anchors.horizontalCenter: parent.horizontalCenter

@@ -13,18 +13,18 @@ FocusScope {
     Rectangle {
         id: buttonPaneShadow
         width: parent.width
-		height: 50*reso.dp2px
+		height: 50*wpp.dp2px
         anchors.bottom: parent.bottom
         anchors.left: parent.left
         color: Qt.rgba(0.08, 0.08, 0.08, 1)
 
         Button {
-			width: 200*reso.dp2px
-			height: 44*reso.dp2px
-            radius: 2*reso.dp2px
+			width: 200*wpp.dp2px
+			height: 44*wpp.dp2px
+            radius: 2*wpp.dp2px
             text: qsTr("Capture")
 			textColor: "#ffffff"
-			textFont.pixelSize: 16*reso.dp2px
+			textFont.pixelSize: 16*wpp.dp2px
 			color: "#5dcb36"
 			anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter

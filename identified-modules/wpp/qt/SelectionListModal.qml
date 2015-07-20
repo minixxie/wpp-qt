@@ -17,11 +17,11 @@ Modal {
 	}
 	Rectangle {
 		id: "listContainer"
-		//width:300*reso.dp2px
+		//width:300*wpp.dp2px
 		//height:width
-		width: 250*reso.dp2px
-		height: selectionListView.itemHeight*selectionListView.model.length < 300*reso.dp2px ?
-					selectionListView.itemHeight*selectionListView.model.length : 300*reso.dp2px
+		width: 250*wpp.dp2px
+		height: selectionListView.itemHeight*selectionListView.model.length < 300*wpp.dp2px ?
+					selectionListView.itemHeight*selectionListView.model.length : 300*wpp.dp2px
 		//listHeight < parent.height ? listHeight : parent.height*0.8
 		color: Qt.rgba(1,1,1,0.7)
 		anchors.horizontalCenter: parent.horizontalCenter

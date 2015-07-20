@@ -12,18 +12,18 @@ Rectangle {
 	property color textColor: "#333333"
 	property color buttonTextColor: "#0080ff"
 	property alias contentWidth: contentLoader.width
-    property int cfRadius: 5*reso.dp2px
-    property int textFontSize: 18*reso.dp2px
+    property int cfRadius: 5*wpp.dp2px
+    property int textFontSize: 18*wpp.dp2px
 	property alias okButtonText: okButton.text
 	property alias cancelButtonText: cancelButton.text
 	property alias hMarign: contentFrame.x
 	property alias rotation: contentFrame.rotation
 
-	property int contentTopMagein: 15*reso.dp2px
-	property int contentLeftMagein: 15*reso.dp2px
-	property int contentRightMagein: 15*reso.dp2px
-	property int contentBottomMagein: 15*reso.dp2px
-	property int xAxis: 15*reso.dp2px
+	property int contentTopMagein: 15*wpp.dp2px
+	property int contentLeftMagein: 15*wpp.dp2px
+	property int contentRightMagein: 15*wpp.dp2px
+	property int contentBottomMagein: 15*wpp.dp2px
+	property int xAxis: 15*wpp.dp2px
 	property int seconds: 0
 	property bool timerRunning: false
 
@@ -60,13 +60,13 @@ Rectangle {
 		x: dialog.xAxis
 		y: (parent.height - height)/2
 		width: parent.width - 2*x
-		//height: buttonPanel.y + buttonPanel.height + 1*reso.dp2px
+		//height: buttonPanel.y + buttonPanel.height + 1*wpp.dp2px
 		height: ( contentComponent == null?
 					 textMessage.anchors.topMargin + textMessage.height + textMessage.anchors.bottomMargin:
 					 contentLoader.anchors.topMargin + contentLoader.height + contentLoader.anchors.bottomMargin )+
 				hLine.height + buttonPanel.height
 		color: dialog.bgColor
-//        border.width: 1*reso.dp2px > 1 ? 1 : 1*reso.dp2px
+//        border.width: 1*wpp.dp2px > 1 ? 1 : 1*wpp.dp2px
 //		border.color: dialog.borderColor
         radius: dialog.cfRadius
 		//opacity: 0.96
@@ -76,11 +76,11 @@ Rectangle {
 			anchors.top: parent.top
 			anchors.left: parent.left
 			anchors.right: parent.right
-			anchors.topMargin: 15*reso.dp2px
-			anchors.leftMargin: 15*reso.dp2px
-			anchors.rightMargin: 15*reso.dp2px
-			anchors.bottomMargin: 15*reso.dp2px
-			//height: 40*reso.dp2px
+			anchors.topMargin: 15*wpp.dp2px
+			anchors.leftMargin: 15*wpp.dp2px
+			anchors.rightMargin: 15*wpp.dp2px
+			anchors.bottomMargin: 15*wpp.dp2px
+			//height: 40*wpp.dp2px
 			wrapMode: Text.WrapAtWordBoundaryOrAnywhere
 			clip: true
             font.pixelSize: dialog.textFontSize
@@ -105,9 +105,9 @@ Rectangle {
 			id: "hLine"
 			anchors.bottom: buttonPanel.top
 			width: parent.width
-			//x1: 0; y1: contentComponent != null? contentLoader.y + contentLoader.height + 20*reso.dp2px: textMessage.y + textMessage.height + 20*reso.dp2px
+			//x1: 0; y1: contentComponent != null? contentLoader.y + contentLoader.height + 20*wpp.dp2px: textMessage.y + textMessage.height + 20*wpp.dp2px
 			//x2: parent.width; y2: y1
-            height: 1*reso.dp2px > 1 ? 1 : 1*reso.dp2px
+            height: 1*wpp.dp2px > 1 ? 1 : 1*wpp.dp2px
 			color: dialog.borderColor
 			visible: dialog.seconds > 0 ? false : true
 		}
@@ -121,7 +121,7 @@ Rectangle {
 			//x: 1
 			//y: hLine.y + hLine.height
 			//width: parent.width - 2*x
-			height: dialog.seconds > 0 ? 0 : 40*reso.dp2px
+			height: dialog.seconds > 0 ? 0 : 40*wpp.dp2px
             color: "transparent"
 			Button {
 				id: "cancelButton"
@@ -129,7 +129,7 @@ Rectangle {
 				height: parent.height
 				//text: qsTr("Cancel")
 				//textColor: dialog.buttonTextColor
-				//textFont.pixelSize: 18*reso.dp2px
+				//textFont.pixelSize: 18*wpp.dp2px
 				//color: "transparent"
 				style: ButtonStyle {
 					background: Rectangle {
@@ -138,7 +138,7 @@ Rectangle {
 					label: Text {
 						text: qsTr("Cancel")
 						color: dialog.buttonTextColor
-						font.pixelSize: 18*reso.dp2px
+						font.pixelSize: 18*wpp.dp2px
 						horizontalAlignment: Text.AlignHCenter
 						verticalAlignment: Text.AlignVCenter
 					}
@@ -166,7 +166,7 @@ Rectangle {
 				height: parent.height
 				//text: qsTr("OK")
 				//textColor: dialog.buttonTextColor
-				//textFont.pixelSize: 18*reso.dp2px
+				//textFont.pixelSize: 18*wpp.dp2px
 				//color: "transparent"
 				//effect: "DARKER"
 				visible: dialog.seconds > 0 ? false : true
@@ -180,7 +180,7 @@ Rectangle {
 					label: Text {
 						text: qsTr("OK")
 						color: dialog.buttonTextColor
-						font.pixelSize: 18*reso.dp2px
+						font.pixelSize: 18*wpp.dp2px
 						horizontalAlignment: Text.AlignHCenter
 						verticalAlignment: Text.AlignVCenter
 					}

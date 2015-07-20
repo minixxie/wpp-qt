@@ -16,9 +16,9 @@ Rectangle {
 	property int dd: Qt.formatDateTime(new Date(timestamp*1000), "dd");*/
     property alias year: yearSpinner.value
     property alias month: monthSpinner.value
-	property int nwidth: 90*reso.dp2px
-	property int dwidth: 50*reso.dp2px
-	property int dheight: 50*reso.dp2px
+	property int nwidth: 90*wpp.dp2px
+	property int dwidth: 50*wpp.dp2px
+	property int dheight: 50*wpp.dp2px
 	property bool isLight: true
 	/*property alias month: monthSpinner.value
 	property alias day: daySpinner.value
@@ -30,8 +30,8 @@ Rectangle {
 	//signal onTimestampChanged
 	signal dateTimeSelected
 
-    width: parent.width - 16*reso.dp2px
-	height: 90*reso.dp2px
+    width: parent.width - 16*wpp.dp2px
+	height: 90*wpp.dp2px
 
 	gradient: Gradient {
 		GradientStop {
@@ -144,7 +144,7 @@ Rectangle {
 		anchors.top: yearSpinner.top
 		anchors.left: yearSpinner.right
 		anchors.leftMargin: -1
-//        anchors.leftMargin: 5*reso.dp2px
+//        anchors.leftMargin: 5*wpp.dp2px
 		onValueChanged: {
 			//console.debug("month value changed:" + value);
 
@@ -215,7 +215,7 @@ Rectangle {
 
 		anchors.top: monthSpinner.top
 		anchors.left: monthSpinner.right
-//        anchors.leftMargin: 5*reso.dp2px
+//        anchors.leftMargin: 5*wpp.dp2px
 		onValueChanged: {
 			//console.debug("day value changed:" + value);
 			selectedDate = spinnersToDate();
@@ -244,14 +244,14 @@ Rectangle {
     Rectangle {
         id: "colon"
 		visible: dateTime.type == "DATE_TIME"
-		width:10*reso.dp2px
+		width:10*wpp.dp2px
 		height: hourSpinner.height
 		anchors.right: minuteSpinner.left
 		anchors.top: minuteSpinner.top
 		color: "transparent"
         Text {
             text: ":"
-            font.pixelSize: 20*reso.dp2px
+            font.pixelSize: 20*wpp.dp2px
             anchors.verticalCenter: parent.verticalCenter
 			anchors.horizontalCenter: parent.horizontalCenter
 			color: dateTime.isLight ? "#FFFFFF" : "#000000"
@@ -275,7 +275,7 @@ Rectangle {
         anchors.verticalCenter: parent.verticalCenter
 //        anchors.horizontalCenter: parent.horizontalCenter
         anchors.right: dateTime.right
-//        anchors.rightMargin: 8*reso.dp2px
+//        anchors.rightMargin: 8*wpp.dp2px
 		onValueChanged: {
 			//console.debug("minutes value changed:" + value);
 			selectedDate = spinnersToDate();

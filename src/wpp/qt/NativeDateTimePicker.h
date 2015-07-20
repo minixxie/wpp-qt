@@ -51,7 +51,7 @@ private:
 	//QAndroidJniObject takePhotoSavedUri;
 	void handleActivityResult(int receiverRequestCode, int resultCode, const QAndroidJniObject & data);
 #endif
-	void onTimeZoneIdChanged();
+	Q_SLOT void onTimeZoneIdChanged();
 };
 
 }

@@ -1,6 +1,6 @@
 ﻿#include "AbstractMainController.h"
 #include "HttpAgent.h"
-#include "System.h"
+#include "Wpp.h"
 
 #include <QNetworkReply>
 #include <QNetworkAccessManager>
@@ -41,7 +41,7 @@ AbstractMainController::AbstractMainController()
 
 void AbstractMainController::checkForUpdates()
 {
-	wpp::qt::System &system = wpp::qt::System::getInstance();
+	wpp::qt::Wpp &wpp = wpp::qt::Wpp::getInstance();
 	Route route = getRouteForUpdateCheck();
 qDebug() << "checkForUpdates():route.isValid=" << route.isValid();
 //addLog("checkForUpdates()...");
@@ -51,7 +51,7 @@ qDebug() << "checkForUpdates():route.isValid=" << route.isValid();
 #ifdef QT_DEBUG
 	if ( route.isValid() )
 #else
-	if ( route.isValid() && ( system.isAndroid() || system.isIOS() ) )
+	if ( route.isValid() && ( wpp.isAndroid() || wpp.isIOS() ) )
 #endif
 	{
 		qDebug() << "checkForUpdates():send request";
@@ -144,11 +144,11 @@ qDebug() << __FUNCTION__ << ":baseFilename=" << baseFilename;
 */
 	QString downloadedFilename = getAPKDownloadedPath();
 
-	wpp::qt::System &system = wpp::qt::System::getInstance();
+	wpp::qt::Wpp &wpp = wpp::qt::Wpp::getInstance();
 #ifdef QT_DEBUG
 	if ( !url.isEmpty() )
 #else
-	if ( !url.isEmpty() && system.isAndroid() )
+	if ( !url.isEmpty() && wpp.isAndroid() )
 #endif
 	{
 		qDebug() << "downloadAndroidAPK():send request";

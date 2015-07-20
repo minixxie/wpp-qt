@@ -1,5 +1,7 @@
 # wpp-qt
 Web++ framework for Qt
+* Android support: minSDK: 10, targetSDK: 22
+* iOS support: iOS7+
 
 ## Introduction
 
@@ -21,12 +23,12 @@ cd wpp-qt
 git submodule init
 git submodule update
 ```
-Then, remember to include the project file in YourQtProject.pro:
+Then, remember to include the project file in YourQtProject.pro (assuming wpp-qt folder is under your project folder):
 ```
 ## import library project "wpp"
 include($$PWD/wpp-qt/wpp.pri)
 ```
-To make sure the android part works, please do this:
+To make sure the android part works, please do this (You can ignore if you don't target to support android):
 - create android template folder from Qt Creator, and remember to "Use Gradle" as your packager:
 
 ![Create Android template folder](https://github.com/minixxie/wpp-qt/raw/master/doc/android-create-template.png)

@@ -4,7 +4,7 @@ import QtQuick.Controls.Styles 1.3
 
 Item {
     id: "cropImage"
-    property int cropSize : 128*reso.dp2px
+    property int cropSize : 128*wpp.dp2px
     property alias source : preview.source
     property alias rotation: imageRotation.angle
 
@@ -153,14 +153,14 @@ Item {
 
 				Rectangle {
 					id: "topLeftResizer"
-					width:20*reso.dp2px
+					width:20*wpp.dp2px
 					height:width
 					color: "transparent"
 					x: getDefaultX()
 					y: getDefaultY()
 					z: cropArea.z + 1
 					Rectangle {
-						width: 10*reso.dp2px
+						width: 10*wpp.dp2px
 						height: width
 						anchors.centerIn: parent
 						color: Qt.rgba(1,1,1,0.4)
@@ -251,14 +251,14 @@ Item {
 				}
 				Rectangle {
 					id: "topRightResizer"
-					width:20*reso.dp2px
+					width:20*wpp.dp2px
 					height:width
 					color: "transparent"
 					x: getDefaultX()
 					y: getDefaultY()
 					z: cropArea.z + 1
 					Rectangle {
-						width: 10*reso.dp2px
+						width: 10*wpp.dp2px
 						height: width
 						anchors.centerIn: parent
 						color: Qt.rgba(1,1,1,0.4)
@@ -360,14 +360,14 @@ Item {
 				}
 				Rectangle {
 					id: "bottomLeftResizer"
-					width:20*reso.dp2px
+					width:20*wpp.dp2px
 					height:width
 					color: "transparent"
 					x: getDefaultX()
 					y: getDefaultY()
 					z: cropArea.z + 1
 					Rectangle {
-						width: 10*reso.dp2px
+						width: 10*wpp.dp2px
 						height: width
 						anchors.centerIn: parent
 						color: Qt.rgba(1,1,1,0.4)
@@ -473,14 +473,14 @@ Item {
 				}
 				Rectangle {
 					id: "bottomRightResizer"
-					width:20*reso.dp2px
+					width:20*wpp.dp2px
 					height:width
 					color: "transparent"
 					x: getDefaultX()
 					y: getDefaultY()
 					z: cropArea.z + 1
 					Rectangle {
-						width: 10*reso.dp2px
+						width: 10*wpp.dp2px
 						height: width
 						anchors.centerIn: parent
 						color: Qt.rgba(1,1,1,0.4)
@@ -583,15 +583,15 @@ Item {
 			anchors.top: previewTop.bottom
 			anchors.bottom: previewBottom.top
 			anchors.horizontalCenter: parent.horizontalCenter
-			border { left: 10*reso.dp2px; top: 10*reso.dp2px; right: 10*reso.dp2px; bottom: 10*reso.dp2px }
+			border { left: 10*wpp.dp2px; top: 10*wpp.dp2px; right: 10*wpp.dp2px; bottom: 10*wpp.dp2px }
 			horizontalTileMode: BorderImage.Repeat
 			verticalTileMode: BorderImage.Repeat
 			z: 2
 
 			Button {
-				width: 60*reso.dp2px
-				height: 30*reso.dp2px
-				radius: 2*reso.dp2px
+				width: 60*wpp.dp2px
+				height: 30*wpp.dp2px
+				radius: 2*wpp.dp2px
 				text: qsTr("test")
 				textColor: "#636363"
 				color: "#f0f0f0"
@@ -623,7 +623,7 @@ Item {
 	}
 	Rectangle {
 		id: "buttonUI"
-		height: 50*reso.dp2px
+		height: 50*wpp.dp2px
 		anchors.bottom: parent.bottom
 		anchors.left: parent.left
 		anchors.right: parent.right
@@ -631,20 +631,20 @@ Item {
 
 		Button {
 			id: "cropButton"
-			width: 140*reso.dp2px
-			height: 44*reso.dp2px
+			width: 140*wpp.dp2px
+			height: 44*wpp.dp2px
 			anchors.verticalCenter: parent.verticalCenter
 			anchors.left: parent.left
-			anchors.leftMargin: 15*reso.dp2px
+			anchors.leftMargin: 15*wpp.dp2px
 			style: ButtonStyle {
 				background: Rectangle {
 					color: "#5dcb36"
-					radius: 2*reso.dp2px
+					radius: 2*wpp.dp2px
 				}
 				label: Text {
 					text: qsTr("Crop")
 					color: "#ffffff"
-					font.pixelSize: 16*reso.dp2px
+					font.pixelSize: 16*wpp.dp2px
 					horizontalAlignment: Text.AlignHCenter
 					verticalAlignment: Text.AlignVCenter
 				}
@@ -683,20 +683,20 @@ Item {
 		}
 		Button {
 			id: "reshootButton"
-			width: 140*reso.dp2px
-			height: 44*reso.dp2px
+			width: 140*wpp.dp2px
+			height: 44*wpp.dp2px
 			anchors.verticalCenter: parent.verticalCenter
 			anchors.right: parent.right
-			anchors.rightMargin: 15*reso.dp2px
+			anchors.rightMargin: 15*wpp.dp2px
 			style: ButtonStyle {
 				background: Rectangle {
 					color: "#aaaaaa"
-					radius: 2*reso.dp2px
+					radius: 2*wpp.dp2px
 				}
 				label: Text {
 					text: qsTr("Back")
 					color: "#ffffff"
-					font.pixelSize: 16*reso.dp2px
+					font.pixelSize: 16*wpp.dp2px
 					horizontalAlignment: Text.AlignHCenter
 					verticalAlignment: Text.AlignVCenter
 				}

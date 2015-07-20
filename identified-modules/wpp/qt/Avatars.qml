@@ -16,7 +16,7 @@ Rectangle {
             id: "bgTextElement"
             anchors.fill: parent
             text: avatar.bgText
-            font.pixelSize: 12*reso.dp2px
+            font.pixelSize: 12*wpp.dp2px
             color: "#7f7f7f"
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter

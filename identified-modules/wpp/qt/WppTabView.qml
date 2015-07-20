@@ -4,11 +4,11 @@ import "./"
 
 Rectangle {
 	id: "tabView"
-	property int tabWidth: 50*reso.dp2px
-	property int tabHeight: tabButtonsPosition == "TOP" ? 24*reso.dp2px : 50*reso.dp2px
+	property int tabWidth: 50*wpp.dp2px
+	property int tabHeight: tabButtonsPosition == "TOP" ? 24*wpp.dp2px : 50*wpp.dp2px
 	property color tabBgColor: "#eeeeee"
 	property color selectedIndicatorColor: "#aaaaaa"
-	property int selectedIndicatorHeight: 5*reso.dp2px
+	property int selectedIndicatorHeight: 5*wpp.dp2px
 	property color bottomBorderColor: "#dddddd"
 	property list<WppTab> tabs
 	property int defaultIndex: 0
@@ -44,16 +44,16 @@ Rectangle {
 						color: "transparent"
 						Rectangle {
 							id: "newIndicator"
-							width: 8*reso.dp2px
+							width: 8*wpp.dp2px
 							height: width
 							radius: height/2
 							color: "#FF5555"
-							x: tabHeaderContainer.width - 2*reso.dp2px - width
-							y: 2*reso.dp2px
+							x: tabHeaderContainer.width - 2*wpp.dp2px - width
+							y: 2*wpp.dp2px
 							/*anchors.top: tabHeaderContainer.top
-							anchors.topMargin: 2*reso.dp2px
+							anchors.topMargin: 2*wpp.dp2px
 							anchors.right: tabHeaderContainer.right
-							anchors.rightMargin: 2*reso.dp2px*/
+							anchors.rightMargin: 2*wpp.dp2px*/
 						}
 
 						children: {
@@ -75,7 +75,7 @@ Rectangle {
 						//anchors.bottom: parent.bottom
 						width: parent.width - 2*x
 						height: tabView.selectedIndicatorHeight
-						x: 2*reso.dp2px
+						x: 2*wpp.dp2px
 						y: parent.height - bottomBorder.height - height
 						visible: tabView.tabButtonsPosition == "TOP" && tabs[model.index].isSelected
 					}
@@ -94,7 +94,7 @@ Rectangle {
 			Rectangle {
 				id: "bottomBorder"
 				width: parent.width
-				height: 1*reso.dp2px
+				height: 1*wpp.dp2px
 				color: tabView.bottomBorderColor
 				y: tabView.tabButtonsPosition == "BOTTOM" ? 0 : parent.height - height
 			}

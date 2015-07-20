@@ -90,8 +90,8 @@ SelectionListModal {
 	}
 	anchors.fill: parent
 	visible: false
-	itemHeight: 45*reso.dp2px
-	font.pixelSize: 18*reso.dp2px
+	itemHeight: 45*wpp.dp2px
+	font.pixelSize: 18*wpp.dp2px
 	//listHeight: itemHeight*uploadProfilePhotoChoiceModel.count
 	property var uploadProfilePhotoChoiceModel: [
 		{ key: "TAKE_PHOTO", value: qsTr("Take a photo") },

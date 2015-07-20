@@ -13,7 +13,7 @@ QML_IMPORT_PATH =
 include(deployment.pri)
 
 ## import library project "wpp"
-include($$PWD/wpp-qt/wpp.pri)
+include($$PWD/../../wpp.pri)
 
 DISTFILES += \
     android/gradle/wrapper/gradle-wrapper.jar \

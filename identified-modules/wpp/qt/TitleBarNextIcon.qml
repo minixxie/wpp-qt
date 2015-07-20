@@ -9,7 +9,7 @@ Rectangle {
 
 	color: "transparent"
 
-	height: 44*reso.dp2px
+	height: 44*wpp.dp2px
 	width: height
 	Image {
 		id: "nextIcon"
@@ -18,7 +18,7 @@ Rectangle {
 			"qrc:/img/android-icons/All_Icons/holo_light/mdpi/1-navigation-next-item.png"
 		x: ( parent.height - height )/2
 		y: x
-		width: 32*reso.dp2px
+		width: 32*wpp.dp2px
 		height: width
 		smooth: true
 		fillMode: Image.PreserveAspectFit

@@ -10,7 +10,7 @@ Rectangle {
 
 	GridView {
 		id: imageAttachmentList
-		anchors.margins: 10*reso.dp2px
+		anchors.margins: 10*wpp.dp2px
 		anchors.fill: parent
 		cellWidth: width/4 //(parent.width - 2*imageAttachmentList.anchors.margins)/4
 		cellHeight: cellWidth
@@ -21,14 +21,14 @@ Rectangle {
 			color: "transparent"
 			Rectangle {
 				anchors.fill: parent
-				anchors.margins: 4*reso.dp2px
-				border.width: 2*reso.dp2px
+				anchors.margins: 4*wpp.dp2px
+				border.width: 2*wpp.dp2px
 				border.color: "#dddddd"
 				color: "transparent"
 				Text {
 					anchors.fill: parent
 					text: qsTr("+\nimage")
-					font.pixelSize: 16*reso.dp2px
+					font.pixelSize: 16*wpp.dp2px
 					horizontalAlignment: Text.AlignHCenter
 					verticalAlignment: Text.AlignVCenter
 					color: "#cccccc"
@@ -48,9 +48,9 @@ Rectangle {
 			color: "transparent"
 			AnimatedImage {
 				//anchors.fill: parent
-				//anchors.margins: 20*reso.dp2px
-				width: 45*reso.dp2px
-				height: 45*reso.dp2px
+				//anchors.margins: 20*wpp.dp2px
+				width: 45*wpp.dp2px
+				height: 45*wpp.dp2px
 				source: "qrc:/img/loading.200x200.gif"
 				anchors.centerIn: parent
 				visible: {
@@ -60,7 +60,7 @@ Rectangle {
 			}
 			Image {
 				anchors.fill: parent
-				anchors.margins: 4*reso.dp2px
+				anchors.margins: 4*wpp.dp2px
 				fillMode: Image.PreserveAspectCrop
 				cache: false
 				source: {

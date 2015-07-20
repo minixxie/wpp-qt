@@ -10,20 +10,20 @@ Rectangle {
 
 	color: "transparent"
 
-	height: 44*reso.dp2px
+	height: 44*wpp.dp2px
 	width: height
 	Image {
         id: "iconImage"
 		x: ( parent.height - height )/2
 		y: x
-		width: 32*reso.dp2px
+		width: 32*wpp.dp2px
 		height: width
 		smooth: true
 		fillMode: Image.PreserveAspectFit
 	}
 	Rectangle {
 		id: redDot
-		width: 10*reso.dp2px
+		width: 10*wpp.dp2px
 		height: width
 		anchors.top: iconImage.top
 		anchors.right: iconImage.right

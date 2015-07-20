@@ -207,11 +207,11 @@ FocusScope {
 	}
 	Rectangle {
 		id: "clearButton"
-		height: 16*reso.dp2px
+		height: 16*wpp.dp2px
 		width: height
 		anchors.verticalCenter: parent.verticalCenter
 		anchors.right: parent.right
-		anchors.rightMargin: 10*reso.dp2px
+		anchors.rightMargin: 10*wpp.dp2px
 		color: "#b9b9b9"
 		radius: height/2
 		visible: {
@@ -252,7 +252,7 @@ FocusScope {
 		Image {
 			id: "clearButtonIcon"
 			anchors.fill: parent
-			anchors.margins: 2*reso.dp2px
+			anchors.margins: 2*wpp.dp2px
 			source: "qrc:/img/android-icons/All_Icons/holo_light/mdpi/1-navigation-cancel.png"
 			visible: false
 		}

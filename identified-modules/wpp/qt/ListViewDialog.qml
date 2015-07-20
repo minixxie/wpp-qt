@@ -23,7 +23,7 @@ Item {
 		contentComponent: Component {
 			Rectangle {
 				width: popup.contentWidth
-				height: 300*reso.dp2px
+				height: 300*wpp.dp2px
 				color: listViewDialog.bgColor
 				Text {
 					id: "sentenceText"
@@ -35,7 +35,7 @@ Item {
 				}
 				ListView {
 					id: "listView"
-					anchors.topMargin: sentenceText.visible? 10*reso.dp2px: 0
+					anchors.topMargin: sentenceText.visible? 10*wpp.dp2px: 0
 					anchors.top: sentenceText.bottom
 					anchors.left: parent.left
 					anchors.right: parent.right
@@ -43,19 +43,19 @@ Item {
 					model: listViewDialog.model
 					//y: dialogTitleSeparator.y + dialogTitleSeparator.height
 					//width: popup.contentWidth
-					//height: 280*reso.dp2px
+					//height: 280*wpp.dp2px
 					clip: true
 					delegate: Rectangle {
 						id: "listViewItem"
 						width: popup.contentWidth
-						height: 30*reso.dp2px
+						height: 30*wpp.dp2px
 						color: model.index == listViewDialog.currentIndex ? Qt.rgba(0,0.796,0,0.3) : "transparent"
 						// cross operability with ListModel and plain JS object list
 						property var listItem: model.modelData? model.modelData: model
 						Text {
 							anchors.fill: parent
 							verticalAlignment: Text.AlignVCenter
-							anchors.leftMargin: 10*reso.dp2px
+							anchors.leftMargin: 10*wpp.dp2px
 							anchors.rightMargin: anchors.leftMargin
 							text: listItem.value
 						}

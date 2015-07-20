@@ -7,7 +7,7 @@ Rectangle {
 	property alias label: label
 	property bool loading: false
 	property string loadingType: "BAR" //ROLLING, BAR
-	property bool hasPhoneTop: Qt.platform.os == "ios" //sys.isIOS()
+	property bool hasPhoneTop: Qt.platform.os == "ios" //wpp.isIOS()
 	property bool centerTitle: true
 	property alias bottomBorder: underline.visible
 	property alias bottomBorderColor: underline.color
@@ -30,8 +30,8 @@ Rectangle {
 
 	Rectangle {
 		id: "phoneTopBar"
-		height: parent.hasPhoneTop? 20*reso.dp2px : 0
-		//{ var h = parent.hasPhoneTop? 20*reso.dp2px : 0 ; console.debug("hasTop=" + h); return h; }
+		height: parent.hasPhoneTop? 20*wpp.dp2px : 0
+		//{ var h = parent.hasPhoneTop? 20*wpp.dp2px : 0 ; console.debug("hasTop=" + h); return h; }
 	}
 
 	Rectangle {
@@ -61,7 +61,7 @@ Rectangle {
 	Rectangle {
 		id: "labelBox"
 		width: parent.width - 2*height
-		height: 44*reso.dp2px
+		height: 44*wpp.dp2px
 		clip: true
 		color: "transparent"
 		x: height
@@ -78,17 +78,17 @@ Rectangle {
 			text: ""
 			color: "#000000" // "#ffffff"
 			font.bold: true
-			font.pixelSize: 16*reso.dp2px
+			font.pixelSize: 16*wpp.dp2px
 			horizontalAlignment: Text.AlignHCenter
 			verticalAlignment: Text.AlignVCenter
 
 		}
 		AnimatedImage {
 			anchors.left: label.right
-			anchors.leftMargin: 10*reso.dp2px
+			anchors.leftMargin: 10*wpp.dp2px
 			anchors.verticalCenter: label.verticalCenter
-			width: 24*reso.dp2px
-			height: 24*reso.dp2px
+			width: 24*wpp.dp2px
+			height: 24*wpp.dp2px
 			source: "qrc:/img/loading.200x200.gif"
 			visible: loadingType == "ROLLING" && loading
 		}
@@ -115,7 +115,7 @@ Rectangle {
 
 	Rectangle {
 		id: underline
-		height: visible? 1*reso.dp2px : 0
+		height: visible? 1*wpp.dp2px : 0
 		anchors.bottom: parent.bottom
 		anchors.left: parent.left
 		anchors.right: parent.right
@@ -125,8 +125,8 @@ Rectangle {
 	Rectangle {
 		id: "loadingIndicator"
 		color: "#fc8215"
-		height: 2*reso.dp2px
-		width:100*reso.dp2px
+		height: 2*wpp.dp2px
+		width:100*wpp.dp2px
 		x: 0
 		y: parent.height - height
 		visible: loadingType == "BAR" && loading
@@ -134,25 +134,25 @@ Rectangle {
 			id: "loadingAnimation"
 			running: loading
 			loops: Animation.Infinite // The animation is set to loop indefinitely
-			NumberAnimation { from: -loadingIndicator.width; to: 320*reso.dp2px; duration: 1000; easing.type: Easing.InOutQuad }
+			NumberAnimation { from: -loadingIndicator.width; to: 320*wpp.dp2px; duration: 1000; easing.type: Easing.InOutQuad }
 			//PauseAnimation { duration: 250 } // This puts a bit of time between the loop
 		}
 	}
 	Rectangle {
 		id: "networkCondition"
 		width: parent.width
-		height: !sys.hasNetwork ? 20*reso.dp2px : 0
+		height: !wpp.hasNetwork ? 20*wpp.dp2px : 0
 		color: "#ffffbf"
 		//y: label.y + label.height
 		//x: phoneTopBar.y + phoneTopBar.height
 		anchors.bottom: parent.bottom
-		visible: !sys.hasNetwork
+		visible: !wpp.hasNetwork
 		Text {
 			id: "networkConditionText"
 			anchors.fill: parent
-			font.pixelSize: 12*reso.dp2px
+			font.pixelSize: 12*wpp.dp2px
 			color: "#ff0000"
-			text: !sys.hasNetwork ? qsTr("Network Error, please check your Network Setting.") : ""
+			text: !wpp.hasNetwork ? qsTr("Network Error, please check your Network Setting.") : ""
 			horizontalAlignment: Text.AlignHCenter
 			verticalAlignment: Text.AlignVCenter
 
@@ -164,7 +164,7 @@ Rectangle {
 		//console.debug("onNetworkConfigurationOnlineStateChanged...");
 		if ( isOnline )
 		{
-			sys.hasNetwork = true;
+			wpp.hasNetwork = true;
 		}
 		else
 		{

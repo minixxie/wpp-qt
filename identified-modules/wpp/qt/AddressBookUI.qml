@@ -62,12 +62,12 @@ Rectangle {
 	SearchField {
 		id: "searchField"
 		anchors.top: parent.top
-		anchors.topMargin:5*reso.dp2px
+		anchors.topMargin:5*wpp.dp2px
 		anchors.left: parent.left
-		anchors.leftMargin:5*reso.dp2px
+		anchors.leftMargin:5*wpp.dp2px
 		anchors.rightMargin: anchors.leftMargin
 		anchors.right: parent.right
-		height:32*reso.dp2px
+		height:32*wpp.dp2px
 		magnifyingGlass: "LEFT"
 		withClearButton: true
 		onKeywordChanged: {
@@ -87,18 +87,18 @@ Rectangle {
 	}
 	Rectangle {
 		color: "#cccccc"
-		height: 1*reso.dp2px
+		height: 1*wpp.dp2px
 		anchors.left: parent.left
 		anchors.right: parent.right
 		anchors.top: searchField.bottom
-		anchors.topMargin: 4*reso.dp2px
+		anchors.topMargin: 4*wpp.dp2px
 	}
 
 
     ListView {
 		id:"addressBookPlacesListView"
 		anchors.top: searchField.bottom;
-		anchors.topMargin:5*reso.dp2px
+		anchors.topMargin:5*wpp.dp2px
 		anchors.left: parent.left
 		anchors.right: letterIndexBarRect.left
 		anchors.bottom: parent.bottom
@@ -108,14 +108,14 @@ Rectangle {
 			id: "sectionHeader"
 			Rectangle {
 				width: addressBookPlacesListView.width
-				height: 24*reso.dp2px
+				height: 24*wpp.dp2px
 				color: "lightsteelblue"
 				Text {
 					anchors.fill: parent
 					text: section
 					verticalAlignment: Text.verticalAlignment
 					font.bold: true
-					font.pixelSize: 12*reso.dp2px
+					font.pixelSize: 12*wpp.dp2px
 				}
 			}
 		}
@@ -126,7 +126,7 @@ Rectangle {
 		delegate: Rectangle {
 			id: addressBookPlacesListViewItem
 			width: addressBookPlacesListView.width
-			//height: 40*reso.dp2px
+			//height: 40*wpp.dp2px
 			property int letterIndex: {
 				var LETTER_A = 65;
 				var firstLetter = modelData.firstLetter;
@@ -155,9 +155,9 @@ Rectangle {
 						emptyPhonesAndEmailsMsg.height +
 					phoneContactPhoneListColumn.height
 					+ phoneContactEmailListColumn.height
-						+ 10*reso.dp2px;
-				if ( h < sectionHeaderRectangle.height + 60*reso.dp2px )
-					h = sectionHeaderRectangle.height + 60*reso.dp2px;
+						+ 10*wpp.dp2px;
+				if ( h < sectionHeaderRectangle.height + 60*wpp.dp2px )
+					h = sectionHeaderRectangle.height + 60*wpp.dp2px;
 				return h;
 			}
 			color: "#ffffff"
@@ -198,16 +198,16 @@ Rectangle {
 				anchors.top: parent.top
 				anchors.left: parent.left
 				anchors.right: parent.right
-				height: visible? 24*reso.dp2px : 0
+				height: visible? 24*wpp.dp2px : 0
 				color: "#f0f0f0"
 				Text {
 					anchors.fill: parent
-					anchors.leftMargin:10*reso.dp2px
+					anchors.leftMargin:10*wpp.dp2px
 					text: {
 						var firstLetter = "" + modelData.firstLetter;
 						return firstLetter.toUpperCase();
 					}
-					font.pixelSize: 12*reso.dp2px
+					font.pixelSize: 12*wpp.dp2px
 					color: "#7f7f7f"
 					verticalAlignment: Text.AlignVCenter
 				}
@@ -269,19 +269,19 @@ Rectangle {
 
 			Avatar {
 				id: addressBookContactProfilePhoto
-				width: 40*reso.dp2px
-				height: 40*reso.dp2px
+				width: 40*wpp.dp2px
+				height: 40*wpp.dp2px
 				circleMask: false
 				anchors.top: sectionHeaderRectangle.bottom
-				anchors.topMargin:10*reso.dp2px
+				anchors.topMargin:10*wpp.dp2px
 				anchors.left: parent.left
-				anchors.leftMargin:10*reso.dp2px
+				anchors.leftMargin:10*wpp.dp2px
 				//url: modelData.user.profilePhotoUrl
 				//anchors.verticalCenter: parent.verticalCenter
 			}
 			Rectangle {
 				border.color: "#dddddd"
-				border.width: 1*reso.dp2px
+				border.width: 1*wpp.dp2px
 				anchors.fill: addressBookContactProfilePhoto
 				color: "transparent"
 			}
@@ -290,10 +290,10 @@ Rectangle {
 				id: "phoneContactNameText"
 				verticalAlignment: Text.AlignVCenter
 				anchors.left: addressBookContactProfilePhoto.right
-				anchors.leftMargin: 10*reso.dp2px
-				font.pixelSize: 14*reso.dp2px
-				height: 30*reso.dp2px
-				anchors.topMargin:10*reso.dp2px
+				anchors.leftMargin: 10*wpp.dp2px
+				font.pixelSize: 14*wpp.dp2px
+				height: 30*wpp.dp2px
+				anchors.topMargin:10*wpp.dp2px
 				anchors.top: sectionHeaderRectangle.bottom
 				//text: modelData.latinFullname
 				text: modelData.fullName
@@ -305,25 +305,25 @@ Rectangle {
 			Text {
 				id: "emptyPhonesAndEmailsMsg"
 				anchors.top:phoneContactNameText.bottom
-				anchors.leftMargin: 10*reso.dp2px
+				anchors.leftMargin: 10*wpp.dp2px
 				anchors.left:addressBookContactProfilePhoto.right
 				anchors.right: parent.right
-				anchors.rightMargin:40*reso.dp2px
+				anchors.rightMargin:40*wpp.dp2px
 				width: parent.width
-				height: visible ? 32*reso.dp2px : 0
+				height: visible ? 32*wpp.dp2px : 0
 				text: qsTr("No phones/emails available")
-				font.pixelSize: 12*reso.dp2px
+				font.pixelSize: 12*wpp.dp2px
 				color: "#ff0000"
 				visible: false
 			}
 			Column {
 				id: "phoneContactPhoneListColumn"
 				anchors.top:emptyPhonesAndEmailsMsg.bottom
-				anchors.leftMargin: 10*reso.dp2px
+				anchors.leftMargin: 10*wpp.dp2px
 				anchors.left:addressBookContactProfilePhoto.right
 				anchors.right: parent.right
-				anchors.rightMargin:40*reso.dp2px
-				height: visible? modelData.phones.length*40*reso.dp2px : 0
+				anchors.rightMargin:40*wpp.dp2px
+				height: visible? modelData.phones.length*40*wpp.dp2px : 0
 				visible: myAddressBookUI.alwaysShowDetails ? true : addressBookContactAcceptImgOverlay.visible
 				property variant addressBookContact: modelData
 				Repeater {
@@ -332,18 +332,18 @@ Rectangle {
 						id: "contactPhoneItemBox"
 						anchors.left: parent.left
 						anchors.right: parent.right
-						height: 40*reso.dp2px
+						height: 40*wpp.dp2px
 						color: "transparent"
 						property var phoneObj: modelData
 						Image {
 							id: "contactPhoneItemBoxTickIcon"
 							source: "qrc:/img/android-icons/All_Icons/holo_light/xhdpi/1-navigation-back.png"
-							width: 20*reso.dp2px
-							height: 20*reso.dp2px
+							width: 20*wpp.dp2px
+							height: 20*wpp.dp2px
 							//anchors.verticalCenter: parent.verticalCenter
 							anchors.top: parent.top
 							anchors.right: parent.right
-							anchors.rightMargin:10*reso.dp2px
+							anchors.rightMargin:10*wpp.dp2px
 							opacity: 0.9
 							visible: false // modelData.isInvited
 						}
@@ -373,9 +373,9 @@ Rectangle {
 							id: "contactPhoneText"
 							anchors.left: parent.left
 							anchors.right: contactPhoneItemBoxTickIcon.left
-							anchors.rightMargin: 5*reso.dp2px
+							anchors.rightMargin: 5*wpp.dp2px
 							clip: true
-							height: 20*reso.dp2px
+							height: 20*wpp.dp2px
 							text: phoneObj.phone
 							color: isPhoneSelectedColorOverlay.visible? "#0080ff" : "#333333"
 							/*无条件显示全部手机号被选
@@ -390,7 +390,7 @@ Rectangle {
 									return phoneContactPhoneListColumn.addressBookContact.isNotified? "#0080ff" : "#333333";
 								}
 							}*/
-							font.pixelSize: 14*reso.dp2px
+							font.pixelSize: 14*wpp.dp2px
 							font.bold: false
 							verticalAlignment: Text.AlignVCenter
 						}
@@ -399,7 +399,7 @@ Rectangle {
 							anchors.top: contactPhoneText.bottom
 							anchors.left: parent.left
 							anchors.right: contactPhoneItemBoxTickIcon.left
-							height: 15*reso.dp2px
+							height: 15*wpp.dp2px
 							text: phoneObj.label
 							color: isPhoneSelectedColorOverlay.visible? "#0080ff" : "#333333"
 							/*无条件显示全部手机号被选
@@ -414,7 +414,7 @@ Rectangle {
 									return phoneContactPhoneListColumn.addressBookContact.isNotified? "#0080ff" : "#333333";
 								}
 							}*/
-							font.pixelSize: 10*reso.dp2px
+							font.pixelSize: 10*wpp.dp2px
 							font.bold: false
 							verticalAlignment: Text.AlignVCenter
 						}
@@ -465,11 +465,11 @@ Rectangle {
 			Column {
 				id: "phoneContactEmailListColumn"
 				anchors.top:phoneContactPhoneListColumn.bottom
-				anchors.leftMargin: 10*reso.dp2px
+				anchors.leftMargin: 10*wpp.dp2px
 				anchors.left:addressBookContactProfilePhoto.right
 				anchors.right: parent.right
-				anchors.rightMargin:40*reso.dp2px
-				height: visible? modelData.emails.length*40*reso.dp2px : 0
+				anchors.rightMargin:40*wpp.dp2px
+				height: visible? modelData.emails.length*40*wpp.dp2px : 0
 				visible: myAddressBookUI.alwaysShowDetails ? true : addressBookContactAcceptImgOverlay.visible
 				property variant addressBookContact: modelData
 				Repeater {
@@ -478,18 +478,18 @@ Rectangle {
 						id: "contactEmailItemBox"
 						anchors.left: parent.left
 						anchors.right: parent.right
-						height: 40*reso.dp2px
+						height: 40*wpp.dp2px
 						color: "transparent"
 						property var emailObj: modelData
 						Image {
 							id: "contactEmailItemBoxTickIcon"
 							source: "qrc:/img/android-icons/All_Icons/holo_light/xhdpi/1-navigation-back.png"
-							width: 20*reso.dp2px
-							height: 20*reso.dp2px
+							width: 20*wpp.dp2px
+							height: 20*wpp.dp2px
 							//anchors.verticalCenter: parent.verticalCenter
 							anchors.top: parent.top
 							anchors.right: parent.right
-							anchors.rightMargin:10*reso.dp2px
+							anchors.rightMargin:10*wpp.dp2px
 							opacity: 0.9
 							visible: false // modelData.isInvited
 						}
@@ -518,9 +518,9 @@ Rectangle {
 							id: "contactEmailText"
 							anchors.left: parent.left
 							anchors.right: contactEmailItemBoxTickIcon.left
-							anchors.rightMargin: 5*reso.dp2px
+							anchors.rightMargin: 5*wpp.dp2px
 							clip: true
-							height: 20*reso.dp2px
+							height: 20*wpp.dp2px
 							text: emailObj.email
 							color: isEmailSelectedColorOverlay.visible? "#0080ff" : "#333333"
 							/*无条件显示全部Email被选
@@ -535,7 +535,7 @@ Rectangle {
 									return phoneContactPhoneListColumn.addressBookContact.isNotified? "#0080ff" : "#333333";
 								}
 							}*/
-							font.pixelSize: 14*reso.dp2px
+							font.pixelSize: 14*wpp.dp2px
 							font.bold: false
 							verticalAlignment: Text.AlignVCenter
 						}
@@ -544,7 +544,7 @@ Rectangle {
 							anchors.top: contactEmailText.bottom
 							anchors.left: parent.left
 							anchors.right: contactEmailItemBoxTickIcon.left
-							height: 15*reso.dp2px
+							height: 15*wpp.dp2px
 							text: emailObj.label
 							color: isEmailSelectedColorOverlay.visible? "#0080ff" : "#333333"
 							/*无条件显示全部Email被选
@@ -559,7 +559,7 @@ Rectangle {
 									return phoneContactPhoneListColumn.addressBookContact.isNotified? "#0080ff" : "#333333";
 								}
 							}*/
-							font.pixelSize: 10*reso.dp2px
+							font.pixelSize: 10*wpp.dp2px
 							font.bold: false
 							verticalAlignment: Text.AlignVCenter
 						}
@@ -622,12 +622,12 @@ Rectangle {
 			Image {
 				id: addressBookContactAcceptImg
 				source: "qrc:/img/android-icons/All_Icons/holo_light/xhdpi/1-navigation-accept.png"
-				width: 30*reso.dp2px
-				height: 30*reso.dp2px
+				width: 30*wpp.dp2px
+				height: 30*wpp.dp2px
 				anchors.top: sectionHeaderRectangle.bottom
-				anchors.topMargin:10*reso.dp2px
+				anchors.topMargin:10*wpp.dp2px
 				anchors.right: parent.right
-				anchors.rightMargin:10*reso.dp2px
+				anchors.rightMargin:10*wpp.dp2px
 				opacity: 0.9
 				visible: false // modelData.isInvited
 			}
@@ -645,7 +645,7 @@ Rectangle {
 				}
 			}
 			Rectangle {
-				height: 1*reso.dp2px
+				height: 1*wpp.dp2px
 				anchors.left: parent.left
 				anchors.right: parent.right
 				anchors.bottom: parent.bottom
@@ -660,7 +660,7 @@ Rectangle {
 		anchors.top: addressBookPlacesListView.top;
 		anchors.right: parent.right
 		anchors.bottom: parent.bottom
-		width: 24*reso.dp2px
+		width: 24*wpp.dp2px
 		color: "#ffffff"
 		Column {
 			id: "letterIndexBar"
@@ -678,7 +678,7 @@ Rectangle {
 					Text {
 						anchors.fill: parent
 						text: myAddressBookUI._indexChars[index];
-						font.pixelSize: 12*reso.dp2px
+						font.pixelSize: 12*wpp.dp2px
 						horizontalAlignment: Text.AlignHCenter
 						verticalAlignment: Text.AlignVCenter
 						color: {
@@ -740,19 +740,19 @@ Rectangle {
 
 	Rectangle {
 		//anchors.top: parent.top
-		//anchors.topMargin: 50*reso.dp2px
+		//anchors.topMargin: 50*wpp.dp2px
 		anchors.horizontalCenter: parent.horizontalCenter
 		anchors.verticalCenter: addressBookPlacesListView.verticalCenter
-		width:100*reso.dp2px
+		width:100*wpp.dp2px
 		height:width
 		color: Qt.rgba(0,0,0,0.3)
-		radius: 4*reso.dp2px
+		radius: 4*wpp.dp2px
 		visible: indexColumnBarMouseArea.pressed
 		Text {
 			id: "enlargeCurrentLetterText"
 			anchors.fill: parent
 			color: "#ffffff"
-			font.pixelSize: 46*reso.dp2px
+			font.pixelSize: 46*wpp.dp2px
 			font.bold: true
 			horizontalAlignment: Text.AlignHCenter
 			verticalAlignment: Text.AlignVCenter

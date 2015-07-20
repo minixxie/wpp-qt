@@ -7,11 +7,11 @@ Rectangle {
 
 	property color borderColor: "#cccccc"
 
-	border.width: 1*reso.dp2px
+	border.width: 1*wpp.dp2px
 	border.color: borderColor
 	radius: height/2
-	height: 30*reso.dp2px
-	width: 50*reso.dp2px
+	height: 30*wpp.dp2px
+	width: 50*wpp.dp2px
 	color: "#ffffff"
 
 
@@ -19,7 +19,7 @@ Rectangle {
 		id: "circle"
 		x: 0
 		y: 0
-		border.width: 1*reso.dp2px
+		border.width: 1*wpp.dp2px
 		border.color: borderColor
 		radius: height/2
 		height: parent.height

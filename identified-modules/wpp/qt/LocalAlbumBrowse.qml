@@ -10,7 +10,7 @@ Rectangle {
 
     Rectangle {
         id: "navigationBar"
-        height: 24*reso.dp2px
+        height: 24*wpp.dp2px
         Text {
             id: "localGalleriesText"
             text: qsTr("Local Galleries")
@@ -18,8 +18,8 @@ Rectangle {
             verticalAlignment: Text.AlignVCenter
             anchors.top: parent.top
             anchors.left: parent.left
-            anchors.leftMargin: 5*reso.dp2px
-            font.pixelSize: 12*reso.dp2px
+            anchors.leftMargin: 5*wpp.dp2px
+            font.pixelSize: 12*wpp.dp2px
             color: "#0080ff"
             MouseArea {
                 anchors.fill: parent
@@ -39,7 +39,7 @@ Rectangle {
             text: ""
             anchors.top: parent.top
             anchors.left: localGalleriesText.right
-            font.pixelSize: 12*reso.dp2px
+            font.pixelSize: 12*wpp.dp2px
         }
     }
 
@@ -59,7 +59,7 @@ Rectangle {
             Rectangle {
                 id: "folderThumbnailImage"
                 anchors.fill: parent
-                anchors.margins: 2*reso.dp2px
+                anchors.margins: 2*wpp.dp2px
                 border.width: 1
                 border.color: "#aaaaaa"
                 Rectangle {
@@ -81,16 +81,16 @@ Rectangle {
                 anchors.bottom: folderThumbnailImage.bottom
                 anchors.left: folderThumbnailImage.left
                 anchors.right: folderThumbnailImage.right
-                height:20*reso.dp2px
+                height:20*wpp.dp2px
                 color: Qt.rgba(0,0,0,0.6)
                 Image {
                     id: "folderIcon"
                     anchors.top: parent.top
                     anchors.left: parent.left
-                    anchors.leftMargin: 5*reso.dp2px
-                    anchors.topMargin: 2*reso.dp2px
-                    anchors.bottomMargin: 2*reso.dp2px
-                    height: 16*reso.dp2px
+                    anchors.leftMargin: 5*wpp.dp2px
+                    anchors.topMargin: 2*wpp.dp2px
+                    anchors.bottomMargin: 2*wpp.dp2px
+                    height: 16*wpp.dp2px
                     width: height
                     source: "qrc:/img/android-icons/All_Icons/holo_dark/mdpi/4-collections-collection.png"
                     fillMode: Image.PreserveAspectFit
@@ -101,11 +101,11 @@ Rectangle {
                     anchors.left: folderIcon.right
                     anchors.bottom: parent.bottom
                     anchors.right: folderPhotoCountText.left
-                    anchors.leftMargin: 5*reso.dp2px
-                    anchors.rightMargin: 5*reso.dp2px
+                    anchors.leftMargin: 5*wpp.dp2px
+                    anchors.rightMargin: 5*wpp.dp2px
                     verticalAlignment: Text.AlignVCenter
                     text: modelData.name
-                    font.pixelSize: 12*reso.dp2px
+                    font.pixelSize: 12*wpp.dp2px
                     clip: true
                     color: "#ffffff"
                 }
@@ -113,11 +113,11 @@ Rectangle {
                     id: "folderPhotoCountText"
                     anchors.top: parent.top
                     anchors.right: parent.right
-                    anchors.rightMargin: 5*reso.dp2px
+                    anchors.rightMargin: 5*wpp.dp2px
                     anchors.bottom: parent.bottom
                     verticalAlignment: Text.AlignVCenter
                     text: modelData.photos.length
-                    font.pixelSize: 12*reso.dp2px
+                    font.pixelSize: 12*wpp.dp2px
                     clip: true
                     color: "#ffffff"
                 }
@@ -166,7 +166,7 @@ Rectangle {
                 source: "file://" + modelData.absolutePath
                 asynchronous: true
                 fillMode: Image.PreserveAspectCrop
-                transform: Rotation { origin.x: 50*reso.dp2px; origin.y: 50*reso.dp2px; axis { x: 0; y: 0; z: 1 } angle: modelData.orientation }
+                transform: Rotation { origin.x: 50*wpp.dp2px; origin.y: 50*wpp.dp2px; axis { x: 0; y: 0; z: 1 } angle: modelData.orientation }
                 clip: true
             }
 
@@ -201,9 +201,9 @@ Rectangle {
             /*Text {
                 anchors.bottom: parent.bottom
                 anchors.right: parent.right
-                height: 20*reso.dp2px
+                height: 20*wpp.dp2px
                 text: modelData.orientation
-                font.pixelSize: 12*reso.dp2px
+                font.pixelSize: 12*wpp.dp2px
             }
             Component.onCompleted: {
 				//console.debug("photo:" + modelData.absolutePath + ":" + modelData.orientation);

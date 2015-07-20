@@ -1,6 +1,6 @@
 #include "HttpAgent.h"
 #include "LocalStorage.h"
-#include "System.h"
+#include "Wpp.h"
 #include "NetworkAccessManager.h"
 #include "Route.h"
 
@@ -69,7 +69,7 @@ bool HttpAgent::sendRequest(
 )
 {
 	qDebug() << "Checking whether system has network...";
-	/*if ( !System::getInstance().getHasNetwork() )
+	/*if ( !Wpp::getInstance().getHasNetwork() )
 	{
 		qDebug() << "System has NO network!";
 		return false;
@@ -135,7 +135,7 @@ bool HttpAgent::sendRequest(
 	{
 		QUrl httpUrl( url );
 		QNetworkRequest req(httpUrl);
-		if ( System::getInstance().getHasNetwork() )
+		if ( Wpp::getInstance().getHasNetwork() )
 			req.setAttribute(QNetworkRequest::CacheLoadControlAttribute, QNetworkRequest::AlwaysNetwork);
 		else
 			req.setAttribute(QNetworkRequest::CacheLoadControlAttribute, QNetworkRequest::PreferNetwork);
@@ -218,7 +218,7 @@ qDebug() << "fileName:" << fileName;
 	{
 		QUrl httpUrl( url + "?" + params );
 		QNetworkRequest req(httpUrl);
-		if ( System::getInstance().getHasNetwork() )
+		if ( Wpp::getInstance().getHasNetwork() )
 			req.setAttribute(QNetworkRequest::CacheLoadControlAttribute, QNetworkRequest::AlwaysNetwork);
 		else
 			req.setAttribute(QNetworkRequest::CacheLoadControlAttribute, QNetworkRequest::PreferNetwork);
@@ -277,7 +277,7 @@ void HttpAgent::debugResponse(QNetworkReply *reply)
 	QNetworkRequest req = reply->request();
 	qDebug() << "HTTP Request: " << req.url();
 
-	wpp::qt::System &system = wpp::qt::System::getInstance();
+	wpp::qt::Wpp &wpp = wpp::qt::Wpp::getInstance();
 
 	if (reply->error() != QNetworkReply::NoError)
 	{
@@ -293,8 +293,8 @@ void HttpAgent::debugResponse(QNetworkReply *reply)
 		break;
 		case QNetworkReply::HostNotFoundError:
 			errStr = "the remote host name was not found (invalid hostname)";
-			system.setHasNetwork(false);
-			qDebug() << "system.setHasNetwork(false)";
+			wpp.setHasNetwork(false);
+			qDebug() << "wpp.setHasNetwork(false)";
 		break;
 		case QNetworkReply::TimeoutError:
 			errStr = "the connection to the remote server timed out";

@@ -13,8 +13,8 @@ Rectangle {
 		//return digitPath.currentItem != null ? digitPath.currentItem.text : "";
 	//}
     property int digit: 0
-    property int widthsize: 40*reso.dp2px
-    property int heightsize: 40*reso.dp2px
+    property int widthsize: 40*wpp.dp2px
+    property int heightsize: 40*wpp.dp2px
 
 	//signal onValueChanged
 	Component.onCompleted: {

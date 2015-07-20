@@ -1,6 +1,6 @@
 #include "NativeDateTimePicker.h"
 
-#include "System.h"
+#include "Wpp.h"
 
 #ifdef Q_OS_ANDROID
 #include <QtAndroid>
@@ -35,7 +35,7 @@ NativeDateTimePicker::NativeDateTimePicker(QQuickItem *parent)
 	//m_dateTime.setTime_t( initTS );
 	m_msecSinceEpoch = QDateTime::currentMSecsSinceEpoch();
 
-	connect(this, SIGNAL(timeZoneIdChanged()), this, SLOT(onTimeZoneIdChanged));
+	connect(this, SIGNAL(timeZoneIdChanged()), this, SLOT(onTimeZoneIdChanged()));
 }
 
 void NativeDateTimePicker::open()

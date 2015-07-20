@@ -32,7 +32,7 @@ Rectangle {
 	clip: true
 	color: "#ffffff"
 
-	property var constKBHeight: 240*reso.dp2px
+	property var constKBHeight: 240*wpp.dp2px
 	//property var kbHeight: constKBHeight
 	y: parent.height - height
 	anchors.left: parent.left
@@ -65,7 +65,7 @@ Rectangle {
 		anchors.top: parent.top
 		anchors.left: parent.left
 		anchors.right: parent.right
-		height: 1*reso.dp2px
+		height: 1*wpp.dp2px
 		color: "#dddddd"
 	}
 
@@ -73,9 +73,9 @@ Rectangle {
 		id: "meAsCommenterProfilePhoto"
 		anchors.top: parent.top
 		anchors.left: parent.left
-		anchors.margins: 10*reso.dp2px
-		width: 30*reso.dp2px
-		height: 30*reso.dp2px
+		anchors.margins: 10*wpp.dp2px
+		width: 30*wpp.dp2px
+		height: 30*wpp.dp2px
 		visible: url != ""
 	}
 
@@ -94,24 +94,24 @@ Rectangle {
 	}
 //	Rectangle {
 //		id: vSeparator
-//		height: 12*reso.dp2px
-//		width: 1*reso.dp2px
+//		height: 12*wpp.dp2px
+//		width: 1*wpp.dp2px
 //		color: "#cccccc"
 //		anchors.verticalCenter: sendCommentButton.verticalCenter
 //		anchors.right: composeUI.useSendButtonImage ? sendCommentButton.left : sendCommentRealButton.left
-//		anchors.rightMargin: 5*reso.dp2px
+//		anchors.rightMargin: 5*wpp.dp2px
 //	}
 
 	Rectangle {
 		id: specialDotRect
-		width: 6*reso.dp2px
+		width: 6*wpp.dp2px
 		height: width
 		color: "#FF5555"
 		radius: height/2
 		anchors.left: addSpecialButton.right
-		anchors.leftMargin: -width-2*reso.dp2px
+		anchors.leftMargin: -width-2*wpp.dp2px
 		anchors.bottom: addSpecialButton.top
-		anchors.bottomMargin: -height-2*reso.dp2px
+		anchors.bottomMargin: -height-2*wpp.dp2px
 	}
 	Image {
 		id: addSpecialButton
@@ -123,15 +123,15 @@ Rectangle {
 				return parent.left
 			}
 		}
-		anchors.leftMargin: 5*reso.dp2px
+		anchors.leftMargin: 5*wpp.dp2px
 		//anchors.right: vSeparator.left
-		//anchors.rightMargin: 5*reso.dp2px
-		anchors.topMargin: 10*reso.dp2px
+		//anchors.rightMargin: 5*wpp.dp2px
+		anchors.topMargin: 10*wpp.dp2px
 		source: "qrc:/img/android-icons/All_Icons/holo_light/mdpi/5-content-new.png"
 		smooth: true
 		fillMode: Image.PreserveAspectFit
-		width: 30*reso.dp2px
-		height: 30*reso.dp2px
+		width: 30*wpp.dp2px
+		height: 30*wpp.dp2px
 		scale: 0.8
 		MouseArea {
 			anchors.fill: parent
@@ -176,17 +176,17 @@ Rectangle {
 
 	Rectangle {
 		id: commentInputBoxRectangle
-		anchors.margins: 10*reso.dp2px
+		anchors.margins: 10*wpp.dp2px
 		anchors.top: parent.top
 		anchors.left: addSpecialButton.right
-		anchors.leftMargin: 5*reso.dp2px
+		anchors.leftMargin: 5*wpp.dp2px
 		width: parent.width
 			   - addSpecialButton.width - addSpecialButton.anchors.leftMargin - addSpecialButton.anchors.rightMargin
 			   - sendCommentButton.width - sendCommentButton.anchors.leftMargin - sendCommentButton.anchors.rightMargin
 			   - sendCommentRealButton.width - sendCommentRealButton.anchors.leftMargin - sendCommentRealButton.anchors.rightMargin
 		height: commentInputBox.height
 		border.color: "#dddddd"
-		border.width: 1*reso.dp2px
+		border.width: 1*wpp.dp2px
 		color: "#ffffff"
 
 		KTextArea {
@@ -195,13 +195,13 @@ Rectangle {
 			anchors.top: parent.top
 			anchors.left: parent.left
 			anchors.right: parent.right
-			anchors.leftMargin: 5*reso.dp2px
-			anchors.rightMargin: 5*reso.dp2px
+			anchors.leftMargin: 5*wpp.dp2px
+			anchors.rightMargin: 5*wpp.dp2px
 			verticalAlignment: TextEdit.AlignVCenter
 			//width: parent.width - 2*x - addSpecialButton.width
 			//height: parent.height - 2*y
-			//height: lineCount * 12*reso.dp2px
-			initialHeight: 30*reso.dp2px
+			//height: lineCount * 12*wpp.dp2px
+			initialHeight: 30*wpp.dp2px
 			//textMargin: (initialHeight - font.pixelSize)/2
 			onTextMarginChanged: {
 				//console.debug("textMargin="+textMargin);
@@ -210,13 +210,13 @@ Rectangle {
 			//height: contentHeight < initialHeight ? initialHeight : contentHeight
 
 			placeholderText: qsTr("write some comment...")
-			placeholderFont.pixelSize: 12*reso.dp2px
+			placeholderFont.pixelSize: 12*wpp.dp2px
 			placeholderColor: "#777777"
 
 			//focus: commentBox.visible
 			text: ""
-			font.pixelSize: 12*reso.dp2px
-			textFont.pixelSize: 12*reso.dp2px
+			font.pixelSize: 12*wpp.dp2px
+			textFont.pixelSize: 12*wpp.dp2px
 			cursorDelegate: ThickCursor {
 				textBox: commentInputBox
 			}
@@ -250,22 +250,22 @@ Rectangle {
 	Button {
 		id: sendCommentRealButton
 		anchors.top: parent.top
-		anchors.topMargin: 10*reso.dp2px
-		anchors.leftMargin: 5*reso.dp2px
+		anchors.topMargin: 10*wpp.dp2px
+		anchors.leftMargin: 5*wpp.dp2px
 		anchors.right: parent.right
-		anchors.rightMargin: 5*reso.dp2px
-		width: visible ? 40*reso.dp2px : 0
-		height: 30*reso.dp2px
+		anchors.rightMargin: 5*wpp.dp2px
+		width: visible ? 40*wpp.dp2px : 0
+		height: 30*wpp.dp2px
 		visible: !composeUI.useSendButtonImage
 		style: ButtonStyle {
 			background: Rectangle {
 				color: composeUI.sendButtonColor
-				radius: 2*reso.dp2px
+				radius: 2*wpp.dp2px
 			}
 			label: Text {
 				text: composeUI.sendButtonText
 				color: composeUI.sendButtonTextColor
-				font.pixelSize: 12*reso.dp2px
+				font.pixelSize: 12*wpp.dp2px
 				horizontalAlignment: Text.AlignHCenter
 				verticalAlignment: Text.AlignVCenter
 			}
@@ -278,13 +278,13 @@ Rectangle {
 	Image {
 		id: sendCommentButton
 		anchors.top: parent.top
-		anchors.topMargin: 10*reso.dp2px
-		anchors.leftMargin: 5*reso.dp2px
+		anchors.topMargin: 10*wpp.dp2px
+		anchors.leftMargin: 5*wpp.dp2px
 		anchors.right: parent.right
-		anchors.rightMargin: 5*reso.dp2px
+		anchors.rightMargin: 5*wpp.dp2px
 		source: "qrc:/img/android-icons/All_Icons/holo_light/mdpi/6-social-send-now.png"
-		width: visible ? 30*reso.dp2px : 0
-		height: 30*reso.dp2px
+		width: visible ? 30*wpp.dp2px : 0
+		height: 30*wpp.dp2px
 		smooth: true
 		fillMode: Image.PreserveAspectFit
 		visible: composeUI.useSendButtonImage
@@ -303,10 +303,10 @@ Rectangle {
 		anchors.top: commentInputBoxRectangle.bottom
 		anchors.left: parent.left
 		anchors.right: parent.right
-		anchors.topMargin: 10*reso.dp2px
+		anchors.topMargin: 10*wpp.dp2px
 		anchors.bottomMargin: 0
 		height: tabs.length > 0 ? composeUI.constKBHeight : 0
-		tabHeight: 24*reso.dp2px
+		tabHeight: 24*wpp.dp2px
 		tabBgColor: "#f4f4f4"
 		visible: false
 
@@ -317,8 +317,8 @@ Rectangle {
 					source: "qrc:/img/smileys/kuangxiao.gif"
 					smooth: true
 					fillMode: Image.PreserveAspectFit
-					width: 30*reso.dp2px
-					height: 30*reso.dp2px
+					width: 30*wpp.dp2px
+					height: 30*wpp.dp2px
 				}
 				content: SmileysUI {
 					anchors.fill: parent;
@@ -333,10 +333,10 @@ Rectangle {
 				id: "atUserTab"
 				title: Text {
 					text: "@"
-					font.pixelSize: 24*reso.dp2px
+					font.pixelSize: 24*wpp.dp2px
 					color: "#7f7f7f"
-					width: 30*reso.dp2px
-					height: 30*reso.dp2px
+					width: 30*wpp.dp2px
+					height: 30*wpp.dp2px
 					horizontalAlignment: Text.AlignHCenter
 					verticalAlignment: Text.AlignVCenter
 				}
@@ -349,8 +349,8 @@ Rectangle {
 					source: "qrc:/img/android-icons/All_Icons/holo_light/mdpi/7-location-place.png"
 					smooth: true
 					fillMode: Image.PreserveAspectFit
-					width: 30*reso.dp2px
-					height: 30*reso.dp2px
+					width: 30*wpp.dp2px
+					height: 30*wpp.dp2px
 				}
 				content: DetectLocationUI { anchors.fill: parent }
 				//onSelected: titleBar.text = qsTr("Home")
@@ -361,8 +361,8 @@ Rectangle {
 					source: "qrc:/img/android-icons/All_Icons/holo_light/mdpi/10-device-access-camera.png"
 					smooth: true
 					fillMode: Image.PreserveAspectFit
-					width: 30*reso.dp2px
-					height: 30*reso.dp2px
+					width: 30*wpp.dp2px
+					height: 30*wpp.dp2px
 				}
 				content: AddPhotoUI { anchors.fill: parent }
 				//onSelected: titleBar.text = qsTr("Home")

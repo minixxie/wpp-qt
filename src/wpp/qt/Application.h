@@ -2,7 +2,7 @@
 #define __WPP__QT__APPLICATION_H__
 
 #include <QGuiApplication>
-#include "System.h"
+#include "Wpp.h"
 
 namespace wpp {
 namespace qt {
@@ -22,7 +22,7 @@ public:
 
 	void enableAutoScreenOrientation(bool autoRotate)
 	{
-		wpp::qt::System::getInstance().enableAutoScreenOrientation(true);
+		wpp::qt::Wpp::getInstance().enableAutoScreenOrientation(true);
 	}
 
 

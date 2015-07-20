@@ -51,7 +51,7 @@ Rectangle {
 		anchors.top: parent.top
 		anchors.left: parent.left
 		anchors.right: parent.right
-		height: 100*reso.dp2px
+		height: 100*wpp.dp2px
 		contentWidth: logFlickable.width
 		contentHeight: logRec.height
 		visible: false
@@ -59,12 +59,12 @@ Rectangle {
 			id: "logRec"
 			width: logFlickable.width
 			color: Qt.rgba(1,1,1,0.3)
-			height: logText.height > 100*reso.dp2px ? logText.height : 100*reso.dp2px
+			height: logText.height > 100*wpp.dp2px ? logText.height : 100*wpp.dp2px
 			Text {
 				id: "logText"
 				width: parent.width
 				text: mainController != undefined ? mainController.log : ""
-				font.pixelSize: 10*reso.dp2px
+				font.pixelSize: 10*wpp.dp2px
 				color: "#7f7f7f"
 			}
 		}

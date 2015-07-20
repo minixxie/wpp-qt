@@ -20,7 +20,6 @@ SOURCES += \
 	$$PWD/src/wpp/qt/Application.cpp \
 	$$PWD/src/wpp/qt/QuickView.cpp \
 	$$PWD/src/wpp/qt/Wpp.cpp \
-	$$PWD/src/wpp/qt/System.cpp \
 	$$PWD/src/wpp/qt/Keyboard.cpp \
 	$$PWD/src/wpp/qt/Resolution.cpp \
 	$$PWD/src/wpp/qt/NetworkAccessManager.cpp \
@@ -55,7 +54,6 @@ HEADERS += \
 	$$PWD/src/wpp/qt/QmlApplicationEngine.h \
 	$$PWD/src/wpp/qt/QuickView.h \
 	$$PWD/src/wpp/qt/Wpp.h \
-	$$PWD/src/wpp/qt/System.h \
 	$$PWD/src/wpp/qt/Keyboard.h \
 	$$PWD/src/wpp/qt/Route.h \
 	$$PWD/src/wpp/qt/Resolution.h \
@@ -105,7 +103,7 @@ OBJECTIVE_SOURCES += \
 	$$PWD/src/wpp/qt/NativeCamera.mm \
 	$$PWD/src/wpp/qt/ImagePicker.mm \
 	$$PWD/src/wpp/qt/NativeMap.mm \
-        $$PWD/src/wpp/qt/System.mm \
+        $$PWD/src/wpp/qt/Wpp.mm \
 		$$PWD/src/wpp/qt/GeoPosition.mm \
 		$$PWD/src/wpp/qt/IOS.mm \
 	$$PWD/src/wpp/qt/NativeDateTimePicker.mm \

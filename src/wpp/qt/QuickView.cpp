@@ -1,7 +1,7 @@
 #include "QuickView.h"
 #include "Resolution.h"
-#include "System.h"
 #include "Wpp.h"
+#include "TimeAgo.h"
 
 #include <QGuiApplication>
 #include <QScreen>
@@ -56,7 +56,7 @@ void QuickView::init()
 
 	wpp::qt::Resolution *reso = new wpp::qt::Resolution( app, tablet ? 1024 : 320 );//create resolution info
 	this->engine()->rootContext()->setContextProperty("reso", reso);//inject into the QML context
-	this->engine()->rootContext()->setContextProperty("sys", &wpp::qt::System::getInstance());
+	this->engine()->rootContext()->setContextProperty("sys", &wpp::qt::Wpp::getInstance());
 	this->engine()->rootContext()->setContextProperty("timeago", &wpp::qt::TimeAgo::getInstance());
 
 	//this->engine()->rootContext()->setContextProperty("wpp", new wpp::qt::Wpp() );

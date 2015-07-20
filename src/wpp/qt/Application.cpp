@@ -9,7 +9,7 @@
 
 #include <wpp/qt/IOS.h>
 
-#include <wpp/qt/System.h>
+#include <wpp/qt/Wpp.h>
 //#include <wpp/qt/LocalStorage.h>
 #include <wpp/qt/HttpAgent.h>
 #include <wpp/qt/Resolution.h>
@@ -46,7 +46,7 @@ void Application::init()
 
 	//register singletons
 	//wpp::qt::LocalStorage::getInstance();
-	wpp::qt::System::getInstance();
+	wpp::qt::Wpp::getInstance();
 	//wpp::qt::HttpAgent& httpAgent = wpp::qt::HttpAgent::getInstance();
 	//httpAgent.setDefaultParam("_locale", QLocale::system().name());
 
@@ -86,7 +86,7 @@ void Application::enableQtWebEngineIfPossible()
 
 void Application::registerApplePushNotificationService()
 {
-	wpp::qt::System::getInstance().registerApplePushNotificationService();
+	wpp::qt::Wpp::getInstance().registerApplePushNotificationService();
 }
 
 }

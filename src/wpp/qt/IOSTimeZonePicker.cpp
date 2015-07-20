@@ -1,6 +1,6 @@
 #include "IOSTimeZonePicker.h"
 
-#include "System.h"
+#include "Wpp.h"
 
 #ifdef Q_OS_ANDROID
 #include <QtAndroid>

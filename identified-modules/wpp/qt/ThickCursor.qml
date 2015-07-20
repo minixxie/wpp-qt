@@ -4,8 +4,8 @@ Rectangle {
 	id: "thickCursor"
 	property Item textBox
 
-	width:2*reso.dp2px
-	height: textBox.font.pixelSize + 4*reso.dp2px
+	width:2*wpp.dp2px
+	height: textBox.font.pixelSize + 4*wpp.dp2px
 	color: "#555555"
 	visible: textBox.cursorVisible
 	SequentialAnimation {

@@ -12,7 +12,7 @@ Rectangle {
 	//}
 
 	/*property date dateTime: {
-		return sys.currentDateTime(dateTimeControl.timeZoneId);
+		return wpp.currentDateTime(dateTimeControl.timeZoneId);
 
 		//var d = new Date();
 		//console.debug("DateTimeControl:initialize:dateTime=" + d.getTime()/1000
@@ -25,7 +25,7 @@ Rectangle {
 		//var dateTime = new Date();
 		console.debug("DateTimeControl.onTimeZoneIdChanged:timezoneId=" + dateTimeControl.timeZoneId);
 		console.debug("DateTimeControl.onTimeZoneIdChanged:dateTime(OLD)=" + dateTime.toString("yyyy-MM-dd hh:mm AP"));
-		dateTime = sys.makeDateTime(dateTimeControl.timeZoneId, dateTime.getTime());
+		dateTime = wpp.makeDateTime(dateTimeControl.timeZoneId, dateTime.getTime());
 		console.debug("DateTimeControl.onTimeZoneIdChanged:dateTime(NEW)=" + dateTime.toString("yyyy-MM-dd hh:mm AP"));
 	}*/
 
@@ -34,13 +34,13 @@ Rectangle {
 	property alias topBorder: upperBorderLine.visible
 	property alias bottomBorder: lowerBorderLine.visible
 
-	height: 36*reso.dp2px
+	height: 36*wpp.dp2px
 
 	Rectangle {//top line
 		id: upperBorderLine
 		anchors.top: parent.top
 		anchors.left: parent.left; anchors.right: parent.right
-		height: visible?1*reso.dp2px:0
+		height: visible?1*wpp.dp2px:0
 		color: "#dddddd"
 		visible: false
 	}
@@ -48,17 +48,17 @@ Rectangle {
 	Text {
 		id: titleText
 		anchors.top: parent.top; anchors.bottom: parent.bottom;
-		anchors.left: parent.left; anchors.leftMargin:10*reso.dp2px;
+		anchors.left: parent.left; anchors.leftMargin:10*wpp.dp2px;
 		text: ""
-		font.pixelSize: 12*reso.dp2px
+		font.pixelSize: 12*wpp.dp2px
 		color: "#333333"
 		verticalAlignment: Text.AlignVCenter
 	}
 	Text {
 		anchors.top: parent.top; anchors.bottom: parent.bottom;
-		anchors.right: parent.right; anchors.rightMargin:10*reso.dp2px;
-		text: sys.formatDateTime(dateTimeControl.msecSinceEpoch, dateTimeControl.format, dateTimeControl.timeZoneId)
-		font.pixelSize: 12*reso.dp2px
+		anchors.right: parent.right; anchors.rightMargin:10*wpp.dp2px;
+		text: wpp.formatDateTime(dateTimeControl.msecSinceEpoch, dateTimeControl.format, dateTimeControl.timeZoneId)
+		font.pixelSize: 12*wpp.dp2px
 		color: "#333333"
 		verticalAlignment: Text.AlignVCenter
 	}
@@ -81,7 +81,7 @@ Rectangle {
 		id: lowerBorderLine
 		anchors.bottom: parent.bottom
 		anchors.left: parent.left; anchors.right: parent.right
-		height: visible?1*reso.dp2px:0
+		height: visible?1*wpp.dp2px:0
 		color: "#dddddd"
 		visible: false
 	}
