@@ -16,6 +16,7 @@ Rectangle {
 	property string sendButtonText: qsTr("Send")
 	property color sendButtonTextColor: "#ffffff"
 	property color sendButtonColor: "#5dcb36"
+	property bool keyboardOnShow: true
 
 	signal sendClicked(string msg)
 
@@ -190,7 +191,7 @@ Rectangle {
 
 		KTextArea {
 			id: commentInputBox
-			focus: composeUI.visible
+			focus: composeUI.keyboardOnShow ? composeUI.visible : false
 			anchors.top: parent.top
 			anchors.left: parent.left
 			anchors.right: parent.right
