@@ -80,6 +80,14 @@ void System::addToImageGallery(const QString& imageFullPath)
 	UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
 }
 
+#ifdef Q_OS_IOS
+void System::setAppIconUnreadCount(int count)
+{
+	[[UIApplication sharedApplication] setApplicationIconBadgeNumber:count];
+}
+#endif
+
+
 }//namespace qt
 }//namespace wpp
 

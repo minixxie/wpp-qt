@@ -20,6 +20,9 @@ public:
 	Q_INVOKABLE double dp2px() const { return m_dp2px; }
 	Q_SIGNAL void dp2pxChanged();
 
+
+	Q_INVOKABLE void setAppIconUnreadCount(int count) { System::getInstance().setAppIconUnreadCount(count); }
+
 /*	Q_PROPERTY(TimeAgo timeago READ timeago)
 private:
 	//TimeAgo& m_timeago;

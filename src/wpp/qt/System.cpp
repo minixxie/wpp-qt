@@ -754,6 +754,7 @@ QString System::timezoneLongName(qint64 msecsSinceEpoch, const QString& ianaId, 
 	return timezone.displayName(QDateTime::fromMSecsSinceEpoch(msecsSinceEpoch), QTimeZone::LongName, locale);
 }
 
+#ifndef Q_OS_IOS
 void System::setAppIconUnreadCount(int count)
 {
 #ifdef Q_OS_ANDROID
@@ -772,6 +773,7 @@ void System::setAppIconUnreadCount(int count)
 #endif
 
 }
+#endif
 
 
 }//namespace qt
