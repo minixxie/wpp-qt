@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
 {
 	wpp::qt::Application app(argc, argv);//changed from QGuiApplication
 
-	wpp::qt::QmlApplicationEngine engine(&app);//changed from QQmlApplicationEngine, which provides "wpp" object in QML
+	wpp::qt::QmlApplicationEngine engine;//changed from QQmlApplicationEngine, which provides "wpp" object in QML
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
     return app.exec();
