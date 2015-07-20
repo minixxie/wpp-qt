@@ -20,6 +20,18 @@ SelectionListModal {
 	signal needQMLCamera  //pageStack.push(takePhotoUI);
 	signal needQMLAlbumBrowser
 
+	function open()
+	{
+		if ( Qt.platform.os == "android" )
+		{
+			nativeImagePicker.open();
+		}
+		else if ( Qt.platform.os == "ios" )
+		{
+			visible = true;
+		}
+	}
+
 	onVisibleChanged: {
 		if ( visible )
 		{

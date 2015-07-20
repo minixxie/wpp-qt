@@ -172,7 +172,7 @@ Avatar {
 	bgTextColor: "#0080ff"
 	//url: "http://xxxxxx/abc.jpg"
 	onClicked: {                                    
-		imageSelector.visible=true;
+		imageSelector.open();
 	}                                               
 }
 ```

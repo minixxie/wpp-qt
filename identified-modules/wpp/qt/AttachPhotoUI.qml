@@ -4,7 +4,7 @@ Rectangle {
 	id: attachPhotoUI
 	anchors.fill: parent
 
-	property alias model: imageAttachmentList.mode
+	property alias model: imageAttachmentList.model
 	signal photoTaken(string imagePath)
 	signal photoChosen(variant imagePaths)
 
