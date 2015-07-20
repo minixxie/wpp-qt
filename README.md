@@ -255,8 +255,23 @@ this, SLOT(replyFinished(QNetworkReply*)));
 
 manager->get(QNetworkRequest(QUrl("http://qt-project.org")));
 ```
+## UseCase: setting unread badge count (app icon)
+Supported platforms: Android, iOS
 
+In C++, e.g.:
+```c++
+#include <wpp/qt/System.h>
 
+	int count = 7;
+	wpp::qt::System::getInstance().setAppIconUnreadCount(count);
+```
+In QML, e.g.:
+```QML
+	onClicked: {
+		var count = 7;
+		wpp.setAppIconUnreadCount(count);
+    }
+```
 
 ## LICENSE
 
