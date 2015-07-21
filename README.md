@@ -209,9 +209,12 @@ DateTimeControl {
 }                          
 ```
 Screenshot on Android and iOS:
-![DateTimeControl](https://github.com/minixxie/wpp-qt/raw/master/doc/screenshot-titlebar.png)
-![DateTimeControl](https://github.com/minixxie/wpp-qt/raw/master/doc/screenshot-DateTimeControl-android.png =200x)
-![DateTimeControl](https://github.com/minixxie/wpp-qt/raw/master/doc/screenshot-DateTimeControl-ios.png =200x)
+
+<img src="https://github.com/minixxie/wpp-qt/raw/master/doc/screenshot-titlebar.png" width="220"/>
+<img src="https://github.com/minixxie/wpp-qt/raw/master/doc/screenshot-DateTimeControl-android.png" width="220"/>
+<img src="https://github.com/minixxie/wpp-qt/raw/master/doc/screenshot-DateTimeControl-ios.png" width="220"/>
+<img src="https://github.com/minixxie/wpp-qt/raw/master/doc/screenshot-DateTimeControl.png" />
+
 see example: [UsingDateTimeControl](https://github.com/minixxie/wpp-qt/raw/master/examples/UsingDateTimeControl)
 
 ## UseCase: Load Phone Contact
@@ -325,3 +328,4 @@ Deep thanks to these engineers, they have given me much help and contributed the
 Currently I'm the only author of this project. You may contact me directly via github, or sending issues, or via these QQ groups:
 - 345043587 Qt手机app开发Android
 - 19346666 Qt5 for Android,iOS
+
