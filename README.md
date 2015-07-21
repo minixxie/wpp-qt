@@ -210,9 +210,9 @@ DateTimeControl {
 ```
 Screenshot on Android and iOS:
 
-<img src="https://github.com/minixxie/wpp-qt/raw/master/doc/screenshot-titlebar.png" width="220"/>
-<img src="https://github.com/minixxie/wpp-qt/raw/master/doc/screenshot-DateTimeControl-android.png" width="220"/>
-<img src="https://github.com/minixxie/wpp-qt/raw/master/doc/screenshot-DateTimeControl-ios.png" width="220"/>
+<img src="https://github.com/minixxie/wpp-qt/raw/master/doc/screenshot-titlebar.png" height="380"/>
+<img src="https://github.com/minixxie/wpp-qt/raw/master/doc/screenshot-DateTimeControl-android.png" height="380"/>
+<img src="https://github.com/minixxie/wpp-qt/raw/master/doc/screenshot-DateTimeControl-ios.png" height="380"/>
 <img src="https://github.com/minixxie/wpp-qt/raw/master/doc/screenshot-DateTimeControl.png" />
 
 see example: [UsingDateTimeControl](https://github.com/minixxie/wpp-qt/raw/master/examples/UsingDateTimeControl)
