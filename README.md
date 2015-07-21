@@ -178,7 +178,7 @@ Avatar {
 }
 ```
 ```XML
-# android/AndroidManifest.xml: register 2 activities
+	<!-- android/AndroidManifest.xml: register 2 activities -->
         <activity android:name="me.iwf.photopicker.PhotoPickerActivity" android:theme="@style/Theme.AppCompat.NoActionBar">
             <meta-data android:name="android.app.lib_name" android:value="-- %%INSERT_APP_LIB_NAME%% --"/>
         </activity>
@@ -209,9 +209,9 @@ DateTimeControl {
 }                          
 ```
 Screenshot on Android and iOS:
-![DateTimeControl](https://github.com/minixxie/wpp-qt/raw/master/doc/screenshot-DateTimeControl.png)
-![DateTimeControl](https://github.com/minixxie/wpp-qt/raw/master/doc/screenshot-DateTimeControl-android.png)
-![DateTimeControl](https://github.com/minixxie/wpp-qt/raw/master/doc/screenshot-DateTimeControl-ios.png)
+![DateTimeControl](https://github.com/minixxie/wpp-qt/raw/master/doc/screenshot-titlebar.png)
+![DateTimeControl](https://github.com/minixxie/wpp-qt/raw/master/doc/screenshot-DateTimeControl-android.png =200x)
+![DateTimeControl](https://github.com/minixxie/wpp-qt/raw/master/doc/screenshot-DateTimeControl-ios.png =200x)
 see example: [UsingDateTimeControl](https://github.com/minixxie/wpp-qt/raw/master/examples/UsingDateTimeControl)
 
 ## UseCase: Load Phone Contact
