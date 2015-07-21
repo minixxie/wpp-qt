@@ -51,20 +51,21 @@ android/gradlew.bat
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
 ```
 - Create the link to the android library project "wpp-android"
+
+YourQtProject/android/settings.gradle:
 ```bash
-# YourQtProject/android/settings.gradle:
 include 'wpp-android'
 project(':wpp-android').projectDir = new File('../../YourQtProject/wpp-qt/wpp-android')
 ```
+YourQtProject/android/build.gradle:
 ```bash
-# YourQtProject/android/build.gradle:
 dependencies {
     ...
     compile project(':wpp-android')
 }
 ```
+YourQtProject/android/AndroidManifest.xml:
 ```XML
-# YourQtProject/android/AndroidManifest.xml
     <uses-sdk android:minSdkVersion="10" android:targetSdkVersion="22"/>
 ```
 
