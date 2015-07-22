@@ -1,5 +1,6 @@
 # wpp-qt
-Web++ framework for Qt
+Web++ framework for Qt. This is a framework supplementary to Qt for mobile, for creating mobile apps for iOS and Android. More platforms support will be added later, currently this library only support iOS and Android.
+
 * Android support: minSDK: 10, targetSDK: 22
 * iOS support: iOS7+
 
@@ -9,11 +10,6 @@ Web++ framework for Qt
 <img src="https://github.com/minixxie/wpp-qt/raw/master/doc/android-sdk-api22.png" height="380"/>
 * Android SDK with "Android Support Library" (22.2+) and "Android Support Repository" installed.<br/>
 <img src="https://github.com/minixxie/wpp-qt/raw/master/doc/android-sdk-supportv7.png" height="380"/>
-
-
-## Introduction
-
-This is a framework supplementary to Qt for mobile, for creating mobile apps for iOS and Android. More platforms support will be added later, currently this library only support iOS and Android.
 
 ## Preparation
 You will usually use this project as a git-submodule of your project. Setup with this:
@@ -125,20 +121,20 @@ TitleBar {
 ## UseCase: circular image
 We usually need to use rounded corner on images, Qt doesn't support it by default. With this library you can do this. But the current version has a limitation that the image should not lie on a boundary of two differnt colors or other background images:
 ```QML
-Avatar {                                        
-	id: profilePhoto                                
-	anchors.left: parent.left                       
-	anchors.top: parent.top          
-	anchors.margins: 10*reso.dp2px            
-	height: 40*reso.dp2px                           
+Avatar {
+	id: profilePhoto
+	anchors.left: parent.left
+	anchors.top: parent.top
+	anchors.margins: 10*reso.dp2px
+	height: 40*reso.dp2px
 	width: height
 	circleMask: true  //this is the main property to make circle
 	maskColor: "#ffffff" //assume the background is white, write this to make sure 4 round corners are in white background
 	url: "http://xxxxxx/abc.jpg"
-	onClicked: {                                    
-		//....                    
-	}                                               
-}   
+	onClicked: {
+		//....
+	}
+}
 ```
 
 ## UseCase: use native camera or image picker to upload profile photo
@@ -166,19 +162,19 @@ ImageSelector {
 	}
 }
 
-Avatar {                                        
-	id: profilePhoto                                
-	anchors.left: parent.left                       
-	anchors.top: parent.top          
-	anchors.margins: 10*reso.dp2px            
-	height: 100*reso.dp2px                           
-	width: height    
+Avatar {
+	id: profilePhoto
+	anchors.left: parent.left
+	anchors.top: parent.top
+	anchors.margins: 10*reso.dp2px
+	height: 100*reso.dp2px
+	width: height
 	bgText: qsTr("Upload Image")
 	bgTextColor: "#0080ff"
 	//url: "http://xxxxxx/abc.jpg"
-	onClicked: {                                    
+	onClicked: {
 		imageSelector.open();
-	}                                               
+	}
 }
 ```
 ```XML
@@ -197,20 +193,20 @@ see example: [UsingNativeCameraAndImagePicker](https://github.com/minixxie/wpp-q
 ## UseCase: Native DateTime picker
 Employed the native DateTime picker UI for you:
 ```QML
-DateTimeControl {               
-	id: startDateTimeControl        
-	anchors.top: parent.top         
+DateTimeControl {
+	id: startDateTimeControl
+	anchors.top: parent.top
 	anchors.left: parent.left; anchors.right: parent.right;
 	height: 36*reso.dp2px
 	topBorder: true; bottomBorder: true
-	title: qsTr("Date/Time")            
-	dateTime: new Date()                             
+	title: qsTr("Date/Time")
+	dateTime: new Date()
 	//timeZoneId: "Asia/Hong_Kong"
 	onPicked: {
 		dateTime = dateTimePicked;
 		console.debug("picked=" + dateTimePicked);
-	}                               
-}                          
+	}
+}
 ```
 Screenshot on Android and iOS:
 
@@ -332,5 +328,3 @@ Deep thanks to these engineers, they have given me much help and contributed the
 Currently I'm the only author of this project. You may contact me directly via github, or sending issues, or via these QQ groups:
 - 345043587 Qt手机app开发Android
 - 19346666 Qt5 for Android,iOS
-
-
