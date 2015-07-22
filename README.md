@@ -5,7 +5,11 @@ Web++ framework for Qt
 
 ## System Requirements
 * Gradle (don't use Apache Ant)
-* Android SDK with android-22 installed
+* Android SDK with android-22 installed<br/>
+<img src="https://github.com/minixxie/wpp-qt/raw/master/doc/android-sdk-api22.png" height="380"/>
+* Android SDK with "Android Support Library" (22.2+) and "Android Support Repository" installed.<br/>
+<img src="https://github.com/minixxie/wpp-qt/raw/master/doc/android-sdk-supportv7.png" height="380"/>
+
 
 ## Introduction
 
@@ -328,4 +332,5 @@ Deep thanks to these engineers, they have given me much help and contributed the
 Currently I'm the only author of this project. You may contact me directly via github, or sending issues, or via these QQ groups:
 - 345043587 Qt手机app开发Android
 - 19346666 Qt5 for Android,iOS
+
 
