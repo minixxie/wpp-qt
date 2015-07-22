@@ -16,7 +16,7 @@ namespace qt
 class Wpp: public QObject
 {
 	Q_OBJECT
-	Q_PROPERTY(double dp2px READ dp2px NOTIFY dp2pxChanged)
+	Q_PROPERTY(double dp2px READ dp2px WRITE setDp2px NOTIFY dp2pxChanged)
 	Q_PROPERTY(bool m_isDesktop READ isDesktop)
 	Q_PROPERTY(bool m_isAndroid READ isAndroid)
 	Q_PROPERTY(bool m_isIOS READ isIOS)
@@ -78,16 +78,17 @@ public:
 	}
 
 	Q_INVOKABLE double dp2px() const { return m_dp2px; }
+	Q_INVOKABLE void setDp2px(double dp2px) { if ( m_dp2px != dp2px ) { m_dp2px = dp2px; emit dp2pxChanged(); } }
 	Q_SIGNAL void dp2pxChanged();
 
 	Q_INVOKABLE QVariant getNetwork() const { return m_network; }
-	Q_INVOKABLE void setNetwork( const QVariant& network ) { m_network = network; emit networkChanged(); }
+	Q_INVOKABLE void setNetwork( const QVariant& network ) { if ( m_network != network ) { m_network = network; emit networkChanged(); } }
 
 	Q_INVOKABLE bool getHasNetwork() const { return hasNetwork; }
-	Q_INVOKABLE void setHasNetwork( bool hasNetwork ) { this->hasNetwork = hasNetwork; emit hasNetworkChanged(); }
+	Q_INVOKABLE void setHasNetwork( bool hasNetwork ) { if ( this->hasNetwork != hasNetwork ) { this->hasNetwork = hasNetwork; emit hasNetworkChanged(); } }
 
 	Q_INVOKABLE bool isSlowNetwork() const { return slowNetwork; }
-	Q_INVOKABLE void setIsSlowNetwork( bool slowNetwork ) { this->slowNetwork = slowNetwork; emit isSlowNetworkChanged(); }
+	Q_INVOKABLE void setIsSlowNetwork( bool slowNetwork ) { if ( this->slowNetwork != slowNetwork ) { this->slowNetwork = slowNetwork; emit isSlowNetworkChanged(); } }
 
 	Q_INVOKABLE QString getDeviceId() const { return deviceId; }
 
