@@ -10,6 +10,8 @@ Web++ framework for Qt. This is a framework supplementary to Qt for mobile, for 
 <img src="https://github.com/minixxie/wpp-qt/raw/master/doc/android-sdk-api22.png" height="380"/>
 * Android SDK with "Android Support Library" (22.2+) and "Android Support Repository" installed.<br/>
 <img src="https://github.com/minixxie/wpp-qt/raw/master/doc/android-sdk-supportv7.png" height="380"/>
+* Android SDK with "Android SDK Build-tools" (22.0.1+) installed<br/>
+<img src="https://github.com/minixxie/wpp-qt/raw/master/doc/android-sdk-buildtools.png" height="380"/>
 
 ## Preparation
 You will usually use this project as a git-submodule of your project. Setup with this:
