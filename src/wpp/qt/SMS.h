@@ -43,7 +43,7 @@ public:
 private:
 	void *m_delegate;
 #ifdef Q_OS_ANDROID
-	QAndroidJniObject takePhotoSavedUri;
+	//QAndroidJniObject takePhotoSavedUri;
 	void handleActivityResult(int receiverRequestCode, int resultCode, const QAndroidJniObject & data);
 #endif
 };

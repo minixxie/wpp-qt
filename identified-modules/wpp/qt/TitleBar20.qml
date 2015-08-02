@@ -6,7 +6,7 @@ Rectangle {
 	property bool centerTitle: true
 	property alias bottomBorder: bottomBorder
 
-	height: 44
+	height: 44*wpp.dp2px
 	anchors.top: parent.top
 	anchors.left: parent.left
 	anchors.right: parent.right
@@ -15,7 +15,7 @@ Rectangle {
 	Text {
 		id: label
 		color: "#000000"
-		font.pixelSize: 14
+		font.pixelSize: 14*wpp.dp2px
 		font.bold: true
 		horizontalAlignment: Text.AlignHCenter
 		verticalAlignment: Text.AlignVCenter
@@ -25,7 +25,7 @@ Rectangle {
 	}
 	Rectangle {
 		id: bottomBorder
-		height: visible? 1 : 0
+		height: visible? 1*wpp.dp2px : 0
 		anchors.bottom: parent.bottom
 		anchors.left: parent.left
 		anchors.right: parent.right

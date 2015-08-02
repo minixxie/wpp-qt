@@ -19,39 +19,51 @@ SMS::SMS(QQuickItem *parent) :
 void SMS::open()
 {
 #ifdef Q_OS_ANDROID
-	//android.provider.MediaStore.EXTRA_OUTPUT
-	QAndroidJniObject MediaStore__EXTRA_OUTPUT
+	/*
+		//http://examples.javacodegeeks.com/android/core/telephony/smsmanager/android-sending-sms-example/
+		// add the phone number in the data
+		Uri uri = Uri.parse("smsto:" + phoneNumber.getText().toString());
+		Intent smsSIntent = new Intent(Intent.ACTION_SENDTO, uri);
+		// add the message at the sms_body extra field
+		smsSIntent.putExtra("sms_body", smsBody.getText().toString());
+		try{
+			startActivity(smsSIntent);
+		} catch (Exception ex) {
+			Toast.makeText(MainActivity.this, "Your sms has failed...",
+					Toast.LENGTH_LONG).show();
+			ex.printStackTrace();
+		}
+	 */
+	QString uriString("smsto:");
+	uriString.append( phone() );
+	QAndroidJniObject uri = QAndroidJniObject::fromString(uriString);
+
+	QAndroidJniObject Intent__ACTION_SENDTO
 			= QAndroidJniObject::getStaticObjectField(
-				"android/provider/MediaStore", "EXTRA_OUTPUT", "Ljava/lang/String;");
-	qDebug() << "MediaStore__EXTRA_OUTPUT.isValid()=" << MediaStore__EXTRA_OUTPUT.isValid();
+				"android/content/Intent", "ACTION_SENDTO", "Ljava/lang/String;");
+	qDebug() << "Intent__ACTION_SENDTO.isValid()=" << Intent__ACTION_SENDTO.isValid();
 
-
-	QAndroidJniObject action = QAndroidJniObject::fromString("android.media.action.IMAGE_CAPTURE");
-	QAndroidJniObject intent=QAndroidJniObject("android/content/Intent","(Ljava/lang/String;)V",
-											   action.object<jstring>());
+	QAndroidJniObject intent=QAndroidJniObject("android/content/Intent","(Ljava/lang/String;Landroid/net/Uri;)V",
+											   Intent__ACTION_SENDTO.object<jstring>(), uri.object<jobject>());
 	qDebug() << __FUNCTION__ << "intent.isValid()=" << intent.isValid();
 
-	QAndroidJniObject extDir = QAndroidJniObject::callStaticObjectMethod(
-				"android/os/Environment", "getExternalStorageDirectory", "()Ljava/io/File;");
-	qDebug() << "extDir.isValid()=" << extDir.isValid();
-
-	QAndroidJniObject filename = QAndroidJniObject::fromString("camera.jpg");
-
-	QAndroidJniObject photo=QAndroidJniObject("java/io/File","(Ljava/io/File;Ljava/lang/String;)V",
-											   extDir.object<jobject>(), filename.object<jstring>());
-	qDebug() << __FUNCTION__ << "photo.isValid()=" << photo.isValid();
-
-	takePhotoSavedUri = QAndroidJniObject::callStaticObjectMethod(
-				"android/net/Uri", "fromFile", "(Ljava/io/File;)Landroid/net/Uri;", photo.object<jobject>());
-	qDebug() << "takePhotoSavedUri.isValid()=" << takePhotoSavedUri.isValid();
+	QAndroidJniObject extraName = QAndroidJniObject::fromString("sms_body");
+	QAndroidJniObject msgObj = QAndroidJniObject::fromString( msg() );
 
 	intent.callObjectMethod(
-				"putExtra","(Ljava/lang/String;Landroid/os/Parcelable;)Landroid/content/Intent;",
-				MediaStore__EXTRA_OUTPUT.object<jstring>(), takePhotoSavedUri.object<jobject>());
+				"putExtra","(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;",
+				extraName.object<jstring>(), msgObj.object<jstring>());
 	qDebug() << __FUNCTION__ << "intent.isValid()=" << intent.isValid();
 
-	int SHOOT_PHOTO = 1;
-	QtAndroid::startActivity(intent, SHOOT_PHOTO, this);
+	//QtAndroid::startActivity(intent, 8003, this);
+
+	QAndroidJniObject activity = QtAndroid::androidActivity();
+	qDebug() << __FUNCTION__ << "activity.isValid()=" << activity.isValid();
+
+	activity.callMethod<void>(
+				"startActivity","(Landroid/content/Intent;)V", intent.object<jobject>());
+	qDebug() << __FUNCTION__ << "activity.isValid()=" << activity.isValid();
+
 #endif
 }
 
@@ -61,33 +73,19 @@ void SMS::open()
 #ifdef Q_OS_ANDROID
 void SMS::handleActivityResult(int receiverRequestCode, int resultCode, const QAndroidJniObject & data)
 {
-	int SHOOT_PHOTO = 1;
 	jint Activity__RESULT_OK = QAndroidJniObject::getStaticField<jint>(
 				"android.app.Activity", "RESULT_OK");
 
-	if ( receiverRequestCode == SHOOT_PHOTO && resultCode == Activity__RESULT_OK )
+	if ( receiverRequestCode == 8003 )
 	{
-		/*
-		qDebug() << __FUNCTION__ << "data.isValid()=" << data.isValid();
-
-		//picPath = data.getStringExtra(SelectPicActivity.KEY_PHOTO_PATH);
-		QAndroidJniObject picPath = data.callObjectMethod(
-					"getStringExtra","(Ljava/lang/String;)Ljava/lang/String;");
-		qDebug() << __FUNCTION__ << "picPath.isValid()=" << picPath.isValid();
-		qDebug() << __FUNCTION__ << "picPath=" << picPath.toString();
-
-		connect(this, SIGNAL(finishedShootPhoto(const QString&)), loadExternalCameraFinishedReceiver, loadExternalCameraFinishedMethod.toStdString().c_str());
-		emit this->finishedShootPhoto(picPath.toString());
-		disconnect(this, SIGNAL(finishedShootPhoto(const QString&)), loadExternalCameraFinishedReceiver, loadExternalCameraFinishedMethod.toStdString().c_str());
-		*/
-
-		qDebug() << "takePhotoSavedUri:" << takePhotoSavedUri.toString();
-
-		QAndroidJniObject absPath = takePhotoSavedUri.callObjectMethod("getPath","()Ljava/lang/String;");
-		qDebug() << __FUNCTION__ << "absPath.isValid()=" << absPath.isValid();
-
-		m_imagePath = absPath.toString();
-		emit this->imagePathChanged();
+		if ( resultCode == Activity__RESULT_OK )
+		{
+			emit this->sent();
+		}
+		else
+		{
+			emit this->failed();
+		}
 	}
 }
 #endif

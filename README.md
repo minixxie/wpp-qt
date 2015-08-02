@@ -304,6 +304,38 @@ In QML, e.g.:
 ```
 see example: [UsingBadgeUnreadCount](https://github.com/minixxie/wpp-qt/raw/master/examples/UsingBadgeUnreadCount)
 
+## UseCase: send SMS using the phone SMS app ##
+(support for Android will be coming)
+QML:
+```QML
+import wpp.qt.SMS 2.0
+
+	SMS {
+		id: sms
+		onSent: {
+			console.log("SMS finished: sent");
+		}
+		onFailed: {
+			console.log("SMS finished: failed");
+		}
+		onCancelled: {
+			console.log("pressed cancel");
+		}
+	}
+	....
+	MouseArea {
+		onClicked: {
+			sms.phone = "+852XXXXXXXX";
+			sms.msg = "Thanks for register, your code: 1234";
+			sms.open();
+		}
+	}
+```
+android/AndroidManifest.xml:
+```XML
+	<uses-permission android:name="android.permission.SEND_SMS" />
+```
+
 ## UseCase: using constants ##
 Create constants.json in any location (e.g. in root folder of the project):
 ```JSON
