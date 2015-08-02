@@ -311,9 +311,9 @@ Create constants.json in any location (e.g. in root folder of the project):
 	"host": "www.myhost.com"
 }
 ```
-By using class "ConstantsLoader", we can load it into our program and use those constants:
+By using class "Constants", we can load it into our program and use those constants:
 ```C++
-#include <wpp/qt/ConstantsLoader.h>
+#include <wpp/qt/Constants.h>
 
 int main()
 {
