@@ -308,7 +308,7 @@ see example: [UsingBadgeUnreadCount](https://github.com/minixxie/wpp-qt/raw/mast
 Create constants.json in any location (e.g. in root folder of the project):
 ```JSON
 {
-        "host": "www.myhost.com"
+	"host": "www.myhost.com"
 }
 ```
 By using class "ConstantsLoader", we can load it into our program and use those constants:
@@ -319,22 +319,22 @@ int main()
 {
     QApplication app(argc, argv);
 
-        wpp::qt::ConstantsLoader constantsLoader(":/constants.json");//meaning qrc:/constants.json
+	wpp::qt::Constants constants(":/constants.json"); //meaning qrc:/constants.json
 
-        QQmlApplicationEngine engine;
-        engine.rootContext()->setContextProperty("constants", constantsLoader.constants());
-        engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+    QQmlApplicationEngine engine;
+	engine.rootContext()->setContextProperty("constants", constants);
+	engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
-    return app.exec();
+	return app.exec();
 }
 ```
 Remember to add constants.json into the QRC file:
 ```XML
 <RCC>
-    <qresource prefix="/">
-    ...
-    <file>constants.json</file>
-    </qresource>
+	<qresource prefix="/">
+	...
+	<file>constants.json</file>
+	</qresource>
 </RCC>
 ```
 Then the constants can be used anywhere in the QML:

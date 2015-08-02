@@ -20,7 +20,7 @@ SOURCES += \
 	$$PWD/src/wpp/qt/Application.cpp \
 	$$PWD/src/wpp/qt/QuickView.cpp \
 	$$PWD/src/wpp/qt/Wpp.cpp \
-	$$PWD/src/wpp/qt/ConstantsLoader.cpp \
+	$$PWD/src/wpp/qt/Constants.cpp \
 	$$PWD/src/wpp/qt/Keyboard.cpp \
 	$$PWD/src/wpp/qt/Resolution.cpp \
 	$$PWD/src/wpp/qt/NetworkAccessManager.cpp \
@@ -55,7 +55,7 @@ HEADERS += \
 	$$PWD/src/wpp/qt/QmlApplicationEngine.h \
 	$$PWD/src/wpp/qt/QuickView.h \
 	$$PWD/src/wpp/qt/Wpp.h \
-	$$PWD/src/wpp/qt/ConstantsLoader.h \
+	$$PWD/src/wpp/qt/Constants.h \
 	$$PWD/src/wpp/qt/Keyboard.h \
 	$$PWD/src/wpp/qt/Route.h \
 	$$PWD/src/wpp/qt/Resolution.h \
