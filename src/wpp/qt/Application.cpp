@@ -19,6 +19,7 @@
 #include <wpp/qt/NativeMap.h>
 #include <wpp/qt/NativeDateTimePicker.h>
 #include <wpp/qt/IOSTimeZonePicker.h>
+#include <wpp/qt/SMS.h>
 
 
 namespace wpp {
@@ -56,6 +57,14 @@ void Application::init()
 	qmlRegisterType<wpp::qt::NativeMap>("wpp.qt.NativeMap", 1, 0, "NativeMap");
 	qmlRegisterType<wpp::qt::NativeDateTimePicker>("wpp.qt.NativeDateTimePicker", 1, 0, "NativeDateTimePicker");
 	qmlRegisterType<wpp::qt::IOSTimeZonePicker>("wpp.qt.IOSTimeZonePicker", 1, 0, "IOSTimeZonePicker");
+	qmlRegisterType<wpp::qt::SMS>("wpp.qt.SMS", 1, 0, "SMS");
+
+	qmlRegisterType<wpp::qt::NativeCamera>("wpp.qt.NativeCamera", 2, 0, "NativeCamera");
+	qmlRegisterType<wpp::qt::ImagePicker>("wpp.qt.ImagePicker", 2, 0, "ImagePicker");
+	qmlRegisterType<wpp::qt::NativeMap>("wpp.qt.NativeMap", 2, 0, "NativeMap");
+	qmlRegisterType<wpp::qt::NativeDateTimePicker>("wpp.qt.NativeDateTimePicker", 2, 0, "NativeDateTimePicker");
+	qmlRegisterType<wpp::qt::IOSTimeZonePicker>("wpp.qt.IOSTimeZonePicker", 2, 0, "IOSTimeZonePicker");
+	qmlRegisterType<wpp::qt::SMS>("wpp.qt.SMS", 2, 0, "SMS");
 
 	enableAutoScreenOrientation(true);
 }

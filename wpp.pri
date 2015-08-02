@@ -44,6 +44,7 @@ SOURCES += \
 	$$PWD/src/wpp/qt/Gallery.cpp \
 	$$PWD/src/wpp/qt/NativeMap.cpp \
 	$$PWD/src/wpp/qt/ImagePicker.cpp \
+	$$PWD/src/wpp/qt/SMS.cpp \
 	$$PWD/src/wpp/qt/NativeCamera.cpp \
 	$$PWD/src/wpp/qt/NativeDateTimePicker.cpp \
 	$$PWD/src/wpp/qt/IOSTimeZonePicker.cpp \
@@ -81,6 +82,7 @@ HEADERS += \
         $$PWD/src/wpp/qt/Gallery.h \
         $$PWD/src/wpp/qt/GalleryFolder.h \
 		$$PWD/src/wpp/qt/GalleryPhoto.h \
+	$$PWD/src/wpp/qt/SMS.h \
 	$$PWD/src/wpp/qt/NativeCamera.h \
 	$$PWD/src/wpp/qt/ImagePicker.h \
 		$$PWD/src/wpp/qt/NativeMap.h \
@@ -102,6 +104,7 @@ QMAKE_CXXFLAGS += -fobjc-arc #enable ARC, flags to clang++
 OBJECTIVE_SOURCES += \
 	$$PWD/src/wpp/qt/AddressBookObjC.mm  \
 	$$PWD/src/wpp/qt/AddressBookReader.mm \
+	$$PWD/src/wpp/qt/SMS.mm \
 	$$PWD/src/wpp/qt/NativeCamera.mm \
 	$$PWD/src/wpp/qt/ImagePicker.mm \
 	$$PWD/src/wpp/qt/NativeMap.mm \
@@ -119,7 +122,7 @@ HEADERS += \
 	$$PWD/src/wpp/qt/QIOSViewController+Rotate.h
 
 
-LIBS += -framework AddressBook -framework MapKit \
+LIBS += -framework AddressBook -framework MapKit -framework MessageUI \
 	-framework AssetsLibrary -framework MobileCoreServices #required by ELCImagePickerController
 LIBS += -lqtquickcontrolsplugin #work-around for https://bugreports.qt.io/browse/QTBUG-44867
 }

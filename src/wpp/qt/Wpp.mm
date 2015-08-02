@@ -1,9 +1,15 @@
 #include "Wpp.h"
+#include <QGuiApplication>
+#include <QtGui/qpa/qplatformnativeinterface.h>
+
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
+
 #if defined(Q_OS_MAC) && !defined(Q_OS_IOS)
 	#include <QtMac>
 #endif
+
 namespace wpp
 {
 namespace qt
@@ -93,6 +99,25 @@ void Wpp::setAppIconUnreadCount(int count)
 
 }
 
+void Wpp::sendSMS()
+{
+	// Get the UIView that backs our QQuickWindow:
+	UIView *view = (__bridge UIView *)(
+				QGuiApplication::platformNativeInterface()
+				->nativeResourceForWindow("uiview", QGuiApplication::focusWindow() ));
+	UIViewController *qtController = [[view window] rootViewController];
+
+
+	MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
+	if([MFMessageComposeViewController canSendText])
+	{
+		controller.body = @"SMS message here";
+		controller.recipients = [NSArray arrayWithObjects:@"1(234)567-8910", nil];
+		//controller.messageComposeDelegate = self;
+		[qtController presentModalViewController:controller animated:YES];
+	}
+
+}
 
 
 }//namespace qt

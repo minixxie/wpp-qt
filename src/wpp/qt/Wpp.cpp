@@ -844,6 +844,13 @@ void Wpp::setAppIconUnreadCount(int count)
 }
 #endif
 
+#ifndef Q_OS_IOS
+void Wpp::sendSMS()
+{
+
+}
+#endif
+
 
 }//namespace qt
 }//namespace wpp
