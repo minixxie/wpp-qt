@@ -304,6 +304,46 @@ In QML, e.g.:
 ```
 see example: [UsingBadgeUnreadCount](https://github.com/minixxie/wpp-qt/raw/master/examples/UsingBadgeUnreadCount)
 
+## UseCase: using constants ##
+Create constants.json in any location (e.g. in root folder of the project):
+```JSON
+{
+        "host": "www.myhost.com"
+}
+```
+By using class "ConstantsLoader", we can load it into our program and use those constants:
+```C++
+#include <wpp/qt/ConstantsLoader.h>
+
+int main()
+{
+    QApplication app(argc, argv);
+
+        wpp::qt::ConstantsLoader constantsLoader(":/constants.json");//meaning qrc:/constants.json
+
+        QQmlApplicationEngine engine;
+        engine.rootContext()->setContextProperty("constants", constantsLoader.constants());
+        engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+
+    return app.exec();
+}
+```
+Remember to add constants.json into the QRC file:
+```XML
+<RCC>
+    <qresource prefix="/">
+    ...
+    <file>constants.json</file>
+    </qresource>
+</RCC>
+```
+Then the constants can be used anywhere in the QML:
+```QML
+Image {
+        source: constants.host + "/img/happy.png";
+}
+```
+
 ## LICENSE
 
         Copyright 2015 Simon, Tse Chi Ming
