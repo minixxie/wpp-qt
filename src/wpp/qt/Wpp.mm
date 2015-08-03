@@ -99,26 +99,21 @@ void Wpp::setAppIconUnreadCount(int count)
 
 }
 
-void Wpp::sendSMS()
+bool Wpp::dial(const QString& phone)
 {
-	// Get the UIView that backs our QQuickWindow:
-	UIView *view = (__bridge UIView *)(
-				QGuiApplication::platformNativeInterface()
-				->nativeResourceForWindow("uiview", QGuiApplication::focusWindow() ));
-	UIViewController *qtController = [[view window] rootViewController];
+	NSString *phNo = phone.toNSString();
+	NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"telprompt:%@",phNo]];
 
-
-	MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
-	if([MFMessageComposeViewController canSendText])
+	if ([[UIApplication sharedApplication] canOpenURL:phoneUrl])
 	{
-		controller.body = @"SMS message here";
-		controller.recipients = [NSArray arrayWithObjects:@"1(234)567-8910", nil];
-		//controller.messageComposeDelegate = self;
-		[qtController presentModalViewController:controller animated:YES];
+		[[UIApplication sharedApplication] openURL:phoneUrl];
+		return true;
 	}
-
+	else
+	{
+		return false;
+	}
 }
-
 
 }//namespace qt
 }//namespace wpp

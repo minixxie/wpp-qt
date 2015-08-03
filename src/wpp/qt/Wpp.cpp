@@ -845,9 +845,18 @@ void Wpp::setAppIconUnreadCount(int count)
 #endif
 
 #ifndef Q_OS_IOS
-void Wpp::sendSMS()
+bool Wpp::dial(const QString& phone)
 {
+#ifdef Q_OS_ANROID
+	/*
+	 * http://stackoverflow.com/questions/5230912/android-app-to-call-a-number-on-button-click
+			Intent callIntent = new Intent(Intent.ACTION_CALL);
+					callIntent.setData(Uri.parse("tel:"+txtPhn.getText().toString()));
+					startActivity(callIntent);
+	 */
 
+
+#endif
 }
 #endif
 

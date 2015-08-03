@@ -335,6 +335,24 @@ android/AndroidManifest.xml:
 	<uses-permission android:name="android.permission.SEND_SMS" />
 ```
 
+## UseCase: dial phone ##
+QML:
+```QML
+	onClicked: {
+		wpp.dial("+86138XXXXXXXX");
+	}
+```
+Or C++:
+```C++
+#include <wpp/qt/Wpp.h>
+
+	wpp::qt::Wpp::getInstance().dial("+86138XXXXXXXX");
+```
+android/AndroidManifest.xml:
+```XML
+	<uses-permission android:name="android.permission.CALL_PHONE" />
+```
+
 ## UseCase: using constants ##
 Create constants.json in any location (e.g. in root folder of the project):
 ```JSON
