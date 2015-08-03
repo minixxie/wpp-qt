@@ -340,6 +340,7 @@ QML:
 ```QML
 	onClicked: {
 		wpp.dial("+86138XXXXXXXX");
+		//wpp.dial("+86138XXXXXXXX", true); means dial directly
 	}
 ```
 Or C++:
@@ -352,6 +353,8 @@ android/AndroidManifest.xml:
 ```XML
 	<uses-permission android:name="android.permission.CALL_PHONE" />
 ```
+see example: [DialPhone](https://github.com/minixxie/wpp-qt/raw/master/examples/DialPhone)
+
 
 ## UseCase: using constants ##
 Create constants.json in any location (e.g. in root folder of the project):
