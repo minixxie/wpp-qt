@@ -305,7 +305,6 @@ In QML, e.g.:
 see example: [UsingBadgeUnreadCount](https://github.com/minixxie/wpp-qt/raw/master/examples/UsingBadgeUnreadCount)
 
 ## UseCase: send SMS using the phone SMS app ##
-(support for Android will be coming)
 QML:
 ```QML
 import wpp.qt.SMS 2.0
