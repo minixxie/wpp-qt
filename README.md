@@ -334,6 +334,7 @@ android/AndroidManifest.xml:
 ```XML
 	<uses-permission android:name="android.permission.SEND_SMS" />
 ```
+see example: [SendSMS](https://github.com/minixxie/wpp-qt/raw/master/examples/SendSMS)
 
 ## UseCase: dial phone ##
 QML:
