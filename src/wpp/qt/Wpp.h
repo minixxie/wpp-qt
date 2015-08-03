@@ -137,7 +137,7 @@ public:
 	Q_INVOKABLE QString timezoneLongName(qint64 msecsSinceEpoch, const QString& ianaId = QTimeZone::systemTimeZoneId(), const QLocale& locale = QLocale());
 
 	Q_INVOKABLE void setAppIconUnreadCount(int count);
-	Q_INVOKABLE bool dial(const QString& phone);
+	Q_INVOKABLE bool dial(const QString& phone, bool direct = false);
 
 signals:
 	void networkChanged();

@@ -845,9 +845,9 @@ void Wpp::setAppIconUnreadCount(int count)
 #endif
 
 #ifndef Q_OS_IOS
-bool Wpp::dial(const QString& phone)
+bool Wpp::dial(const QString& phone, bool direct)
 {
-#ifdef Q_OS_ANROID
+#ifdef Q_OS_ANDROID
 	/*
 	 * http://stackoverflow.com/questions/5230912/android-app-to-call-a-number-on-button-click
 			Intent callIntent = new Intent(Intent.ACTION_CALL);
@@ -855,6 +855,37 @@ bool Wpp::dial(const QString& phone)
 					startActivity(callIntent);
 	 */
 
+	//发送号码到打电话那里
+	//        Uri uri = Uri.parse("tel:XXXXXXX");
+	//        Intent intent = new Intent(Intent.ACTION_DIAL,uri);//直接拨打:ACTION_CALL, 弹出窗口:ACTION_DIAL
+	//        // 或者Intent intent = new Intent("android.intent.action.DIAL");
+	//        // Intent.ACTION_DIAL是内置常量，值为"android.intent.action.DIAL"
+	//        m_instance.startActivity(intent);
+
+	QString uriQString("tel:");
+	uriQString.append( phone );
+	QAndroidJniObject uriString = QAndroidJniObject::fromString(uriQString);
+
+	QAndroidJniObject uri = QAndroidJniObject::callStaticObjectMethod(
+				"android/net/Uri", "parse", "(Ljava/lang/String;)Landroid/net/Uri;", uriString.object<jstring>());
+	qDebug() << "uri.isValid()=" << uri.isValid();
+
+	QAndroidJniObject Intent__ACTION_DIAL
+			= QAndroidJniObject::getStaticObjectField(
+				"android/content/Intent", "ACTION_DIAL", "Ljava/lang/String;");
+	qDebug() << "Intent__ACTION_DIAL.isValid()=" << Intent__ACTION_DIAL.isValid();
+
+	QAndroidJniObject Intent__ACTION_CALL
+			= QAndroidJniObject::getStaticObjectField(
+				"android/content/Intent", "ACTION_CALL", "Ljava/lang/String;");
+	qDebug() << "Intent__ACTION_CALL.isValid()=" << Intent__ACTION_CALL.isValid();
+
+	QAndroidJniObject intent=QAndroidJniObject("android/content/Intent","(Ljava/lang/String;Landroid/net/Uri;)V",
+											   direct? Intent__ACTION_CALL.object<jstring>() : Intent__ACTION_DIAL.object<jstring>(),
+											   uri.object<jobject>());
+	qDebug() << __FUNCTION__ << "intent.isValid()=" << intent.isValid();
+
+	QtAndroid::startActivity(intent, 0, 0);
 
 #endif
 }

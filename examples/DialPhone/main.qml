@@ -47,7 +47,7 @@ Window {
 		MouseArea {
 			anchors.fill: parent
 			Overlay { target: parent; isTargetMouseArea: true }
-			onClicked: wpp.dial(textfield.text)
+			onClicked: wpp.dial(textfield.text, true)
 		}
 	}
 

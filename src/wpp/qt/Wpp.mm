@@ -99,7 +99,7 @@ void Wpp::setAppIconUnreadCount(int count)
 
 }
 
-bool Wpp::dial(const QString& phone)
+bool Wpp::dial(const QString& phone, bool direct)
 {
 	NSString *phNo = phone.toNSString();
 	NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"telprompt:%@",phNo]];
