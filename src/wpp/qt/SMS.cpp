@@ -34,9 +34,14 @@ void SMS::open()
 			ex.printStackTrace();
 		}
 	 */
-	QString uriString("smsto:");
-	uriString.append( phone() );
-	QAndroidJniObject uri = QAndroidJniObject::fromString(uriString);
+
+	QString uriQString("smsto:");
+	uriQString.append( phones().join(';') );
+	QAndroidJniObject uriString = QAndroidJniObject::fromString(uriQString);
+
+	QAndroidJniObject uri = QAndroidJniObject::callStaticObjectMethod(
+				"android/net/Uri", "parse", "(Ljava/lang/String;)Landroid/net/Uri;", uriString.object<jstring>());
+	qDebug() << "uri.isValid()=" << uri.isValid();
 
 	QAndroidJniObject Intent__ACTION_SENDTO
 			= QAndroidJniObject::getStaticObjectField(
@@ -55,15 +60,24 @@ void SMS::open()
 				extraName.object<jstring>(), msgObj.object<jstring>());
 	qDebug() << __FUNCTION__ << "intent.isValid()=" << intent.isValid();
 
-	//QtAndroid::startActivity(intent, 8003, this);
+	QtAndroid::startActivity(intent, 8003, this);
 
-	QAndroidJniObject activity = QtAndroid::androidActivity();
+	/*QAndroidJniObject activity = QtAndroid::androidActivity();
 	qDebug() << __FUNCTION__ << "activity.isValid()=" << activity.isValid();
 
 	activity.callMethod<void>(
 				"startActivity","(Landroid/content/Intent;)V", intent.object<jobject>());
 	qDebug() << __FUNCTION__ << "activity.isValid()=" << activity.isValid();
+*/
 
+
+	/*
+	 //http://examples.javacodegeeks.com/android/core/telephony/smsmanager/android-sending-sms-example/
+	 //http://stackoverflow.com/questions/10265480/android-opening-sms-activity-with-multiple-recipients-specified
+		Intent smsIntent = new Intent(Intent.ACTION_SENDTO,Uri.parse("smsto:5551212;5551212"));
+		smsIntent.putExtra("sms_body", "sms message goes here");
+		startActivity(smsIntent);
+	 */
 #endif
 }
 
@@ -84,7 +98,8 @@ void SMS::handleActivityResult(int receiverRequestCode, int resultCode, const QA
 		}
 		else
 		{
-			emit this->failed();
+			//emit this->failed();
+			emit this->cancelled();
 		}
 	}
 }
