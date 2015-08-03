@@ -21,7 +21,7 @@ git submodule add https://github.com/minixxie/wpp-qt.git
 ```
 Once you've cloned this project, make sure to download sub-modules dependencies:
 * [B-Sides/ELCImagePickerController](https://github.com/B-Sides/ELCImagePickerController)
-* [skywinder/ActionSheetPicker-3.0](https://github.com/skywinder/ActionSheetPicker-3.0))
+* [skywinder/ActionSheetPicker-3.0](https://github.com/skywinder/ActionSheetPicker-3.0)
 * [donglua/PhotoPicker](https://github.com/donglua/PhotoPicker.git)
 * [leolin310148/ShortcutBadger](https://github.com/leolin310148/ShortcutBadger.git)
 ```bash
@@ -367,6 +367,10 @@ Or C++
 #include <wpp/qt/Wpp.h>
 
 	wpp::qt::Wpp::getInstance().vibrate(1000);
+```
+android/AndroidManifest.xml:
+```XML
+	<uses-permission android:name="android.permission.VIBRATE" />
 ```
 see example: [VibrateDevice](https://github.com/minixxie/wpp-qt/raw/master/examples/VibrateDevice)
 

@@ -912,8 +912,9 @@ bool Wpp::vibrate(long milliseconds)
 		Context__VIBRATOR_SERVICE.object<jstring>());
 	if ( vibrator.isValid() )
 	{
-		qDebug() << "vibrator IS valid...";
-		vibrator.callMethod<void>("vibrate", "(J)V", milliseconds);
+		jlong ms = (jlong)milliseconds;
+		qDebug() << "vibrator IS valid...:milliseconds=" << ms;
+		vibrator.callMethod<void>("vibrate", "(J)V", ms);
 		return true;
 	}
 	else
