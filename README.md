@@ -356,6 +356,19 @@ android/AndroidManifest.xml:
 ```
 see example: [DialPhone](https://github.com/minixxie/wpp-qt/raw/master/examples/DialPhone)
 
+## UseCase: Vibrate deivice ##
+```QML
+	onClicked: {
+		wpp.vibrate(1000);//for 1 second
+	}
+```
+Or C++
+```C++
+#include <wpp/qt/Wpp.h>
+
+	wpp::qt::Wpp::getInstance().vibrate(1000);
+```
+see example: [VibrateDevice](https://github.com/minixxie/wpp-qt/raw/master/examples/VibrateDevice)
 
 ## UseCase: using constants ##
 Create constants.json in any location (e.g. in root folder of the project):
