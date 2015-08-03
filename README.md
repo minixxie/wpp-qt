@@ -372,6 +372,8 @@ android/AndroidManifest.xml:
 ```XML
 	<uses-permission android:name="android.permission.VIBRATE" />
 ```
+Since Apple doesn't allow control on the length of vibration, the milliseconds parameter of the function will be ignored on iOS platform.
+
 see example: [VibrateDevice](https://github.com/minixxie/wpp-qt/raw/master/examples/VibrateDevice)
 
 ## UseCase: using constants ##
