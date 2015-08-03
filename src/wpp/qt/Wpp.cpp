@@ -891,6 +891,39 @@ bool Wpp::dial(const QString& phone, bool direct)
 }
 #endif
 
+#ifndef Q_OS_IOS
+bool Wpp::vibrate(long milliseconds)
+{
+#ifdef Q_OS_ANDROID
+	//http://stackoverflow.com/questions/29644280/how-to-make-phone-vibrate-from-qt-android
+	/*
+
+	 */
+	QAndroidJniObject activity = QtAndroid::androidActivity();
+	qDebug() << __FUNCTION__ << "activity.isValid()=" << activity.isValid();
+
+	QAndroidJniObject Context__VIBRATOR_SERVICE
+			= QAndroidJniObject::getStaticObjectField(
+				"android/content/Context", "VIBRATOR_SERVICE", "Ljava/lang/String;");
+	qDebug() << "Context__VIBRATOR_SERVICE.isValid()=" << Context__VIBRATOR_SERVICE.isValid();
+
+	QAndroidJniObject vibrator = activity.callObjectMethod("getSystemService",
+		"(Ljava/lang/String;)Ljava/lang/Object;",
+		Context__VIBRATOR_SERVICE.object<jstring>());
+	if ( vibrator.isValid() )
+	{
+		qDebug() << "vibrator IS valid...";
+		vibrator.callMethod<void>("vibrate", "(J)V", milliseconds);
+		return true;
+	}
+	else
+	{
+		qDebug() << "vibrator is NOT valid...";
+		return false;
+	}
+#endif
+}
+#endif
 
 }//namespace qt
 }//namespace wpp

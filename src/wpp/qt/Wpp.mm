@@ -5,6 +5,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
+#import <AudioToolbox/AudioServices.h>
 
 #if defined(Q_OS_MAC) && !defined(Q_OS_IOS)
 	#include <QtMac>
@@ -113,6 +114,13 @@ bool Wpp::dial(const QString& phone, bool direct)
 	{
 		return false;
 	}
+}
+
+bool Wpp::vibrate(long milliseconds)
+{
+	//http://stackoverflow.com/questions/4724980/making-the-iphone-vibrate
+	AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+	return true;
 }
 
 }//namespace qt

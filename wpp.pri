@@ -122,7 +122,7 @@ HEADERS += \
 	$$PWD/src/wpp/qt/QIOSViewController+Rotate.h
 
 
-LIBS += -framework AddressBook -framework MapKit -framework MessageUI \
+LIBS += -framework AddressBook -framework MapKit -framework MessageUI -framework AudioToolbox \
 	-framework AssetsLibrary -framework MobileCoreServices #required by ELCImagePickerController
 LIBS += -lqtquickcontrolsplugin #work-around for https://bugreports.qt.io/browse/QTBUG-44867
 }

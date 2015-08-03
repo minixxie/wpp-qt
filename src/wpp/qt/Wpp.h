@@ -138,6 +138,7 @@ public:
 
 	Q_INVOKABLE void setAppIconUnreadCount(int count);
 	Q_INVOKABLE bool dial(const QString& phone, bool direct = false);
+	Q_INVOKABLE bool vibrate(long milliseconds);
 
 signals:
 	void networkChanged();
