@@ -17,19 +17,19 @@ class SMS : public QQuickItem
 #endif
 {
 	Q_OBJECT
-	Q_PROPERTY(QString phone READ phone WRITE setPhone NOTIFY phoneChanged)
+	Q_PROPERTY(QStringList phones READ phones WRITE setPhones NOTIFY phonesChanged)
 	Q_PROPERTY(QString msg READ msg WRITE setMsg NOTIFY msgChanged)
 
 private:
-	QString m_phone;
+	QStringList m_phones;
 	QString m_msg;
 
 public:
 	explicit SMS(QQuickItem *parent = 0);
 
-	Q_INVOKABLE const QString& phone() const { return m_phone; }
-	Q_INVOKABLE void setPhone(const QString& phone) { if ( m_phone == phone ) return; m_phone = phone; emit phoneChanged(); }
-	Q_SIGNAL void phoneChanged();
+	Q_INVOKABLE const QStringList& phones() const { return m_phones; }
+	Q_INVOKABLE void setPhones(const QStringList& phones) { if ( m_phones == phones ) return; m_phones = phones; emit phonesChanged(); }
+	Q_SIGNAL void phonesChanged();
 
 	Q_INVOKABLE const QString& msg() const { return m_msg; }
 	Q_INVOKABLE void setMsg(const QString& msg) { if ( m_msg == msg ) return; m_msg = msg; emit msgChanged(); }

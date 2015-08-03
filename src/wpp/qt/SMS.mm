@@ -76,9 +76,14 @@ void SMS::open()
 	MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
 	if([MFMessageComposeViewController canSendText])
 	{
+		const QStringList& phoneList = phones();
+		NSMutableArray *phonesNSArray = [NSMutableArray array];
+		for (QStringList::ConstIterator it = phoneList.begin(); it != phoneList.end(); ++it) {
+			[phonesNSArray addObject:(*it).toNSString()];
+		}
 
 		controller.body = msg().toNSString();
-		controller.recipients = [NSArray arrayWithObjects:phone().toNSString(), nil];
+		controller.recipients = phonesNSArray; // [NSArray arrayWithObjects:phone().toNSString(), nil];
 		//controller.messageComposeDelegate = self;
 		controller.messageComposeDelegate = (__bridge id)(m_delegate);
 		//[qtController presentModalViewController:controller animated:YES];

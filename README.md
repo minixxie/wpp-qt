@@ -325,7 +325,7 @@ import wpp.qt.SMS 2.0
 	....
 	MouseArea {
 		onClicked: {
-			sms.phone = "+852XXXXXXXX";
+			sms.phones = ["+852XXXXXXXX", "+86138XXXXXXXX"];
 			sms.msg = "Thanks for register, your code: 1234";
 			sms.open();
 		}
