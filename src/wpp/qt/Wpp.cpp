@@ -365,6 +365,13 @@ void Wpp::setSoftInputMode(SoftInputMode softInputMode)
 		{
 			qDebug() << __FUNCTION__ << ":param=" << param;
 			window.callMethod<void>("setSoftInputMode","(I)V",param);
+			if (env->ExceptionCheck())
+			{
+				// Handle exception here.
+				qDebug() << "Exception 2....";
+				env->ExceptionDescribe();
+				env->ExceptionClear();
+			}
 		}
 	}
 
@@ -923,6 +930,13 @@ bool Wpp::vibrate(long milliseconds)
 		return false;
 	}
 #endif
+}
+#endif
+
+#ifndef Q_OS_IOS
+void Wpp::setStatusBarVisible(bool isVisible)
+{
+
 }
 #endif
 

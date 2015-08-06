@@ -37,6 +37,8 @@ SelectionListModal 1.0 SelectionListModal.qml
 SmileysUI 1.0 SmileysUI.qml
 DownloadUpdateUI 1.0 DownloadUpdateUI.qml
 PhoneNumberCountryCodeModel 1.0 PhoneNumberCountryCodeModel.qml
+ScrollInputVisible 1.0 ScrollInputVisible.qml
 TitleBar 2.0 TitleBar20.qml
 PhoneNumberCountryCodeModel 2.0 PhoneNumberCountryCodeModel.qml
 Overlay 2.0 Overlay.qml
+ScrollInputVisible 2.0 ScrollInputVisible.qml

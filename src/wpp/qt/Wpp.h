@@ -140,6 +140,7 @@ public:
 	Q_INVOKABLE bool dial(const QString& phone, bool direct = false);
 	Q_INVOKABLE bool vibrate(long milliseconds);
 
+	Q_INVOKABLE void setStatusBarVisible(bool isVisible = true);
 signals:
 	void networkChanged();
 	void hasNetworkChanged();

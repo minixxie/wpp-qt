@@ -34,6 +34,7 @@
 		<file>identified-modules/wpp/qt/PhotoCaptureControls.qml</file>
 		<file>identified-modules/wpp/qt/RotatableRectangle.qml</file>
 		<file>identified-modules/wpp/qt/RoundedImage.qml</file>
+		<file>identified-modules/wpp/qt/ScrollInputVisible.qml</file>
 		<file>identified-modules/wpp/qt/SearchField.qml</file>
 		<file>identified-modules/wpp/qt/SelectionList.qml</file>
 		<file>identified-modules/wpp/qt/SelectionListModal.qml</file>

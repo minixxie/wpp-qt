@@ -9,12 +9,17 @@ namespace qt {
 
 class Application : public QGuiApplication
 {
+	Q_OBJECT
+private:
+	bool m_keyboardWasAnimating;
+
 public:
 #ifdef Q_QDOC
 	Application(int &argc, char **argv);
 #else
 	Application(int &argc, char **argv, int = ApplicationFlags);
 #endif
+	virtual ~Application();
 
 	void loadTranslations(const QString& qmFilenameNoExtension);
 	void enableQtWebEngineIfPossible();
@@ -28,6 +33,11 @@ public:
 
 private://helpers
 	void init();
+
+private:
+	Q_SLOT void onFocusWindowYChanged();
+	Q_SLOT void onInputMethodVisibleChanged();
+
 };
 
 }

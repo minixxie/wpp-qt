@@ -116,6 +116,12 @@ bool Wpp::dial(const QString& phone, bool direct)
 	}
 }
 
+void Wpp::setStatusBarVisible(bool isVisible)
+{
+	[[UIApplication sharedApplication] setStatusBarHidden:(isVisible?YES:NO)
+										  withAnimation:UIStatusBarAnimationNone];
+}
+
 bool Wpp::vibrate(long milliseconds)
 {
 	//http://stackoverflow.com/questions/4724980/making-the-iphone-vibrate

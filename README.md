@@ -100,6 +100,9 @@ Rectange {
 	anchors.margins: 10*wpp.dp2px //dp2px means changing 10 from "dp" to "px" as all QML properties only accept pixels
 }
 ```
+## UseCase: adjustPan default behaviour
+(Under construction)
+
 ## UseCase: TimeAgo
 TimeAgo is a class for generating human readable date/time. For example, it shows "2 hours ago", "15 mins ago", etc. By using wpp::qt::Application and wpp::qt::QuickView in main(), timeago can be used in QML:
 ```QML

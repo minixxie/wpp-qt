@@ -65,7 +65,10 @@ Rectangle {
 				cache: false
 				source: {
 					console.debug("AttachPhotoUI:image=" + modelData.path);
-					return modelData.isDone? "file://" + modelData.path : "";
+					if ( Qt.platform.os == "ios" )
+						return modelData.isDone? "file:" + modelData.path : "";
+					else
+						return modelData.isDone? "file://" + modelData.path : "";
 					/*if (modelData != "") {
 						var s = "file://" + modelData.path;
 						//console.debug("microblog-attach:"+s);

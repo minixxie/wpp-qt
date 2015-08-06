@@ -3,6 +3,8 @@ import QtGraphicalEffects 1.0
 
 FocusScope {
 	id: textfield
+	property var flickable
+	property int scrollToYWhenFocused: y
 	property alias placeholderText: placeholder.text
 	property alias placeholderFont: placeholder.font
 	property alias placeholderColor: placeholder.color
@@ -66,9 +68,11 @@ FocusScope {
 	}
 
 
-
-	MouseArea {
+	ScrollInputVisible {
 		anchors.fill: parent
+		inputElement: textfield
+		flickable: textfield.flickable
+		scrollToContentYWhenFocused: textfield.scrollToYWhenFocused
 		onPressAndHold: {
 			//console.debug("onPressAndHold...")
 			menu.visible = true
@@ -105,7 +109,7 @@ FocusScope {
 				menu.item.invertAttachAndRepaint()
 			}
 		}
-		onPressed: {
+		/*onPressed: {
 			//console.debug("onPressed...")
 			if (!Qt.inputMethod.visible) {
 				Qt.inputMethod.show()
@@ -116,7 +120,7 @@ FocusScope {
 			textInput.cursorPosition = index
 
 			menu.visible = false
-		}
+		}*/
 		onReleased: {
 			if (textInput.selectedText != "") {
 				if (!menu.visible) {
@@ -124,7 +128,6 @@ FocusScope {
 				}
 			}
 		}
-
 		onPositionChanged: {
 			var currentIndex = textInput.cursorPosition
 			var index = textInput.positionAt(mouseX, mouseY)
