@@ -70,9 +70,13 @@ FocusScope {
 
 	ScrollInputVisible {
 		anchors.fill: parent
-		inputElement: textfield
+		inputElement: textInput
 		flickable: textfield.flickable
-		scrollToContentYWhenFocused: textfield.scrollToYWhenFocused
+		//rootWindow: fullScreen
+		onPressed: {
+			//ScrollInputVisible.onPressed();
+			menu.visible = false;
+		}
 		onPressAndHold: {
 			//console.debug("onPressAndHold...")
 			menu.visible = true

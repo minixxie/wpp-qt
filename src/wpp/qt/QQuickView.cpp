@@ -1,4 +1,4 @@
-#include "QuickView.h"
+#include "QQuickView.h"
 #include "Resolution.h"
 #include "Wpp.h"
 #include "TimeAgo.h"
@@ -14,7 +14,7 @@ namespace wpp {
 namespace qt {
 
 
-void QuickView::init()
+void QQuickView::init()
 {
 	this->engine()->addImportPath("qrc:/identified-modules");
 
@@ -63,7 +63,7 @@ void QuickView::init()
 
 }
 
-void QuickView::show()
+void QQuickView::show()
 {
 #ifdef Q_OS_IOS
 	QScreen *screen = app->screens()[0];
@@ -71,7 +71,7 @@ void QuickView::show()
 	this->showNormal();
 	this->setHeight(availableGeometry.height() + 20);
 #else
-	QQuickView::show();
+	::QQuickView::show();
 #endif
 }
 

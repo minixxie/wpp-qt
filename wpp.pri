@@ -17,8 +17,8 @@ INCLUDEPATH += $$PWD/src/
 
 SOURCES += \
 	$$PWD/src/wpp/lang/Pinyin.cpp $$PWD/src/wpp/lang/PinyinData.cpp \
-	$$PWD/src/wpp/qt/Application.cpp \
-	$$PWD/src/wpp/qt/QuickView.cpp \
+	$$PWD/src/wpp/qt/QGuiApplication.cpp \
+	$$PWD/src/wpp/qt/QQuickView.cpp \
 	$$PWD/src/wpp/qt/Wpp.cpp \
 	$$PWD/src/wpp/qt/Constants.cpp \
 	$$PWD/src/wpp/qt/Keyboard.cpp \
@@ -52,9 +52,9 @@ SOURCES += \
 
 HEADERS += \
 	$$PWD/src/wpp/lang/Pinyin.h \
-	$$PWD/src/wpp/qt/Application.h \
-	$$PWD/src/wpp/qt/QmlApplicationEngine.h \
-	$$PWD/src/wpp/qt/QuickView.h \
+	$$PWD/src/wpp/qt/QGuiApplication.h \
+	$$PWD/src/wpp/qt/QQmlApplicationEngine.h \
+	$$PWD/src/wpp/qt/QQuickView.h \
 	$$PWD/src/wpp/qt/Wpp.h \
 	$$PWD/src/wpp/qt/Constants.h \
 	$$PWD/src/wpp/qt/Keyboard.h \

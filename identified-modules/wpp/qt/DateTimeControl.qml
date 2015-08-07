@@ -90,6 +90,7 @@ Rectangle {
 		anchors.fill: parent
 		Overlay { target: parent; isTargetMouseArea: true }
 		onClicked: {
+			parent.forceActiveFocus();
 			Qt.inputMethod.hide();
 			dateTimePicker.open();
 		}

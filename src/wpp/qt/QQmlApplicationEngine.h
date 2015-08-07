@@ -2,19 +2,19 @@
 #define __WPP__QT__QML_APPLICATION_ENGINE__H__
 
 #include <QQmlApplicationEngine>
-#include "Application.h"
+#include "QGuiApplication.h"
 #include "Resolution.h"
 #include <QQmlContext>
 #include <wpp/qt/Wpp.h>
 
 namespace wpp {
 namespace qt {
-class QmlApplicationEngine : public QQmlApplicationEngine
+class QQmlApplicationEngine : public ::QQmlApplicationEngine
 {
 	Q_OBJECT
 public:
-	QmlApplicationEngine(QObject *parent=0)
-		: QQmlApplicationEngine(parent)
+	QQmlApplicationEngine(QObject *parent=0)
+		: ::QQmlApplicationEngine(parent)
 	{
 		this->addImportPath("qrc:/identified-modules");
 		this->rootContext()->setContextProperty("wpp", &wpp::qt::Wpp::getInstance());

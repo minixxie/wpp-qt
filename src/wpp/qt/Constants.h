@@ -8,8 +8,16 @@ namespace qt {
 
 class Constants : public QVariantMap
 {
+private:
+	static Constants *singleton;
+	Constants() {}
+
 public:
-	Constants(const QString& jsonFilePath);
+	static const Constants& getInstance() { return *singleton; }
+
+	static void load(const QString& jsonFilePath);
+
+public:
 };
 
 }

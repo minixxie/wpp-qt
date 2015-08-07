@@ -1,4 +1,4 @@
-#include "Application.h"
+#include "QGuiApplication.h"
 
 #include <QTranslator>
 #include <QScreen>
@@ -30,23 +30,23 @@
 namespace wpp {
 namespace qt {
 
-Application::~Application() {}
+QGuiApplication::~QGuiApplication() {}
 
 #ifdef Q_QDOC
-Application::Application(int &argc, char **argv)
-	: QGuiApplication(argc, argv), m_keyboardWasAnimating(false)
+QGuiApplication::QGuiApplication(int &argc, char **argv)
+	: ::QGuiApplication(argc, argv), m_keyboardWasAnimating(false)
 {
 	init();
 }
 #else
-Application::Application(int &argc, char **argv, int flags)
-	: QGuiApplication(argc, argv, flags), m_keyboardWasAnimating(false)
+QGuiApplication::QGuiApplication(int &argc, char **argv, int flags)
+	: ::QGuiApplication(argc, argv, flags), m_keyboardWasAnimating(false)
 {
 	init();
 }
 #endif
 
-void Application::init()
+void QGuiApplication::init()
 {
 #ifdef Q_OS_IOS
 	wpp::qt::IOS::documentsDirectoryExcludeICloudBackup();
@@ -93,7 +93,7 @@ void Application::init()
 //#endif
 }
 
-void Application::onFocusWindowYChanged()
+void QGuiApplication::onFocusWindowYChanged()
 {
 	QWindow *focusWindow = QGuiApplication::focusWindow();
 	//qDebug() << __FUNCTION__ << ":focusWindow.y=" << focusWindow->y();
@@ -103,7 +103,7 @@ void Application::onFocusWindowYChanged()
 	qDebug() << __FUNCTION__ << ":focusWindow.frameGeometry=" << focusWindow->frameGeometry();
 }
 
-void Application::onInputMethodVisibleChanged()
+void QGuiApplication::onInputMethodVisibleChanged()
 {	
 #if defined(Q_OS_IOS) || defined(Q_OS_ANDROID)
 	QInputMethod *inputMethod = this->inputMethod();
@@ -249,7 +249,7 @@ void Application::onInputMethodVisibleChanged()
 }
 
 
-void Application::loadTranslations(const QString& qmFilenameNoExtension)
+void QGuiApplication::loadTranslations(const QString& qmFilenameNoExtension)
 {
 	QTranslator *translator = new QTranslator(this);
 	QString transFilename( QString(":/%1.").arg(qmFilenameNoExtension) + QLocale::system().name() );
@@ -265,7 +265,7 @@ void Application::loadTranslations(const QString& qmFilenameNoExtension)
 	this->installTranslator(translator);
 }
 
-void Application::enableQtWebEngineIfPossible()
+void QGuiApplication::enableQtWebEngineIfPossible()
 {
 //#ifdef Q_OS_MAC | Q_OS_WIN | Q_OS_LINUX
 #if !defined(Q_OS_ANDROID) && !defined(Q_OS_IOS)
@@ -273,7 +273,7 @@ void Application::enableQtWebEngineIfPossible()
 #endif
 }
 
-void Application::registerApplePushNotificationService()
+void QGuiApplication::registerApplePushNotificationService()
 {
 	wpp::qt::Wpp::getInstance().registerApplePushNotificationService();
 }

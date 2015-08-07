@@ -73,24 +73,24 @@ YourQtProject/android/AndroidManifest.xml:
 
 
 ## To Begin
-To use this library, the first requirement is to substitute QGuiApplication with wpp::qt::Application, and use wpp::qt::QuickView instead of QQmlApplicationEngine:
+To use this library, the first requirement is to substitute QGuiApplication with wpp::qt::QGuiApplication, and QQmlApplicationEngine with wpp::qt::QQmlApplicationEngine:
 ```c++
-#include <wpp/qt/Application.h>
-#include <wpp/qt/QmlApplicationEngine.h>
+#include <wpp/qt/QGuiApplication.h>
+#include <wpp/qt/QQmlApplicationEngine.h>
 
 int main(int argc, char *argv[])
 {
-	wpp::qt::Application app(argc, argv);//changed from QGuiApplication
+	wpp::qt::QGuiApplication app(argc, argv);//changed from QGuiApplication
 
-	wpp::qt::QmlApplicationEngine engine;//changed from QQmlApplicationEngine, which provides "wpp" object in QML
-    engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
+	wpp::qt::QQmlApplicationEngine engine;//changed from QQmlApplicationEngine, which provides "wpp" object in QML
+	engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
     return app.exec();
 }
 
 ```
-The Application class actually inherits from [QGuiApplication](http://doc.qt.io/qt-5/qguiapplication.html) and it registers some wpp library things in addition.
-The QmlApplicationEngine class inherits from [QQmlApplicationEngine](http://doc.qt.io/qt-5/qqmlapplicationengine.html) and it injects "wpp" object into the QML root context.
+The wpp::qt::QGuiApplication class actually inherits from [QGuiApplication](http://doc.qt.io/qt-5/qguiapplication.html) and it registers some wpp library things in addition.
+The wpp::qt::QQmlApplicationEngine class inherits from [QQmlApplicationEngine](http://doc.qt.io/qt-5/qqmlapplicationengine.html) and it injects "wpp" object into the QML root context.
 
 ## UseCase: density independent pixel
 All QML elements only support pixel values for x, y, width, height and all size and dimension related properties. With the main function used in "To Begin", "reso" variable can be used in QML like this:
@@ -100,11 +100,47 @@ Rectange {
 	anchors.margins: 10*wpp.dp2px //dp2px means changing 10 from "dp" to "px" as all QML properties only accept pixels
 }
 ```
-## UseCase: adjustPan default behaviour
-(Under construction)
+## UseCase: tackle with adjustPan default behaviour
+By default, Qt do "adjustPan" of the window content when the soft keyboard comes out. This is not professional as an app.
+Normally we would like to keep the title bar not moved, but just the content under the title bar to scroll up.
+For android, we can choose "adjustResize" for window:softInputMode in AndroidManifest.xml and Qt has already implemented it since Qt5.3. But for iOS, I still couldn't find a work around. That's why I did this work around myself:
+```QML
+import wpp.qt 2.0
+
+	TitleBar {
+		id: titleBar
+		anchors.top: parent.top
+		anchors.left: parent.left
+		anchors.right: parent.right
+		label.text: "My App"
+	}
+	Flickable {
+		id: pageScrollable
+		anchors.top: titleBar.bottom
+		anchors.left: parent.left
+		anchors.right: parent.right
+		anchors.bottom: parent.bottom
+
+		TextField {
+			id: textfield1
+			...
+		}
+
+		...
+		TextField {
+			id: textfield10
+			anchors.top: textfield9.bottom
+			anchors.left: parent.left
+			anchors.right: parent.right
+			height: 24*wpp.dp2px
+
+			
+		}
+	}
+```
 
 ## UseCase: TimeAgo
-TimeAgo is a class for generating human readable date/time. For example, it shows "2 hours ago", "15 mins ago", etc. By using wpp::qt::Application and wpp::qt::QuickView in main(), timeago can be used in QML:
+TimeAgo is a class for generating human readable date/time. For example, it shows "2 hours ago", "15 mins ago", etc. By using wpp::qt::QGuiApplication and wpp::qt::QQmlApplicationEngine in main(), timeago can be used in QML:
 ```QML
 Text {
 	text: timeago.getTimeAgo(unixTimestamp)
@@ -292,7 +328,7 @@ In C++, e.g.:
 ```c++
 #include <wpp/qt/System.h>
 
-	wpp::qt::Application app(argc, argv);
+	wpp::qt::QGuiApplication app(argc, argv);
 	app.registerApplePushNotificationService(); //necessary for iOS, this function does nothing on other platforms
 
 	int count = 7;
@@ -392,12 +428,12 @@ By using class "Constants", we can load it into our program and use those consta
 
 int main()
 {
-    QApplication app(argc, argv);
+    QQGuiApplication app(argc, argv);
 
-	wpp::qt::Constants constants(":/constants.json"); //meaning qrc:/constants.json
+	wpp::qt::Constants::load(":/constants.json"); //meaning qrc:/constants.json
 
     QQmlApplicationEngine engine;
-	engine.rootContext()->setContextProperty("constants", constants);
+	engine.rootContext()->setContextProperty("constants", wpp::qt::Constants::getInstance() );
 	engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
 	return app.exec();

@@ -64,8 +64,11 @@ TextEdit {
 		font.family: "Helvetica";
 	}
 
-	MouseArea {
+	ScrollInputVisible {
 		anchors.fill: parent
+		inputElement: descriptionEdit
+		flickable: flickable
+		//rootWindow: fullScreen
 		onPressAndHold: {
 			//console.debug("onPressAndHold...")
 			menu.visible = true
@@ -102,19 +105,19 @@ TextEdit {
 				menu.item.invertAttachAndRepaint()
 			}
 		}
-		onPressed: {
+		/*onPressed: {
 			//console.debug("onPressed...")
-			if (!Qt.inputMethod.visible) {
-				Qt.inputMethod.show()
-			}
+			//if (!Qt.inputMethod.visible) {
+			//	Qt.inputMethod.show()
+			//}
 
 			// 确保输入框获取焦点
-			textEdit.forceActiveFocus()
+			//textEdit.forceActiveFocus()
 			var index = textEdit.positionAt(mouseX, mouseY)
 			textEdit.cursorPosition = index
 
 			menu.visible = false
-		}
+		}*/
 		onReleased: {
 			if (textEdit.selectedText != "") {
 				if (!menu.visible) {

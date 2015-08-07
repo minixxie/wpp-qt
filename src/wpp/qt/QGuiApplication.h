@@ -1,5 +1,5 @@
-#ifndef __WPP__QT__APPLICATION_H__
-#define __WPP__QT__APPLICATION_H__
+#ifndef __WPP__QT__QGuiApplication_H__
+#define __WPP__QT__QGuiApplication_H__
 
 #include <QGuiApplication>
 #include "Wpp.h"
@@ -7,7 +7,7 @@
 namespace wpp {
 namespace qt {
 
-class Application : public QGuiApplication
+class QGuiApplication : public ::QGuiApplication
 {
 	Q_OBJECT
 private:
@@ -15,11 +15,11 @@ private:
 
 public:
 #ifdef Q_QDOC
-	Application(int &argc, char **argv);
+	QGuiApplication(int &argc, char **argv);
 #else
-	Application(int &argc, char **argv, int = ApplicationFlags);
+	QGuiApplication(int &argc, char **argv, int = ApplicationFlags);
 #endif
-	virtual ~Application();
+	virtual ~QGuiApplication();
 
 	void loadTranslations(const QString& qmFilenameNoExtension);
 	void enableQtWebEngineIfPossible();

@@ -9,8 +9,14 @@
 namespace wpp {
 namespace qt {
 
-Constants::Constants(const QString& jsonFilePath)
+Constants *Constants::singleton = 0;
+
+void Constants::load(const QString& jsonFilePath)
 {
+	static Constants singletonObj;
+
+	singleton = &singletonObj;
+
 	QFile constantsFile(jsonFilePath);
 	constantsFile.open(QIODevice::ReadOnly | QIODevice::Text);
 	QByteArray jsonFileContent = constantsFile.readAll();
@@ -19,8 +25,8 @@ Constants::Constants(const QString& jsonFilePath)
 	qDebug() << __FUNCTION__ << ":jsonDoc=" << jsonDoc;
 	QJsonObject constants = jsonDoc.object();
 	qDebug() << __FUNCTION__ << ":constants=" << constants;
-	QVariantMap::operator=( constants.toVariantMap() );
-	qDebug() << __FUNCTION__ << ":variantMap=" << *this;
+	singletonObj.QVariantMap::operator=( constants.toVariantMap() );
+	qDebug() << __FUNCTION__ << ":variantMap=" << singletonObj;
 }
 
 }
