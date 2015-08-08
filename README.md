@@ -101,7 +101,7 @@ Rectange {
 }
 ```
 ## UseCase: tackle with adjustPan default behaviour
-By default, Qt do "adjustPan" of the window content when the soft keyboard comes out. This is not professional as an app.
+By default, Qt does "adjustPan" of the window content when the soft keyboard comes out. This is not professional as an app.
 Normally we would like to keep the title bar not moved, but just the content under the title bar to scroll up.
 For android, we can choose "adjustResize" for window:softInputMode in AndroidManifest.xml and Qt has already implemented it since Qt5.3. But for iOS, I still couldn't find a work around. That's why I did this work around myself:
 
@@ -169,6 +169,8 @@ Scenario II: I want to shorten the app window height, so that it only occupy the
 	}
 ```
 Mechansim: HandleSoftKeyboardMouseArea handle the clicking by the user, delay the keyboard from showing up, and delay the input element from acquiring focus, thus avoiding the UI to be pushed upward. And it saves some time for the flickable to scroll up before the keyboard is shown.
+
+see example: [AdjustResize](https://github.com/minixxie/wpp-qt/raw/master/examples/AdjustResize)
 
 ## UseCase: TimeAgo
 TimeAgo is a class for generating human readable date/time. For example, it shows "2 hours ago", "15 mins ago", etc. By using wpp::qt::QGuiApplication and wpp::qt::QQmlApplicationEngine in main(), timeago can be used in QML:
