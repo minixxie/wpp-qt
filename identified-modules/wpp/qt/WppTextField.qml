@@ -68,13 +68,13 @@ FocusScope {
 	}
 
 
-	ScrollInputVisible {
+	HandleSoftKeyboardMouseArea {
 		anchors.fill: parent
 		inputElement: textInput
 		flickable: textfield.flickable
 		//rootWindow: fullScreen
 		onPressed: {
-			//ScrollInputVisible.onPressed();
+			//HandleSoftKeyboardMouseArea.onPressed();
 			menu.visible = false;
 		}
 		onPressAndHold: {

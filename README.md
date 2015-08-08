@@ -104,6 +104,10 @@ Rectange {
 By default, Qt do "adjustPan" of the window content when the soft keyboard comes out. This is not professional as an app.
 Normally we would like to keep the title bar not moved, but just the content under the title bar to scroll up.
 For android, we can choose "adjustResize" for window:softInputMode in AndroidManifest.xml and Qt has already implemented it since Qt5.3. But for iOS, I still couldn't find a work around. That's why I did this work around myself:
+
+By using wpp::qt::QGuiApplication, the whole app is by default with "adjustResize" characteristics for both iOS and Android. No setting in AndroidManifest.xml is needed for window:softInputMode, this is implemented in QGuiApplication class.
+
+Scenario I: I want to scroll a particular flickable when an input box is clicked, so that it will not be covered by the soft keyboard.
 ```QML
 import wpp.qt 2.0
 
@@ -124,6 +128,10 @@ import wpp.qt 2.0
 		TextField {
 			id: textfield1
 			...
+			HandleSoftKeyboardMouseArea {
+				anchors.fill: parent
+				flickable: pageScrollable  //will scroll this flickable appropriately when keyboard shown, to avoid the who app window to be moved upward
+			}
 		}
 
 		...
@@ -134,10 +142,33 @@ import wpp.qt 2.0
 			anchors.right: parent.right
 			height: 24*wpp.dp2px
 
-			
+			//has to add this element to each input element (TextInput, TextField, TextEdit, etc)
+			HandleSoftKeyboardMouseArea {
+				anchors.fill: parent
+				flickable: pageScrollable
+			}	
 		}
 	}
 ```
+
+Scenario II: I want to shorten the app window height, so that it only occupy the space where keyboard doesn't block. This is the same as the "adjustResize" effect implemented by Android.
+```QML
+
+	Rectangle {
+		//since this is stick to the bottom of the window, it will automatically be raised up to the top of the keyboard, when soft keyboard is shown
+		anchors.left: parent.left
+		anchors.right: parent.right
+		anchors.bottom: parent.bottom
+		TextInput {
+			...
+			HandleSoftKeyboardMouseArea {
+				anchors.fill: parent
+				//no need to assign "flickable" here as we don't need to scroll anything when this input box is focused
+			}
+		}
+	}
+```
+Mechansim: HandleSoftKeyboardMouseArea handle the clicking by the user, delay the keyboard from showing up, and delay the input element from acquiring focus, thus avoiding the UI to be pushed upward. And it saves some time for the flickable to scroll up before the keyboard is shown.
 
 ## UseCase: TimeAgo
 TimeAgo is a class for generating human readable date/time. For example, it shows "2 hours ago", "15 mins ago", etc. By using wpp::qt::QGuiApplication and wpp::qt::QQmlApplicationEngine in main(), timeago can be used in QML:

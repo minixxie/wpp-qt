@@ -4,15 +4,20 @@
 #include <QNetworkConfiguration>
 #include <QStandardPaths>
 #include <QStringList>
+#include <QInputMethod>
+#include <QPainter>
+#include <QDir>
+#include <QTimeZone>
+#include <QWindow>
+#include <QGuiApplication>
+#include <QScreen>
+#include <QTimer>
 
 #ifdef Q_OS_ANDROID
 #include <QAndroidJniObject>
 #include <QAndroidJniEnvironment>
 #include <QtAndroid>
 #endif
-#include <QPainter>
-#include <QDir>
-#include <QTimeZone>
 
 
 namespace wpp
@@ -91,6 +96,9 @@ Wpp::Wpp()
 #endif
 	), slowNetwork(true),
 	__IMPLEMENTATION_DETAIL_ENABLE_AUTO_ROTATE(false)
+#ifdef Q_OS_IOS
+	, m_softInputMode(ADJUST_PAN)
+#endif
 
 {
 	qDebug() << "isAndroid:" << m_isAndroid;
@@ -121,6 +129,113 @@ Wpp::Wpp()
 //#ifndef Q_OS_IOS //iOS has not yet implemented QNetworkConfigurationManager
 	networkConfigurationManager.updateConfigurations();
 //#endif
+
+	//SoftInputMode:
+	QInputMethod *inputMethod = QGuiApplication::inputMethod();
+	if ( inputMethod != 0 )
+	{
+		connect(inputMethod, SIGNAL(visibleChanged()), this, SLOT(onKeyboardVisibleChanged()), Qt::QueuedConnection);
+	}
+}
+
+void Wpp::onKeyboardVisibleChanged()
+{
+	qDebug() << __FUNCTION__;
+#ifdef Q_OS_IOS
+	realOnKeyboardVisibleChanged();
+#endif
+#ifdef Q_OS_ANDROID
+	QTimer *delay = new QTimer;
+	delay->setSingleShot(true);
+	connect(delay, SIGNAL(timeout()), this, SLOT(realOnKeyboardVisibleChanged()));
+	connect(delay, SIGNAL(timeout()), delay, SLOT(deleteLater()));
+	delay->start(20);
+#endif
+}
+
+void Wpp::realOnKeyboardVisibleChanged()
+{
+	qDebug() << __FUNCTION__;
+	//#ifdef Q_OS_IOS
+				QScreen *screen = QGuiApplication::primaryScreen();
+				QWindow *window = QGuiApplication::focusWindow();
+				QInputMethod *inputMethod = QGuiApplication::inputMethod();
+				if ( inputMethod->isVisible() )
+				{
+					if ( m_softInputMode == ADJUST_RESIZE && window != 0 && screen != 0 )
+					{
+	#ifdef Q_OS_IOS
+						QRectF kbRect = inputMethod->keyboardRectangle();
+	#endif
+	#ifdef Q_OS_ANDROID
+						/*
+						Rect r = new Rect();
+						View rootview = this.getWindow().getDecorView(); // this = activity
+						rootview.getWindowVisibleDisplayFrame(r);
+						*/
+						QAndroidJniObject visibleFrameRect("android/graphics/Rect","()V");
+						qDebug() << __FUNCTION__ << "visibleFrameRect.isValid()=" << visibleFrameRect.isValid();
+
+						QAndroidJniObject activity = QtAndroid::androidActivity();
+						qDebug() << __FUNCTION__ << "activity.isValid()=" << activity.isValid();
+
+						QAndroidJniObject androidWindow = activity.callObjectMethod(
+									"getWindow","()Landroid/view/Window;");
+						qDebug() << __FUNCTION__ << "androidWindow.isValid()=" << androidWindow.isValid();
+
+						QAndroidJniObject rootview = androidWindow.callObjectMethod(
+									"getDecorView","()Landroid/view/View;");
+						qDebug() << __FUNCTION__ << "rootview.isValid()=" << rootview.isValid();
+
+						//rootview.callMethod<void>("getWindowVisibleDisplayFrame","(Landroid/graphics/Rect;)V",visibleFrameRect.object<jobject>());
+						rootview.callMethod<jboolean>("getLocalVisibleRect","(Landroid/graphics/Rect;)Z",visibleFrameRect.object<jobject>());
+						qDebug() << __FUNCTION__ << "rootview.isValid()=" << rootview.isValid();
+						qDebug() << __FUNCTION__ << "visibleFrameRect.isValid()=" << visibleFrameRect.isValid();
+
+						jint visibleFrameTop = visibleFrameRect.getField<jint>("top");
+						qDebug() << __FUNCTION__ << "visibleFrameRect.visibleFrameTop=" << visibleFrameTop;
+						jint visibleFrameLeft = visibleFrameRect.getField<jint>("left");
+						qDebug() << __FUNCTION__ << "visibleFrameRect.visibleFrameLeft=" << visibleFrameLeft;
+						jint visibleFrameWidth = visibleFrameRect.callMethod<jint>("width","()I");
+						qDebug() << __FUNCTION__ << "visibleFrameRect.width()=" << visibleFrameWidth;
+						jint visibleFrameHeight = visibleFrameRect.callMethod<jint>("height","()I");
+						qDebug() << __FUNCTION__ << "visibleFrameRect.height()=" << visibleFrameHeight;
+
+						int keyboardHeight = 0;
+						if ( screen != 0 )
+						{
+							qDebug() << __FUNCTION__ << "screen.height()=" << screen->size().height();
+							keyboardHeight = screen->size().height() - visibleFrameHeight;
+							qDebug() << __FUNCTION__ << "keyboardHeight=" << keyboardHeight;
+						}
+						QRectF kbRect(0, visibleFrameHeight, visibleFrameWidth, keyboardHeight);//assume keyboard from bottom side
+	#endif
+						qDebug() << __FUNCTION__ << "kbRect=" << kbRect;
+
+						window->showNormal();
+						if ( window->height() == screen->size().height() )
+						{
+							qDebug() << __FUNCTION__ << ":origSize=" << window->size();
+
+							Q_ASSERT( kbRect.width() == (qreal)window->width() );//assume keyboard appears from bottom side of app window
+
+							window->setHeight( window->height() - kbRect.height() );
+							qDebug() << __FUNCTION__ << ":resize-ok-to:" << window->size();
+						}
+
+					}
+
+				}
+				else
+				{
+					if ( m_softInputMode == ADJUST_RESIZE && window != 0 && screen != 0 )
+					{
+						window->setHeight( screen->size().height() );
+						qDebug() << __FUNCTION__ << ":resize-ok-to:" << screen->size();
+					}
+					window->showNormal();
+				}
+	//#endif
 }
 
 void Wpp::initDp2px()
@@ -190,6 +305,14 @@ void Wpp::initDp2px()
 		m_dp2px = metrics_density;
 	#endif
 
+}
+
+void Wpp::__adjustResizeWindow()
+{
+	int kbHeight = 280*wpp::qt::Wpp::getInstance().dp2px();
+	QWindow *window = QGuiApplication::focusWindow();
+	window->setHeight( window->height() - kbHeight );
+	qDebug() << __FUNCTION__ << ":resize-ok-to:" << window->size();
 }
 
 void Wpp::onNetworkOnlineStateChanged(bool isOnline)
@@ -347,7 +470,22 @@ void Wpp::setSoftInputMode(SoftInputMode softInputMode)
 		QAndroidJniObject activity = QtAndroid::androidActivity();
 		qDebug() << __FUNCTION__ << "activity.isValid()=" << activity.isValid();
 
-		QAndroidJniObject window = activity.callObjectMethod(
+		QAndroidJniObject::callStaticMethod<void>(
+					"wpp.android.Wpp", "setSoftInputMode",
+					"(Landroid/app/Activity;I)V",
+					activity.object<jobject>(), param
+		);
+
+		QAndroidJniEnvironment env;
+		if (env->ExceptionCheck())
+		{
+			// Handle exception here.
+			qDebug() << "Exception 1....";
+			env->ExceptionDescribe();
+			env->ExceptionClear();
+		}
+
+		/*QAndroidJniObject window = activity.callObjectMethod(
 					"getWindow","()Landroid/view/Window;");
 		qDebug() << __FUNCTION__ << "window.isValid()=" << window.isValid();
 
@@ -372,10 +510,11 @@ void Wpp::setSoftInputMode(SoftInputMode softInputMode)
 				env->ExceptionDescribe();
 				env->ExceptionClear();
 			}
-		}
+		}*/
 	}
 
 #endif
+	m_softInputMode = softInputMode;
 }
 
 #ifndef Q_OS_IOS

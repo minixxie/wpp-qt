@@ -25,6 +25,8 @@ class Wpp: public QObject
 	Q_PROPERTY(bool hasNetwork READ getHasNetwork WRITE setHasNetwork NOTIFY hasNetworkChanged)
 	Q_PROPERTY(bool slowNetwork READ isSlowNetwork WRITE setIsSlowNetwork NOTIFY isSlowNetworkChanged)
 	Q_PROPERTY(QString deviceId READ getDeviceId NOTIFY deviceIdChanged)
+public:
+	enum SoftInputMode { ADJUST_NOTHING, ADJUST_UNSPECIFIED, ADJUST_RESIZE, ADJUST_PAN };
 
 private:
 	double m_dp2px;
@@ -38,6 +40,10 @@ private:
 	bool slowNetwork;
 	QString deviceId;
 	QNetworkConfigurationManager networkConfigurationManager;
+
+//#ifdef Q_OS_IOS
+	SoftInputMode m_softInputMode;
+//#endif
 
 private:
 	static Wpp *singleton;
@@ -92,7 +98,6 @@ public:
 
 	Q_INVOKABLE QString getDeviceId() const { return deviceId; }
 
-	enum SoftInputMode { ADJUST_NOTHING, ADJUST_UNSPECIFIED, ADJUST_RESIZE, ADJUST_PAN };
 	Q_INVOKABLE void setSoftInputMode(SoftInputMode softInputMode);
 	Q_INVOKABLE void setSoftInputModeAdjustNothing() { setSoftInputMode(ADJUST_NOTHING); }
 	Q_INVOKABLE void setSoftInputModeAdjustUnspecified() { setSoftInputMode(ADJUST_UNSPECIFIED); }
@@ -141,6 +146,11 @@ public:
 	Q_INVOKABLE bool vibrate(long milliseconds);
 
 	Q_INVOKABLE void setStatusBarVisible(bool isVisible = true);
+
+	Q_INVOKABLE int getSoftInputMode() const { return m_softInputMode; }
+	Q_INVOKABLE bool isSoftInputModeAdjustResize() const { return getSoftInputMode() == ADJUST_RESIZE; }
+	Q_INVOKABLE void __adjustResizeWindow();
+
 signals:
 	void networkChanged();
 	void hasNetworkChanged();
@@ -151,7 +161,8 @@ public slots:
 	Q_INVOKABLE void onNetworkOnlineStateChanged(bool isOnline);
 	Q_INVOKABLE void onNetworkConfigurationChanged(QNetworkConfiguration networkConfig);
 	Q_INVOKABLE void onNetworkConfigurationUpdateCompleted();
-
+	Q_INVOKABLE void onKeyboardVisibleChanged();
+	void realOnKeyboardVisibleChanged();
 };
 
 }//namespace qt

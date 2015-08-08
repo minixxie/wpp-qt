@@ -45,8 +45,10 @@ Rectangle {
 		//wpp.setSoftInputModeAdjustResize();
 		visible = true;
 		//specialPanels.visible = false;
-		commentInputBox.forceActiveFocus();
-		Qt.inputMethod.show();
+
+		commentInputBox.click();
+		//commentInputBox.forceActiveFocus();
+		//Qt.inputMethod.show();
 	}
 	function hide()
 	{

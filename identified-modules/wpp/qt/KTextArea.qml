@@ -1,7 +1,9 @@
-﻿import QtQuick 2.1
+﻿import QtQuick 2.4
 
 TextEdit {
 	id: textEdit
+
+	property alias flickable: scrollInputVisible.flickable
 
 	property alias placeholderText: placeholder.text
 	property alias placeholderFont: placeholder.font
@@ -64,10 +66,10 @@ TextEdit {
 		font.family: "Helvetica";
 	}
 
-	ScrollInputVisible {
+	HandleSoftKeyboardMouseArea {
+		id: scrollInputVisible
 		anchors.fill: parent
-		inputElement: descriptionEdit
-		flickable: flickable
+		//flickable: flickable
 		//rootWindow: fullScreen
 		onPressAndHold: {
 			//console.debug("onPressAndHold...")
@@ -170,6 +172,10 @@ TextEdit {
 		if (b && menu != null) {
 			menu.visible = false
 		}
+	}
+
+	function click() {
+		scrollInputVisible.clicked(null);
 	}
 }
 

@@ -3,7 +3,7 @@ import QtQuick.Window 2.2
 
 MouseArea {
 	id: scrollInputVisible
-	property var inputElement
+	property var inputElement: parent
 	property var flickable
 	property var scrollToContentYWhenFocused
 	//property Item rootWindow
@@ -39,6 +39,8 @@ MouseArea {
 	}
 	onClicked: {
 		console.debug("clicking ScrollInputVisible...");
+		Qt.inputMethod.show();
+
 		//restore the typing cursor position
 		console.debug("click at:" + mouseX + "," + mouseY);
 		var index = scrollInputVisible.inputElement.positionAt(mouseX, mouseY);
@@ -72,7 +74,9 @@ MouseArea {
 			else//ios and others
 			*/
 			{
-				var kbHeight = scrollInputVisible.lastKeyboardHeight; //Qt.inputMethod.keyboardRectangle.height;
+				var kbHeight = scrollInputVisible.lastKeyboardHeight;
+				//var kbHeight = Qt.inputMethod.keyboardRectangle.height;
+				console.debug("kbHeight="+kbHeight);
 				console.debug("inputElementGlobalCoord.y + scrollInputVisible.inputElement.height="+(inputElementGlobalCoord.y + scrollInputVisible.inputElement.height));
 				console.debug("Screen.height:" + Screen.height);
 				console.debug("Screen.height - kbHeight=" + (Screen.height - kbHeight));
@@ -103,9 +107,17 @@ MouseArea {
 		}
 		else
 		{
+			console.debug("ScrollInputVisible: no related flickable...");
 			if ( scrollInputVisible.inputElement !== undefined )
 			{
-				scrollInputVisible.inputElement.forceActiveFocus();
+				if ( wpp.isSoftInputModeAdjustResize() )
+				{
+					//wpp.__adjustResizeWindow();
+				}
+				//Qt.inputMethod.show();
+				console.debug("count down to focus...");
+				delayFocusTimer.running = true;
+				//scrollInputVisible.inputElement.forceActiveFocus();
 			}
 			else
 			{

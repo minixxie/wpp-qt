@@ -89,7 +89,7 @@ void QGuiApplication::init()
 
 //#endif
 //#ifdef Q_OS_ANDROID
-//	wpp::qt::Wpp::getInstance().setSoftInputMode(Wpp::ADJUST_RESIZE);
+	wpp::qt::Wpp::getInstance().setSoftInputMode(Wpp::ADJUST_RESIZE);
 //#endif
 }
 
