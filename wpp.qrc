@@ -25,7 +25,6 @@
 		<file>identified-modules/wpp/qt/KTextArea.qml</file>
 		<file>identified-modules/wpp/qt/Line.qml</file>
 		<file>identified-modules/wpp/qt/ListViewDialog.qml</file>
-		<file>identified-modules/wpp/qt/LoadingIcon.qml</file>
 		<file>identified-modules/wpp/qt/LoadingModal.qml</file>
 		<file>identified-modules/wpp/qt/LocalAlbumBrowse.qml</file>
 		<file>identified-modules/wpp/qt/Map.qml</file>

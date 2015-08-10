@@ -163,7 +163,6 @@ OTHER_FILES += \
 	$$PWD/identified-modules/wpp/qt/TitleBarNextIcon.qml  \
 	$$PWD/identified-modules/wpp/qt/Modal.qml \
 	$$PWD/identified-modules/wpp/qt/LoadingModal.qml \
-	$$PWD/identified-modules/wpp/qt/LoadingIcon.qml \
 	$$PWD/identified-modules/wpp/qt/TitleBarButton.qml \
 	$$PWD/identified-modules/wpp/qt/SelectionListModal.qml \
 	$$PWD/identified-modules/wpp/qt/SelectionListView.qml \
