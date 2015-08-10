@@ -47,7 +47,7 @@ Rectangle {
 				anchors.topMargin: 5*wpp.dp2px
 				font.pixelSize: 12*wpp.dp2px
 				clip: true
-				color: "#2a8827"
+				color: "#428EC8"
 				horizontalAlignment: contentWidth > width ? Text.AlignLeft : Text.AlignHCenter
 				verticalAlignment: Text.AlignVCenter
 				wrapMode:Text.NoWrap

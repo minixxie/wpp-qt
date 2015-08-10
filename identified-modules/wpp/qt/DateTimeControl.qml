@@ -5,6 +5,7 @@ Rectangle {
 	id: dateTimeControl
 
 	property alias title: titleText.text
+	property alias font: titleText.font
 	property alias msecSinceEpoch: dateTimePicker.msecSinceEpoch
 	//property variant msecSinceEpoch: {
 	//	var d = new Date();
@@ -58,7 +59,7 @@ Rectangle {
 		anchors.top: parent.top; anchors.bottom: parent.bottom;
 		anchors.right: parent.right; anchors.rightMargin:10*wpp.dp2px;
 		text: wpp.formatDateTime(dateTimeControl.msecSinceEpoch, dateTimeControl.format, dateTimeControl.timeZoneId)
-		font.pixelSize: 12*wpp.dp2px
+		font.pixelSize: titleText.font.pixelSize
 		color: "#333333"
 		verticalAlignment: Text.AlignVCenter
 	}

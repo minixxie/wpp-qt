@@ -9,6 +9,7 @@ Item {
 	property alias topBorder: upperBorderLine.visible
 	property alias bottomBorder: lowerBorderLine.visible
 	property alias timezoneTitle: title.text
+	property alias timezoneTitleFont: title.font
 	property string timezoneId
 	signal selected(string timezoneId)
 
@@ -60,7 +61,7 @@ Item {
 					text: control.currentText
 					horizontalAlignment: Text.AlignRight
 					verticalAlignment: Text.AlignVCenter
-					font.pixelSize: 12*wpp.dp2px
+					font.pixelSize: title.font.pixelSize
 					font.bold: false
 					color: "#333333"
 					elide: Text.ElideRight
@@ -105,7 +106,7 @@ Item {
 		id: timezoneText
 		visible: Qt.platform.os == "ios"
 		text: timezoneControl.timezoneId
-		font.pixelSize: 12*wpp.dp2px
+		font.pixelSize: title.font.pixelSize
 		color: "#333333"
 		anchors.top: parent.top
 		anchors.right: parent.right

@@ -132,8 +132,8 @@ Rectangle {
 		source: "qrc:/img/android-icons/All_Icons/holo_light/mdpi/5-content-new.png"
 		smooth: true
 		fillMode: Image.PreserveAspectFit
-		width: 30*wpp.dp2px
-		height: 30*wpp.dp2px
+		width: 40*wpp.dp2px
+		height: 40*wpp.dp2px
 		scale: 0.8
 		MouseArea {
 			anchors.fill: parent
@@ -203,7 +203,7 @@ Rectangle {
 			//width: parent.width - 2*x - addSpecialButton.width
 			//height: parent.height - 2*y
 			//height: lineCount * 12*wpp.dp2px
-			initialHeight: 30*wpp.dp2px
+			initialHeight: 40*wpp.dp2px
 			//textMargin: (initialHeight - font.pixelSize)/2
 			onTextMarginChanged: {
 				//console.debug("textMargin="+textMargin);
@@ -212,13 +212,13 @@ Rectangle {
 			//height: contentHeight < initialHeight ? initialHeight : contentHeight
 
 			placeholderText: qsTr("write some comment...")
-			placeholderFont.pixelSize: 12*wpp.dp2px
+			placeholderFont.pixelSize: 14*wpp.dp2px
 			placeholderColor: "#777777"
 
 			//focus: commentBox.visible
 			text: ""
-			font.pixelSize: 12*wpp.dp2px
-			textFont.pixelSize: 12*wpp.dp2px
+			font.pixelSize: 14*wpp.dp2px
+			textFont.pixelSize: 14*wpp.dp2px
 			cursorDelegate: ThickCursor {
 				textBox: commentInputBox
 			}
@@ -256,8 +256,8 @@ Rectangle {
 		anchors.leftMargin: 5*wpp.dp2px
 		anchors.right: parent.right
 		anchors.rightMargin: 5*wpp.dp2px
-		width: visible ? 40*wpp.dp2px : 0
-		height: 30*wpp.dp2px
+		width: visible ? 60*wpp.dp2px : 0
+		height: 40*wpp.dp2px
 		visible: !composeUI.useSendButtonImage
 		style: ButtonStyle {
 			background: Rectangle {
@@ -267,7 +267,7 @@ Rectangle {
 			label: Text {
 				text: composeUI.sendButtonText
 				color: composeUI.sendButtonTextColor
-				font.pixelSize: 12*wpp.dp2px
+				font.pixelSize: 14*wpp.dp2px
 				horizontalAlignment: Text.AlignHCenter
 				verticalAlignment: Text.AlignVCenter
 			}
@@ -308,7 +308,7 @@ Rectangle {
 		anchors.topMargin: 10*wpp.dp2px
 		anchors.bottomMargin: 0
 		height: tabs.length > 0 ? composeUI.constKBHeight : 0
-		tabHeight: 24*wpp.dp2px
+		tabHeight: 30*wpp.dp2px
 		tabBgColor: "#f4f4f4"
 		visible: false
 
