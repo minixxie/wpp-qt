@@ -308,7 +308,9 @@ Rectangle {
 		anchors.topMargin: 10*wpp.dp2px
 		anchors.bottomMargin: 0
 		height: tabs.length > 0 ? composeUI.constKBHeight : 0
-		tabHeight: 30*wpp.dp2px
+		tabHeight: 38*wpp.dp2px
+		selectedIndicatorColor: “#428EC8”
+		selectedIndicatorHeight: 3*wpp.dp2px
 		tabBgColor: "#f4f4f4"
 		visible: false
 
