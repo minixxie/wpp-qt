@@ -10,7 +10,6 @@ TitleBarButton 1.0 TitleBarButton.qml
 TitleBarNextIcon 1.0 TitleBarNextIcon.qml
 SelectionList 1.0 SelectionList.qml
 LoadingModal 1.0 LoadingModal.qml
-LoadingIcon 1.0 LoadingIcon.qml
 Avatar 1.0 Avatar.qml
 Avatars 1.0 Avatars.qml
 CircleImageMask 1.0 CircleImageMask.qml
