@@ -155,6 +155,7 @@ void Wpp::onKeyboardVisibleChanged()
 
 void Wpp::realOnKeyboardVisibleChanged()
 {
+#if defined(Q_OS_IOS) || defined(Q_OS_ANDROID)
 	qDebug() << __FUNCTION__;
 	//#ifdef Q_OS_IOS
 				QScreen *screen = QGuiApplication::primaryScreen();
@@ -236,6 +237,7 @@ void Wpp::realOnKeyboardVisibleChanged()
 					window->showNormal();
 				}
 	//#endif
+#endif
 }
 
 void Wpp::initDp2px()
