@@ -212,14 +212,15 @@ void Wpp::realOnKeyboardVisibleChanged()
 						qDebug() << __FUNCTION__ << "kbRect=" << kbRect;
 
 						window->showNormal();
-						if ( window->height() == screen->size().height() )
+						//if ( window->height() == screen->size().height() )
 						{
 							qDebug() << __FUNCTION__ << ":origSize=" << window->size();
 
 							Q_ASSERT( kbRect.width() == (qreal)window->width() );//assume keyboard appears from bottom side of app window
 
-							m_windowOrigHeight = window->height();
-							window->setHeight( window->height() - kbRect.height() );
+							m_windowOrigHeight = window->size().height();
+							qDebug() << __FUNCTION__ << ":m_windowOrigHeight=" << window->size();
+							window->setHeight( window->size().height() - kbRect.height() );
 							qDebug() << __FUNCTION__ << ":resize-ok-to:" << window->size();
 						}
 
@@ -232,7 +233,8 @@ void Wpp::realOnKeyboardVisibleChanged()
 					{
 						//window->setHeight( screen->size().height() );
 						window->setHeight( m_windowOrigHeight );
-						qDebug() << __FUNCTION__ << ":resize-ok-to:" << screen->size();
+						//qDebug() << __FUNCTION__ << ":resize-ok-to:" << screen->size();
+						qDebug() << __FUNCTION__ << ":resize-ok-to:" << m_windowOrigHeight;
 					}
 					window->showNormal();
 				}
