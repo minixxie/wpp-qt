@@ -128,12 +128,14 @@ Wpp::Wpp()
 	networkConfigurationManager.updateConfigurations();
 //#endif
 
+#ifdef Q_OS_IOS
 	//SoftInputMode:
 	QInputMethod *inputMethod = QGuiApplication::inputMethod();
 	if ( inputMethod != 0 )
 	{
 		connect(inputMethod, SIGNAL(visibleChanged()), this, SLOT(onKeyboardVisibleChanged()), Qt::QueuedConnection);
 	}
+#endif
 }
 
 void Wpp::onKeyboardVisibleChanged()
