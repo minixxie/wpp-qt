@@ -44,6 +44,7 @@ private:
 //#ifdef Q_OS_IOS
 	SoftInputMode m_softInputMode;
 //#endif
+	int m_windowOrigHeight;
 
 private:
 	static Wpp *singleton;

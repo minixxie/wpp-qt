@@ -95,10 +95,8 @@ Wpp::Wpp()
 		false
 #endif
 	), slowNetwork(true),
-	__IMPLEMENTATION_DETAIL_ENABLE_AUTO_ROTATE(false)
-#ifdef Q_OS_IOS
-	, m_softInputMode(ADJUST_PAN)
-#endif
+	__IMPLEMENTATION_DETAIL_ENABLE_AUTO_ROTATE(false),
+	m_softInputMode(ADJUST_PAN), m_windowOrigHeight(0)
 
 {
 	qDebug() << "isAndroid:" << m_isAndroid;
@@ -220,6 +218,7 @@ void Wpp::realOnKeyboardVisibleChanged()
 
 							Q_ASSERT( kbRect.width() == (qreal)window->width() );//assume keyboard appears from bottom side of app window
 
+							m_windowOrigHeight = window->height();
 							window->setHeight( window->height() - kbRect.height() );
 							qDebug() << __FUNCTION__ << ":resize-ok-to:" << window->size();
 						}
@@ -231,7 +230,8 @@ void Wpp::realOnKeyboardVisibleChanged()
 				{
 					if ( m_softInputMode == ADJUST_RESIZE && window != 0 && screen != 0 )
 					{
-						window->setHeight( screen->size().height() );
+						//window->setHeight( screen->size().height() );
+						window->setHeight( m_windowOrigHeight );
 						qDebug() << __FUNCTION__ << ":resize-ok-to:" << screen->size();
 					}
 					window->showNormal();
