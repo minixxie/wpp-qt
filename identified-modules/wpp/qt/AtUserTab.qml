@@ -7,6 +7,7 @@ Rectangle {
 	property alias model: gridView.model
 	property bool modelReady: true
 	signal selected(string userId, string nickname)
+	property color nameColor: "#0080ff"
 
 	Text {
 		id: loadingText
@@ -47,7 +48,7 @@ Rectangle {
 				anchors.topMargin: 5*wpp.dp2px
 				font.pixelSize: 12*wpp.dp2px
 				clip: true
-				color: "#428EC8"
+				color: atUserTab.nameColor
 				horizontalAlignment: contentWidth > width ? Text.AlignLeft : Text.AlignHCenter
 				verticalAlignment: Text.AlignVCenter
 				wrapMode:Text.NoWrap
