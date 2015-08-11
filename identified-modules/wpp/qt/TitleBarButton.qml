@@ -8,6 +8,8 @@ Rectangle {
 
 	property string iconType: "DARK"
 	property alias text: buttonLabel.text
+	property alias textColor: buttonLabel.color
+	property alias color: buttonRect.color
 	property alias rightIconSource: rightIcon.source
 	signal clicked
 
@@ -18,11 +20,12 @@ Rectangle {
 	width: height
 
 	Rectangle {
+		id: buttonRect
 		width: 50*wpp.dp2px
 		height: 34*wpp.dp2px
 		anchors.verticalCenter: parent.verticalCenter
 		anchors.right: parent.right
-		color: "#428EC8"
+		color: "#0080FF"
 		border.color: Qt.rgba(0,0,0,0.2)
 		border.width: 1
 		radius: 2*wpp.dp2px
