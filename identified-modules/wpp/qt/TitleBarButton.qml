@@ -16,13 +16,13 @@ Rectangle {
 
 	color: "transparent"
 
-	height: 44*wpp.dp2px
-	width: height
+    width: 50*wpp.dp2px
+    height: 34*wpp.dp2px
 
 	Rectangle {
 		id: buttonRect
-		width: 50*wpp.dp2px
-		height: 34*wpp.dp2px
+        width: parent.width
+        height: parent.height
 		anchors.verticalCenter: parent.verticalCenter
 		anchors.right: parent.right
 		color: "#0080FF"
