@@ -251,9 +251,12 @@ extern void asyncProcessImages(id iosImagePicker, NSArray *info, QThread *uiThre
 	{
 			//NSLog(@"asset=%@", asset);
 			ALAssetRepresentation *repr = [asset defaultRepresentation];
-
+			NSLog(@"asset defaultRepresentation=%@", [asset defaultRepresentation]);
 			CGImageRef cgImg = [repr fullResolutionImage];
+
+			NSLog(@"fname=%@", [repr filename]);
 			NSString *fname = [repr filename];
+			NSLog(@"fname=%@", fname);
 			//NSString* fileName = asset.defaultRepresentation.filename;
 			NSURL* fileUrl = [[[[NSFileManager defaultManager]
 				URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask]lastObject]URLByAppendingPathComponent:fname];
@@ -533,6 +536,7 @@ void ImagePicker::open()
 	qDebug() << __FUNCTION__ << ":...1";
 	UIViewController *qtController = [[view window] rootViewController];
 	qDebug() << __FUNCTION__ << ":...2";
+
 
 	// Create a new image picker controller to show on top of Qt's view controller:
 	ELCImagePickerController *imageController = [(__bridge id)m_delegate createImagePickerController];

@@ -113,13 +113,15 @@ OBJECTIVE_SOURCES += \
 		$$PWD/src/wpp/qt/IOS.mm \
 	$$PWD/src/wpp/qt/NativeDateTimePicker.mm \
 	$$PWD/src/wpp/qt/IOSTimeZonePicker.mm \
-	$$PWD/src/wpp/qt/QIOSViewController+Rotate.mm
+	$$PWD/src/wpp/qt/QIOSViewController+Rotate.mm \
+	$$PWD/src/wpp/qt/ELCAlbumPickerController+RemoveMyPhotoStream.mm
 
 OBJECTIVE_HEADERS += \
 	$$PWD/src/wpp/qt/AddressBookObjC.h
 HEADERS += \
 		$$PWD/src/wpp/qt/IOS.h \
-	$$PWD/src/wpp/qt/QIOSViewController+Rotate.h
+	$$PWD/src/wpp/qt/QIOSViewController+Rotate.h \
+	$$PWD/src/wpp/qt/ELCAlbumPickerController+RemoveMyPhotoStream.h
 
 
 LIBS += -framework AddressBook -framework MapKit -framework MessageUI -framework AudioToolbox \
