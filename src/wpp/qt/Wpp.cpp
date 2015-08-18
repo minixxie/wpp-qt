@@ -96,7 +96,7 @@ Wpp::Wpp()
 #endif
 	), slowNetwork(true),
 	__IMPLEMENTATION_DETAIL_ENABLE_AUTO_ROTATE(false),
-	m_softInputMode(ADJUST_PAN), m_windowOrigHeight(0)
+	m_softInputMode(ADJUST_PAN), m_windowOrigHeight(0), m_origFocusedWindow(0)
 
 {
 	qDebug() << "isAndroid:" << m_isAndroid;
@@ -160,6 +160,10 @@ void Wpp::realOnKeyboardVisibleChanged()
 	//#ifdef Q_OS_IOS
 				QScreen *screen = QGuiApplication::primaryScreen();
 				QWindow *window = QGuiApplication::focusWindow();
+				if ( window != 0 )
+				{
+					m_origFocusedWindow = window;//save the original focused window
+				}
 				QInputMethod *inputMethod = QGuiApplication::inputMethod();
 				if ( inputMethod->isVisible() )
 				{
@@ -231,14 +235,16 @@ void Wpp::realOnKeyboardVisibleChanged()
 				}
 				else
 				{
-					if ( m_softInputMode == ADJUST_RESIZE && window != 0 && screen != 0 )
+					if ( m_softInputMode == ADJUST_RESIZE && m_origFocusedWindow != 0 && screen != 0 )
 					{
 						//window->setHeight( screen->size().height() );
-						window->setHeight( m_windowOrigHeight );
+						m_origFocusedWindow->setHeight( m_windowOrigHeight );
 						//qDebug() << __FUNCTION__ << ":resize-ok-to:" << screen->size();
 						qDebug() << __FUNCTION__ << ":resize-ok-to:" << m_windowOrigHeight;
+						m_origFocusedWindow->showNormal();
+						m_origFocusedWindow = 0;
 					}
-					window->showNormal();
+					//window->showNormal();
 				}
 	//#endif
 #endif

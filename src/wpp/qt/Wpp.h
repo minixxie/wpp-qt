@@ -8,6 +8,8 @@
 #include <QDebug>
 #include <QTimeZone>
 
+class QWindow;
+
 namespace wpp
 {
 namespace qt
@@ -45,6 +47,7 @@ private:
 	SoftInputMode m_softInputMode;
 //#endif
 	int m_windowOrigHeight;
+	QWindow *m_origFocusedWindow;
 
 private:
 	static Wpp *singleton;
