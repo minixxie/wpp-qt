@@ -13,6 +13,11 @@ namespace qt {
 void NativeMap::open()
 {
 	qDebug() << "NativeMap::open()...";
+	qDebug() << "location = " << location;
+	qDebug() << "longitude = " << longitude;
+	qDebug() << "latitude = " << latitude;
+	qDebug() << "zoom = " << zoom;
+
 #ifdef Q_OS_ANDROID
 	qDebug() << "NativeMap::open()...ANDROID";
 	QAndroidJniObject activity = QtAndroid::androidActivity();
@@ -41,7 +46,34 @@ void NativeMap::open()
 			{
 				qDebug() << "111...";
 				// Equivalent to Jave code: 'intent.setClassName("com.kuulabu.android.app", "com.kuulabu.android.app.BasicMapActivity");'
-				intent.callObjectMethod("setClassName","(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;",packageName.object<jobject>(),param2.object<jobject>());
+				intent.callObjectMethod("setClassName",
+										"(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;",
+										packageName.object<jobject>(),
+										param2.object<jobject>());
+
+				QAndroidJniObject locationKey = QAndroidJniObject::fromString("MAP_LOCATION");
+				QAndroidJniObject locationValue = QAndroidJniObject::fromString(this->location);
+				intent.callObjectMethod(
+							"putExtra","(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;",
+							locationKey.object<jstring>(), locationValue.object<jstring>());
+
+				QAndroidJniObject longitudeKey = QAndroidJniObject::fromString("MAP_LONGITUDE");
+				QAndroidJniObject longitudeValue = QAndroidJniObject::fromString(QString::number(this->longitude));
+				intent.callObjectMethod(
+							"putExtra","(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;",
+							longitudeKey.object<jstring>(), longitudeValue.object<jstring>());
+
+				QAndroidJniObject latitudeKey = QAndroidJniObject::fromString("MAP_LATITUDE");
+				QAndroidJniObject latitudeValue = QAndroidJniObject::fromString(QString::number(this->latitude));
+				intent.callObjectMethod(
+							"putExtra","(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;",
+							latitudeKey.object<jstring>(), latitudeValue.object<jstring>());
+
+				QAndroidJniObject zoomKey = QAndroidJniObject::fromString("MAP_ZOOM");
+				QAndroidJniObject zoomValue = QAndroidJniObject::fromString(QString::number(this->zoom));
+				intent.callObjectMethod(
+							"putExtra","(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;",
+							zoomKey.object<jstring>(), zoomValue.object<jstring>());
 
 				qDebug() << "222...";
 				// Equivalent to Jave code: 'startActivity(intent);'

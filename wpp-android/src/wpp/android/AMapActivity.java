@@ -39,9 +39,13 @@ import android.widget.TextView;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.content.Intent;
+import android.util.Log;
 
 public class AMapActivity extends Activity implements OnMapLongClickListener,
 OnGeocodeSearchListener, LocationSource, AMapLocationListener, InfoWindowAdapter {
+
+    private static final String TAG = "AMapActivity";
+
     private MapView mapView;
     private AMap aMap;
     private LatLonPoint latLonPoint;
@@ -53,6 +57,12 @@ OnGeocodeSearchListener, LocationSource, AMapLocationListener, InfoWindowAdapter
     private LocationManagerProxy mAMapLocationManager;
     private Button confirmBtn;
 
+    private String initLongitude = "0.0";
+    private String initLatitude = "0.0";
+    private String initZoom = "15";
+
+    private boolean isDisplayCurrentLocation;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -61,6 +71,23 @@ OnGeocodeSearchListener, LocationSource, AMapLocationListener, InfoWindowAdapter
             mapView.onCreate(savedInstanceState);// 此方法必须重写
 
             confirmBtn = (Button) findViewById(wpp.android.R.id.confirm_location);
+
+            Intent intent = getIntent();
+            addressName = intent.getStringExtra("MAP_LOCATION");
+            initLongitude = intent.getStringExtra("MAP_LONGITUDE");
+            initLatitude = intent.getStringExtra("MAP_LATITUDE");
+            initZoom = intent.getStringExtra("MAP_ZOOM");
+            Log.i(TAG, "addressName = " + addressName);
+            Log.i(TAG, "initLongitude = " + initLongitude);
+            Log.i(TAG, "initLatitude = " + initLatitude);
+            Log.i(TAG, "initZoom = " + initZoom);
+
+            if (Double.parseDouble(initLongitude) > 0 && Double.parseDouble(initLatitude) > 0) {
+                isDisplayCurrentLocation = false;
+            } else {
+                isDisplayCurrentLocation = true;
+            }
+            Log.i(TAG, "isDisplayCurrentLocation = " + isDisplayCurrentLocation);
 
             init();
     }
@@ -87,7 +114,7 @@ OnGeocodeSearchListener, LocationSource, AMapLocationListener, InfoWindowAdapter
             aMap.setMyLocationStyle(myLocationStyle);
             aMap.setLocationSource(this);// 设置定位监听
             aMap.getUiSettings().setMyLocationButtonEnabled(true);// 设置默认定位按钮是否显示
-            aMap.setMyLocationEnabled(true);// 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false
+            aMap.setMyLocationEnabled(isDisplayCurrentLocation);// 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false
 
             geoMarker = aMap.addMarker(new MarkerOptions().anchor(0.5f, 0.5f)
                             .icon(BitmapDescriptorFactory
@@ -111,29 +138,40 @@ OnGeocodeSearchListener, LocationSource, AMapLocationListener, InfoWindowAdapter
 
                 }
             });
-            aMap.setOnMapLongClickListener(this);// 对amap添加长按地图事件监听器
+
             aMap.setInfoWindowAdapter(this);// 设置自定义InfoWindow样式
 
-            confirmBtn.setOnClickListener(new OnClickListener() {
+            if (isDisplayCurrentLocation) {
 
-                    @Override
-                    public void onClick(View v) {
-                            // 把地址信息传递到c++并显示在qml中
-//                            Toast.makeText(AMapActivity.this, "commingsoon======(addressname)===>"+addressName, Toast.LENGTH_SHORT).show();
-                        Intent resultIntent = new Intent();
-                        resultIntent.putExtra("addressName", addressName);
-                        resultIntent.putExtra("latitude", String.valueOf(latLonPoint.getLatitude()));
-                        resultIntent.putExtra("longitude", String.valueOf(latLonPoint.getLongitude()));
-//                        Toast.makeText(AMapActivity.this, "latitude===>"+latLonPoint.getLatitude(), Toast.LENGTH_SHORT).show();
-//                        Toast.makeText(AMapActivity.this, "longitude===>"+latLonPoint.getLongitude(), Toast.LENGTH_SHORT).show();
-                        setResult(Activity.RESULT_OK, resultIntent);
-                        finish();
-                    }
+                aMap.setOnMapLongClickListener(this);// 对amap添加长按地图事件监听器
 
-            });
+                confirmBtn.setOnClickListener(new OnClickListener() {
 
-            geocoderSearch = new GeocodeSearch(this);
-            geocoderSearch.setOnGeocodeSearchListener(this);
+                        @Override
+                        public void onClick(View v) {
+                                // 把地址信息传递到c++并显示在qml中
+    //                            Toast.makeText(AMapActivity.this, "commingsoon======(addressname)===>"+addressName, Toast.LENGTH_SHORT).show();
+                            Intent resultIntent = new Intent();
+                            resultIntent.putExtra("addressName", addressName);
+                            resultIntent.putExtra("latitude", String.valueOf(latLonPoint.getLatitude()));
+                            resultIntent.putExtra("longitude", String.valueOf(latLonPoint.getLongitude()));
+    //                        Toast.makeText(AMapActivity.this, "latitude===>"+latLonPoint.getLatitude(), Toast.LENGTH_SHORT).show();
+    //                        Toast.makeText(AMapActivity.this, "longitude===>"+latLonPoint.getLongitude(), Toast.LENGTH_SHORT).show();
+                            setResult(Activity.RESULT_OK, resultIntent);
+                            finish();
+                        }
+
+                });
+
+                geocoderSearch = new GeocodeSearch(this);
+                geocoderSearch.setOnGeocodeSearchListener(this);
+            } else {
+                LatLng ll = new LatLng(Double.parseDouble(initLatitude), Double.parseDouble(initLongitude));
+                aMap.animateCamera(CameraUpdateFactory.newLatLngZoom(ll, 15));
+                geoMarker.setPosition(ll);
+                geoMarker.setTitle(addressName);
+                geoMarker.showInfoWindow();
+            }
         }
     }
 
@@ -280,6 +318,8 @@ OnGeocodeSearchListener, LocationSource, AMapLocationListener, InfoWindowAdapter
     @Override
     public void onLocationChanged(AMapLocation aLocation) {
             if (mListener != null && aLocation != null) {
+                    aMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
+                        new LatLng(aLocation.getLatitude(), aLocation.getLongitude()), 15));
                     mListener.onLocationChanged(aLocation);// 显示系统小蓝点
             }
     }

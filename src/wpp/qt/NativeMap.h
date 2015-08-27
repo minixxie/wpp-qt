@@ -35,7 +35,7 @@ private:
 
 public:
 	explicit NativeMap(QQuickItem *parent = 0)
-		: QQuickItem(parent), location(""), longitude(0), latitude(0)
+		: QQuickItem(parent), location(""), longitude(0), latitude(0), zoom(15)
 	{ }
 
 	const QString& getLocation() const { return this->location; }
