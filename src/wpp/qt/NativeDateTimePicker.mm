@@ -56,7 +56,7 @@ NativeDateTimePicker::NativeDateTimePicker(QQuickItem *parent)
 
 	__gSingletonDateTimePicker = this;
 
-	connect(this, SIGNAL(timeZoneIdChanged()), this, SLOT(onTimeZoneIdChanged));
+	connect(this, SIGNAL(timeZoneIdChanged()), this, SLOT(onTimeZoneIdChanged()));
 
 }
 
