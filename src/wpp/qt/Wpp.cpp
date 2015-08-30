@@ -948,10 +948,33 @@ QDateTime Wpp::currentDateTime(const QString& ianaId)
 */
 QString Wpp::formatDateTime(qint64 msecsSinceEpoch, const QString& format, const QString& ianaId)
 {
+	QTimeZone tz;
+	if ( ianaId.isEmpty() )
+	{
+		qDebug() << __FUNCTION__ << ":systemTimeZoneId=" << QTimeZone::systemTimeZoneId();
+		if ( QTimeZone::systemTimeZoneId().isEmpty() )
+		{
+			tz = QTimeZone::utc();
+			qDebug() << __FUNCTION__ << ":systemTimeZoneId empty, using UTC";
+		}
+		else
+		{
+			tz = QTimeZone(QTimeZone::systemTimeZoneId());
+		}
+	}
+	else
+	{
+		tz = QTimeZone(ianaId.toLatin1());
+	}
+	if ( !tz.isValid() )
+	{
+		qDebug() << __FUNCTION__ << ":tz not valid:" << tz;
+		tz = QTimeZone::utc();
+	}
 	//QDateTime dateTime = makeDateTime(ianaId, msecsSinceEpoch);
 	QDateTime dateTime = QDateTime::fromMSecsSinceEpoch(msecsSinceEpoch);
 	QDateTime utc(dateTime.toTimeSpec(Qt::UTC));
-	QDateTime tzDateTime = utc.toTimeZone( QTimeZone(ianaId.toLatin1()) );// createTimeZone(ianaId) );
+	QDateTime tzDateTime = utc.toTimeZone( tz );// createTimeZone(ianaId) );
 	qDebug() << __FUNCTION__ << ":ianaId=" << ianaId;
 	qDebug() << __FUNCTION__ << ":msecsSinceEpoch=" << msecsSinceEpoch;
 	qDebug() << __FUNCTION__ << ":format=" << format;
