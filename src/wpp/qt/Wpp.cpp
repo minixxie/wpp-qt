@@ -12,6 +12,7 @@
 #include <QGuiApplication>
 #include <QScreen>
 #include <QTimer>
+#include <QCryptographicHash>
 
 #ifdef Q_OS_ANDROID
 #include <QAndroidJniObject>
@@ -1113,6 +1114,13 @@ void Wpp::setStatusBarVisible(bool isVisible)
 
 }
 #endif
+
+const QByteArray Wpp::sha1sum(const QByteArray& data) const
+{
+	QCryptographicHash crypto(QCryptographicHash::Sha1);
+	crypto.addData(data);
+	return crypto.result().toHex();
+}
 
 }//namespace qt
 }//namespace wpp

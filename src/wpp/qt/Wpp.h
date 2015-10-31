@@ -155,6 +155,8 @@ public:
 	Q_INVOKABLE bool isSoftInputModeAdjustResize() const { return getSoftInputMode() == ADJUST_RESIZE; }
 	Q_INVOKABLE void __adjustResizeWindow();
 
+	Q_INVOKABLE const QByteArray sha1sum(const QByteArray& data) const;
+
 signals:
 	void networkChanged();
 	void hasNetworkChanged();
