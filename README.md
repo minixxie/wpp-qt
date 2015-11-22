@@ -93,7 +93,7 @@ The wpp::qt::QGuiApplication class actually inherits from [QGuiApplication](http
 The wpp::qt::QQmlApplicationEngine class inherits from [QQmlApplicationEngine](http://doc.qt.io/qt-5/qqmlapplicationengine.html) and it injects "wpp" object into the QML root context.
 
 ## UseCase: density independent pixel
-All QML elements only support pixel values for x, y, width, height and all size and dimension related properties. With the main function used in "To Begin", "reso" variable can be used in QML like this:
+All QML elements only support pixel values for x, y, width, height and all size and dimension related properties. With the main function used in "To Begin", "wpp" variable can be used in QML like this:
 ```QML
 Rectange {
 	anchors.fill: parent
@@ -199,8 +199,8 @@ Avatar {
 	id: profilePhoto
 	anchors.left: parent.left
 	anchors.top: parent.top
-	anchors.margins: 10*reso.dp2px
-	height: 40*reso.dp2px
+	anchors.margins: 10*wpp.dp2px
+	height: 40*wpp.dp2px
 	width: height
 	circleMask: true  //this is the main property to make circle
 	maskColor: "#ffffff" //assume the background is white, write this to make sure 4 round corners are in white background
@@ -240,8 +240,8 @@ Avatar {
 	id: profilePhoto
 	anchors.left: parent.left
 	anchors.top: parent.top
-	anchors.margins: 10*reso.dp2px
-	height: 100*reso.dp2px
+	anchors.margins: 10*wpp.dp2px
+	height: 100*wpp.dp2px
 	width: height
 	bgText: qsTr("Upload Image")
 	bgTextColor: "#0080ff"
@@ -271,10 +271,10 @@ DateTimeControl {
 	id: startDateTimeControl
 	anchors.top: parent.top
 	anchors.left: parent.left; anchors.right: parent.right;
-	height: 36*reso.dp2px
+	height: 36*wpp.dp2px
 	topBorder: true; bottomBorder: true
 	title: qsTr("Date/Time")
-	dateTime: new Date()
+	msecSinceEpoch: new Date().getTime()
 	//timeZoneId: "Asia/Hong_Kong"
 	onPicked: {
 		dateTime = dateTimePicked;

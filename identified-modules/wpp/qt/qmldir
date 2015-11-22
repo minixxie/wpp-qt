@@ -41,3 +41,4 @@ TitleBar 2.0 TitleBar20.qml
 PhoneNumberCountryCodeModel 2.0 PhoneNumberCountryCodeModel.qml
 Overlay 2.0 Overlay.qml
 HandleSoftKeyboardMouseArea 2.0 HandleSoftKeyboardMouseArea.qml
+DateTimeControl 2.0 DateTimeControl.qml
