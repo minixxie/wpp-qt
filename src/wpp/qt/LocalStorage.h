@@ -27,7 +27,7 @@ protected:
 	void deleteSessionCookies();//helper
 
 	void debugSchema(const QString& tableName) const;
-	void dumpTable(const QString& tableName, const QString& sqlTail = QString()) const;
+	virtual void dumpTable(const QString& tableName, const QString& sqlTail = QString()) const;
 	virtual QList< QList<QString> > schemaVersions();
 public:
 	virtual ~LocalStorage();
@@ -39,6 +39,7 @@ protected:
 	static LocalStorage *singleton;
 public:
 	static LocalStorage &getInstance();
+	void updateSchema();
 
 	void setCookies(const QList<QNetworkCookie>& cookies);
     void setCookie(const QNetworkCookie& cookie);

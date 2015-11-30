@@ -156,12 +156,29 @@ QList< QList<QString> > LocalStorage::schemaVersions()
 	return versions;
 }
 
+void LocalStorage::updateSchema()
+{
+	int sqliteUserVersion = 0;
+	QSqlQuery query(conn);
+	query.exec("PRAGMA user_version;");
+	while (query.next())
+	{
+		sqliteUserVersion = query.value(0).toInt();
+		//qDebug() << "sqliteUserVersion: " << sqliteUserVersion;
+	}
+	qDebug() << "final sqliteUserVersion: " << sqliteUserVersion;
+
+	updateSchema(sqliteUserVersion);
+}
+
 //ref: http://stackoverflow.com/questions/989558/best-practices-for-in-app-database-migration-for-sqlite
 void LocalStorage::updateSchema(int fromVersion)
 {
 	QList< QList<QString> > schemaVersions = this->schemaVersions();
 	int latestVersion = schemaVersions.length();
 	int version = fromVersion;
+	qDebug() << __FUNCTION__ << ":version=" << version;
+	qDebug() << __FUNCTION__ << ":latestVersion=" << latestVersion;
 
 	if ( version < latestVersion )//update needed
 	{
@@ -171,6 +188,7 @@ void LocalStorage::updateSchema(int fromVersion)
 			QList<QString> sqls = schemaVersions.at( version );
 			for ( QString sql : sqls )
 			{
+				qDebug() << "upgrading schema: " << sql;
 				if ( !query.exec(sql) )
 				{
 					qDebug() << "ERR(schema):" << sql << "--" << query.lastError();
