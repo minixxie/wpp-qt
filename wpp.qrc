@@ -44,6 +44,7 @@
 		<file>identified-modules/wpp/qt/SwitchButton.qml</file>
 		<file>identified-modules/wpp/qt/TakePhotoUI.qml</file>
 		<file>identified-modules/wpp/qt/TestSelectionListView.qml</file>
+		<file>identified-modules/wpp/qt/TextFieldLine.qml</file>
 		<file>identified-modules/wpp/qt/ThickCursor.qml</file>
 		<file>identified-modules/wpp/qt/TimezoneControl.qml</file>
 		<file>identified-modules/wpp/qt/TimezoneModel.qml</file>
@@ -58,6 +59,7 @@
 		<file>identified-modules/wpp/qt/WppTab.qml</file>
 		<file>identified-modules/wpp/qt/WppTabView.qml</file>
 		<file>identified-modules/wpp/qt/WppTextField.qml</file>
+		<file>identified-modules/wpp/qt/WppTextFieldStyle.qml</file>
 		<file>identified-modules/wpp/qt/qmldir</file>
 		<file>identified-modules/wpp/qt/google-map.html</file>
 		<file>img/android-icons/All_Icons/holo_dark/mdpi/1-navigation-accept.png</file>
