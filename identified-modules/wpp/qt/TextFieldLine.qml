@@ -20,6 +20,7 @@ Rectangle {
 		verticalAlignment: Text.AlignVCenter
 		text: rect.name
                 color: "#333333"
+                font.pixelSize: 12*wpp.dp2px
 	}
 	TextField {
 		id: textfield
@@ -30,6 +31,7 @@ Rectangle {
 		anchors.bottom: parent.bottom
 		placeholderText: rect.name
 		horizontalAlignment: Text.AlignRight
+                font.pixelSize: 12*wpp.dp2px
 		style: WppTextFieldStyle {
 		}
 	}
