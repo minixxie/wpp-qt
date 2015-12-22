@@ -19,8 +19,12 @@ class LocalStorage
 protected:
 	//static const QString DB_NAME;
 	QString dbName;
-	LocalStorage();
+    QString dbFilePath;
+    LocalStorage();
 	LocalStorage( const LocalStorage& ) {}//prevent from copying
+
+    void connect();
+    void disconnect();
 
 	void updateSchema(int fromVersion);//helper
 	void deleteExpiredCookies();//helper
@@ -40,6 +44,8 @@ protected:
 public:
 	static LocalStorage &getInstance();
 	void updateSchema();
+
+    void dropDB();
 
 	void setCookies(const QList<QNetworkCookie>& cookies);
     void setCookie(const QNetworkCookie& cookie);

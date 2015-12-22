@@ -27,114 +27,135 @@ LocalStorage &LocalStorage::getInstance()
 	return *singleton;
 }
 
-LocalStorage::LocalStorage()
-	: dbName("LocalStorage")
+void LocalStorage::connect()
 {
-	qDebug() << "LocalStorage():b4 calling SqlDatabase::addDatabase()...";
-	conn = QSqlDatabase::addDatabase("QSQLITE", dbName);
+    qDebug() << "LocalStorage():b4 calling SqlDatabase::addDatabase()...";
+    conn = QSqlDatabase::addDatabase("QSQLITE", dbName);
 /*#ifdef Q_OS_ANDROID
-	qDebug() << "LocalStorage(): this is Android...";
-	QString dbFile = QString("assets:/database/") + dbName + ".db";
-	QFile dbFilePath(dbFile);
-	QDir parentDir( dbFilePath. )
+    qDebug() << "LocalStorage(): this is Android...";
+    QString dbFile = QString("assets:/database/") + dbName + ".db";
+    QFile dbFilePath(dbFile);
+    QDir parentDir( dbFilePath. )
 #else*/
-	qDebug() << "LocalStorage(): this is iOS and others...";
-	QStringList paths = QStandardPaths::standardLocations(QStandardPaths::DataLocation);
-	QDir dir( paths.first() );
-	//dir.setFilter(QDir::Writable | QDir::Readable);
-	QDir parentDir( dir.filePath("..") );
-	qDebug() << "parent path: " << parentDir.absolutePath();
-	if ( !dir.exists() )
-	{
-		parentDir.mkpath( dir.dirName() );
-		qDebug() << "dir not exist, make it:" << dir;
-		qDebug() << "dir.name: " << dir.dirName();
-		//qDebug() << "new make dir returns: " << parentDir.mkpath( dir.dirName() );
-		//qDebug() << "make dir returns: " << dir.mkdir(".");
-	}
-	QString dbFile = paths.first().append("/").append(dbName).append(".db");
+    qDebug() << "LocalStorage(): this is iOS and others...";
+    QStringList paths = QStandardPaths::standardLocations(QStandardPaths::DataLocation);
+    QDir dir( paths.first() );
+    //dir.setFilter(QDir::Writable | QDir::Readable);
+    QDir parentDir( dir.filePath("..") );
+    qDebug() << "parent path: " << parentDir.absolutePath();
+    if ( !dir.exists() )
+    {
+        parentDir.mkpath( dir.dirName() );
+        qDebug() << "dir not exist, make it:" << dir;
+        qDebug() << "dir.name: " << dir.dirName();
+        //qDebug() << "new make dir returns: " << parentDir.mkpath( dir.dirName() );
+        //qDebug() << "make dir returns: " << dir.mkdir(".");
+    }
+    QString dbFile = paths.first().append("/").append(dbName).append(".db");
+    dbFilePath = dbFile;
 //#endif
 
 
-	qDebug() << "LocalStorage(): dbFile=" << dbFile;
+    qDebug() << "LocalStorage(): dbFile=" << dbFile;
 
 //this 2 lines of code is used to unconditionally re-construct the sqlite db file (for development only)
 //should comment out on production
 //QFile::remove(dbFile);
 //qDebug() << "dbFile removed successfully.";
 
-	conn.setDatabaseName(dbFile);//android
+    conn.setDatabaseName(dbFile);//android
 
-	qDebug() << "LocalStorage():after calling SqlDatabase::addDatabase()...";
+    qDebug() << "LocalStorage():after calling SqlDatabase::addDatabase()...";
 
-	//=== check if db file exists ===//
-	//bool requireInitiation = false;
-	QFileInfo dbFileInfo(dbFile);
-	if ( !dbFileInfo.exists() )
-	{
-		//requireInitiation = true;
-	}
-	//remember to fix the permission
-	QFile::setPermissions(dbFile, QFile::ReadOwner | QFile::WriteOwner);
+    //=== check if db file exists ===//
+    //bool requireInitiation = false;
+    QFileInfo dbFileInfo(dbFile);
+    if ( !dbFileInfo.exists() )
+    {
+        //requireInitiation = true;
+    }
+    //remember to fix the permission
+    QFile::setPermissions(dbFile, QFile::ReadOwner | QFile::WriteOwner);
 
 
-	if(!conn.open())
-	{
-		qCritical() << "couldn't connect to database Error[" <<
-			conn.lastError().text() << "]";
-		return;
-	}
+    if(!conn.open())
+    {
+        qCritical() << "couldn't connect to database Error[" <<
+            conn.lastError().text() << "]";
+        return;
+    }
 
-	//init pragma "user_version"
-	/*{
-		QSqlQuery query(conn);
-		if ( !query.exec("PRAGMA user_version = 1;") )
-		{
-			qDebug() << "Setting pragma user_version failed.";
-		}
-	}*/
+    //init pragma "user_version"
+    /*{
+        QSqlQuery query(conn);
+        if ( !query.exec("PRAGMA user_version = 1;") )
+        {
+            qDebug() << "Setting pragma user_version failed.";
+        }
+    }*/
 
-	//test the sqlite "user_version"
-	{
-		int sqliteUserVersion = 0;
-		QSqlQuery query(conn);
-		query.exec("PRAGMA user_version;");
-		while (query.next())
-		{
-			sqliteUserVersion = query.value(0).toInt();
-			//qDebug() << "sqliteUserVersion: " << sqliteUserVersion;
-		}
-		qDebug() << "final sqliteUserVersion: " << sqliteUserVersion;
+    //test the sqlite "user_version"
+    {
+        int sqliteUserVersion = 0;
+        QSqlQuery query(conn);
+        query.exec("PRAGMA user_version;");
+        while (query.next())
+        {
+            sqliteUserVersion = query.value(0).toInt();
+            //qDebug() << "sqliteUserVersion: " << sqliteUserVersion;
+        }
+        qDebug() << "final sqliteUserVersion: " << sqliteUserVersion;
 
-		updateSchema(sqliteUserVersion);
-	}
+        updateSchema(sqliteUserVersion);
+    }
 
-	deleteSessionCookies();
-	deleteExpiredCookies();
+    deleteSessionCookies();
+    deleteExpiredCookies();
 //debugSchema("HttpCookie");
 //debugSchema("UpDownloadStat");
 
 /*	{
-		QSqlQuery query(conn);
-		bool ret = query.exec("create table HttpCookie (name varchar(255) not null primary key, value varchar(255) not null)");
-		if ( !ret )
-		{
-			qDebug() << "create table failed!";
-		}
-	}*/
+        QSqlQuery query(conn);
+        bool ret = query.exec("create table HttpCookie (name varchar(255) not null primary key, value varchar(255) not null)");
+        if ( !ret )
+        {
+            qDebug() << "create table failed!";
+        }
+    }*/
 
-	qDebug() << "LocalStorage() constructor, dumpDB...";
-	dumpDB();
+    qDebug() << "LocalStorage() constructor, dumpDB...";
+    dumpDB();
 
 }
 
+LocalStorage::LocalStorage()
+	: dbName("LocalStorage")
+{
+    connect();
+}
+void LocalStorage::dropDB()
+{
+    QSqlDatabase::removeDatabase(dbName);
+
+    QFile file(dbFilePath);
+    file.remove();
+
+    connect();
+}
+
+void LocalStorage::disconnect()
+{
+    deleteSessionCookies();
+    deleteExpiredCookies();
+
+    conn.close();
+    //QSqlDatabase::removeDatabase(dbName);
+}
+
+
 LocalStorage::~LocalStorage()
 {
-	deleteSessionCookies();
-	deleteExpiredCookies();
-
-	conn.close();
-	QSqlDatabase::removeDatabase(dbName);
+    disconnect();
 }
 
 QList< QList<QString> > LocalStorage::schemaVersions()
