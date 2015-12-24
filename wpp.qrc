@@ -42,6 +42,7 @@
 		<file>identified-modules/wpp/qt/Spinner.qml</file>
 		<file>identified-modules/wpp/qt/StaticImageMap.qml</file>
 		<file>identified-modules/wpp/qt/SwitchButton.qml</file>
+		<file>identified-modules/wpp/qt/SwitchButtonLine.qml</file>
 		<file>identified-modules/wpp/qt/TakePhotoUI.qml</file>
 		<file>identified-modules/wpp/qt/TestSelectionListView.qml</file>
 		<file>identified-modules/wpp/qt/TextFieldLine.qml</file>

@@ -39,6 +39,7 @@ PhoneNumberCountryCodeModel 1.0 PhoneNumberCountryCodeModel.qml
 HandleSoftKeyboardMouseArea 1.0 HandleSoftKeyboardMouseArea.qml
 TextFieldLine 1.0 TextFieldLine.qml
 WppTextFieldStyle 1.0 WppTextFieldStyle.qml
+SwitchButtonLine 1.0 SwitchButtonLine.qml
 TitleBar 2.0 TitleBar20.qml
 PhoneNumberCountryCodeModel 2.0 PhoneNumberCountryCodeModel.qml
 Overlay 2.0 Overlay.qml
@@ -46,3 +47,5 @@ HandleSoftKeyboardMouseArea 2.0 HandleSoftKeyboardMouseArea.qml
 DateTimeControl 2.0 DateTimeControl.qml
 TextFieldLine 2.0 TextFieldLine.qml
 WppTextFieldStyle 2.0 WppTextFieldStyle.qml
+SwitchButton 2.0 SwitchButton.qml
+SwitchButtonLine 2.0 SwitchButtonLine.qml
