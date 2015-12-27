@@ -96,8 +96,9 @@ Wpp::Wpp()
 		false
 #endif
 	), slowNetwork(true),
-	__IMPLEMENTATION_DETAIL_ENABLE_AUTO_ROTATE(false),
-	m_softInputMode(ADJUST_PAN), m_windowOrigHeight(0), m_origFocusedWindow(0)
+    m_softInputMode(ADJUST_PAN),
+    __IMPLEMENTATION_DETAIL_ENABLE_AUTO_ROTATE(false),
+    m_windowOrigHeight(0), m_origFocusedWindow(0)
 
 {
 	qDebug() << "isAndroid:" << m_isAndroid;

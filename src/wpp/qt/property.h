@@ -1,6 +1,6 @@
 #pragma once
 #include <QObject>
-#define WPP_PROP(TYPE NAME) \
+#define WPP_PROP(TYPE, NAME) \
     Q_PROPERTY(TYPE NAME READ NAME WRITE NAME NOTIFY NAME ## Changed ) \
     public: \
        TYPE NAME() const { return m_ ## NAME ; } \
@@ -13,7 +13,7 @@
     private: \
        TYPE m_ ## NAME;
  
-#define WPP_PROP_READONLY(TYPE NAME) \
+#define WPP_PROP_READONLY(TYPE, NAME) \
     Q_PROPERTY(TYPE NAME READ NAME CONSTANT ) \
     public: \
        TYPE NAME() const { return m_ ## NAME ; } \
